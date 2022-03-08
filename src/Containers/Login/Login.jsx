@@ -15,7 +15,7 @@ const Login = (props) => {
     let navigate = useNavigate();
 
     //1-Hooks (equivalen al estado en los componentes de clase)
-    const [datosUsuario, setDatosUsuario] = useState({email: "", password: ""});
+    const [userData, setuserData] = useState({email: "", password: ""});
     const [msgError, setMsgError] = useState("");
     const [msgError2, setMsgError2] = useState("");
 
@@ -26,7 +26,7 @@ const Login = (props) => {
         //Funcion handler que setea los datos en el hook...[e.target.name] obtiene 
         //el nombre de la propiedad a cambiar, e.target.value tiene el valor..ambos
         //obtienen los datos del evento, que es el hecho de escribir en un input en concreto
-        setDatosUsuario({...datosUsuario, [e.target.name]: e.target.value})
+        setuserData({...userData, [e.target.name]: e.target.value})
     };
 
     //Funciones locales
@@ -37,15 +37,15 @@ const Login = (props) => {
 
             //Me invento las credenciales
             let body = {
-                 email: datosUsuario.email,
-                 password: datosUsuario.password
+                 email: userData.email,
+                 password: userData.password
             }
 
-            let resultado = await axios.post("https://movie-db-geekshubs.herokuapp.com/usuarios/login",body);
+            let resultado = await axios.post("https://videostore-backend.herokuapp.com/users/login",body);
 
             //Cambiamos el valor del hook credenciales, por lo tanto se recargará el componente
-            if(resultado.data === "Usuario o contraseña inválido"){
-                setMsgError2("Usuario o contraseña inválido")
+            if(resultado.data === "Invalid email or password"){
+                setMsgError2("Invalid email or password")
             }else{
 
                 //Guardaríamos los datos en redux...
@@ -73,7 +73,7 @@ const Login = (props) => {
         return(
             
             <div className='designLogin'>
-                 {<pre>{JSON.stringify(datosUsuario, null,2)}</pre>}
+                 {<pre>{JSON.stringify(userData, null,2)}</pre>}
                 <div className="designFormulario">
                     <input type="email" name="email" id="email" title="email" placeholder="Correo Electrónico" autoComplete="off" onChange={(e)=>{rellenarDatos(e)}}/>
                     <input type="password" name="password" id="password" title="password" placeholder="Contraseña" autoComplete="off" onChange={(e)=>{rellenarDatos(e);}}/>

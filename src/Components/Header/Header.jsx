@@ -14,10 +14,10 @@ const Header = (props) => {
         console.log(props.credentials);
     })
 
-    const navegar = (lugar) => {
+    const goTo = (place) => {
 
         setTimeout(()=> {
-            navigate(lugar);
+            navigate(place);
         }, 200);
 
     }
@@ -37,8 +37,8 @@ const Header = (props) => {
                 <div className="headerSpace"></div>
                 <div className="headerSpace"></div>
                 <div className="headerSpace linksDesign">
-                    <div className="link" onClick={()=>navegar("/login")}>Login</div>
-                    <div className="link" onClick={()=>navegar("/register")}>Registro</div>    
+                    <div className="link" onClick={()=>goTo("/login")}>Login</div>
+                    <div className="link" onClick={()=>goTo("/register")}>Register</div>    
                 </div>
             </div>
         )
@@ -48,7 +48,7 @@ const Header = (props) => {
                 <div className="headerSpace"></div>
                 <div className="headerSpace"></div>
                 <div className="headerSpace linksDesign">
-                    <div className="link" onClick={()=>navegar("/profile")}>{props.credentials?.usuario.nombre}</div>
+                    <div className="link" onClick={()=>navigate("/profile")}>{props.credentials?.user.nickname}</div>
                     <div className="link" onClick={()=>logOut()}>Logout</div>    
                 </div>
             </div>

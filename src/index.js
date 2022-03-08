@@ -4,7 +4,9 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+//Importo la clase Provider de react-redux para proveer estados a react
 import { Provider } from 'react-redux';
+//Importo la store para leer o escribir estados almacenados
 import store from './redux/store';
 
 ReactDOM.render(
