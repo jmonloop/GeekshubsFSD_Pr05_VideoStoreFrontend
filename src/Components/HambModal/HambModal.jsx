@@ -8,6 +8,8 @@ import './HambModal.css';
 
 
 import { useState } from 'react';
+
+
 import { Modal, Burger, Group } from '@mantine/core';
 import RegisterForm from '../RegisterForm/RegisterForm';
 
@@ -23,13 +25,13 @@ const HambModal = (props) => {
         <Modal
             opened={opened}
             onClose={() => setOpened(false)}
-            title="Introduce yourself!"
+            title="Sign Up"
         >
-            {/* <RegisterForm /> */}
+            <RegisterForm />
         </Modal>
 
         <Group position="center">
-            <Burger color="#ffffff" onClick={() => setOpened(true)}>Open Modal</Burger>
+            <Burger className='burgerDesign' color="#ffffff" onClick={() => setOpened(true)}>Open Modal</Burger>
         </Group>
             </>
       );
@@ -42,3 +44,48 @@ const HambModal = (props) => {
 export default connect((state)=>({
     credentials: state.credentials
 }))(HambModal);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

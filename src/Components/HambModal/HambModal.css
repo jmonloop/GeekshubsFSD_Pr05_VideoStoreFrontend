@@ -1,0 +1,5 @@
+.burgerDesign:hover {
+    background-color: rgba(151, 149, 8, 0.698);
+    transition: 0.4s;
+    transform:scale(1.1);
+}
