@@ -24,6 +24,10 @@ const Header = (props) => {
 
     }
 
+    const goToAdvancedSearch = () =>{
+        console.log('hey')
+    }
+
     const logOut = () => {
         //Borrar de RDX las credenciales
         props.dispatch({type:LOGOUT});
@@ -36,8 +40,16 @@ const Header = (props) => {
     if(!props.credentials?.token){
         return (
             <div className='designHeader'>
-                <Input
-                    icon={<img className='icon' src={require('../../assets/icons/search.png')} />}
+                <Input className='searchBar'
+                    icon={
+
+                        // <div className='icon' onClick={goToAdvancedSearch()}>
+                        //     <img src={require('../../assets/icons/search.png')} />
+                        // </div>
+                        <img className='icon' onClick={goToAdvancedSearch()} src={require('../../assets/icons/search.png')} />
+
+                    }
+                    
                     placeholder="Search movie..."
                     radius="xl"
                     size="md"
