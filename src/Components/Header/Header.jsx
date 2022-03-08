@@ -5,6 +5,7 @@ import { LOGOUT } from '../../redux/types';
 import {connect} from 'react-redux';
 
 import './Header.css';
+import HambModal from '../HambModal/HambModal';
 
 const Header = (props) => {
 
@@ -34,12 +35,7 @@ const Header = (props) => {
     if(!props.credentials?.token){
         return (
             <div className='designHeader'>
-                <div className="headerSpace"></div>
-                <div className="headerSpace"></div>
-                <div className="headerSpace linksDesign">
-                    <div className="link" onClick={()=>goTo("/login")}>Login</div>
-                    <div className="link" onClick={()=>goTo("/register")}>Register</div>    
-                </div>
+                <HambModal/>
             </div>
         )
     }else {
@@ -62,3 +58,19 @@ const Header = (props) => {
 export default connect((state)=>({
     credentials: state.credentials
 }))(Header);
+
+
+
+
+
+
+
+
+
+
+// <div className="headerSpace"></div>
+// <div className="headerSpace"></div>
+// <div className="headerSpace linksDesign">
+//     <div className="link" onClick={()=>goTo("/login")}>Login</div>
+//     <div className="link" onClick={()=>goTo("/register")}>Register</div>    
+// </div>
