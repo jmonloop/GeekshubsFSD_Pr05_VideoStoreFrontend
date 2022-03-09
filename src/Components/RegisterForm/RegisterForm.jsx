@@ -18,7 +18,7 @@ export const RegisterForm = (props) => {
       });
 
     return (
-        <form onSubmit={form.onSubmit((values) => console.log(values))}>
+        <form onSubmit={form.onSubmit((values) => console.log(values))} className='registerFormDesign'>
         
         <TextInput
           required

@@ -1,7 +1,7 @@
 //Importo los types para este reducer
 import {LOGIN, LOGOUT} from '../types';
 
-//Declaro las variables y su estado inicial antes de la acción
+//Declaro las variables y su estado inicial antes de la acción. No tienen por qué llamarse igual que las que llegan desde el backend
 const initialState = {
     token : '',
     user : {}

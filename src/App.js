@@ -9,21 +9,20 @@ import Home from './Containers/Home/Home';
 import Login from './Containers/Login/Login';
 import Register from './Containers/Register/Register';
 
-
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
       
-      <Header/>
+        <Header/>
 
-      <Routes>
-        <Route path="/" element={<Home/>}/>
-        <Route path="/login" element={<Login/>}/>
-        <Route path="/register" element={<Register/>}/>
+        <Routes>
+          <Route path="/" element={<Home/>}/>
+          <Route path="/login" element={<Login/>}/>
+          <Route path="/register" element={<Register/>}/>
 
-      </Routes>
-    
+        </Routes>
+      
     </BrowserRouter>
     </div>
   );

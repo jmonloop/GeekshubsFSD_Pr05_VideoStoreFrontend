@@ -1,80 +1,78 @@
 
-import React, {useEffect} from 'react';
-import {useNavigate} from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { LOGOUT } from '../../redux/types';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
-import './Header.css';
+
 import HambModal from '../HambModal/HambModal';
-import { Input } from '@mantine/core';
+
+
+//Importo todo lo que venga de HambModalSt. Lo llamaré S y lo que venga detrás del punto será el elemento creado en el styled
+import * as S from './HeaderSt';
+import MyTooltip from '../Tooltip/Tooltip';
 
 const Header = (props) => {
 
     let navigate = useNavigate();
 
-    useEffect(()=>{
+    useEffect(() => {
         console.log(props.credentials);
     })
 
     const goTo = (place) => {
 
-        setTimeout(()=> {
+        setTimeout(() => {
             navigate(place);
         }, 200);
 
     }
 
-    const goToAdvancedSearch = () =>{
-        console.log('hey')
-    }
-
+    
     const logOut = () => {
         //Borrar de RDX las credenciales
-        props.dispatch({type:LOGOUT});
+        props.dispatch({ type: LOGOUT });
 
-        setTimeout(()=>{
+        setTimeout(() => {
             navigate("/");
-        },1500);
+        }, 1500);
     }
 
-    if(!props.credentials?.token){
+    if (!props.credentials?.token) {
         return (
-            <div className='designHeader'>
-                <Input className='searchBar'
+            <S.headerContainter>
+                <S.mainIcon onClick={() => goTo('/')} src={require('../../assets/logos/istreaming.png')} />
+                <S.MyInput
+
                     icon={
-
-                        // <div className='icon' onClick={goToAdvancedSearch()}>
-                        //     <img src={require('../../assets/icons/search.png')} />
-                        // </div>
-                        <img className='icon' onClick={goToAdvancedSearch()} src={require('../../assets/icons/search.png')} />
-
+                        <MyTooltip />
                     }
-                    
+
                     placeholder="Search movie..."
                     radius="xl"
                     size="md"
                 />
-                <HambModal/>
-            </div>
+                <HambModal />
+            </S.headerContainter>
         )
-    }else {
+    } else {
         return (
             <div className='designHeader'>
                 <div className="headerSpace"></div>
                 <div className="headerSpace"></div>
                 <div className="headerSpace linksDesign">
-                    <div className="link" onClick={()=>navigate("/profile")}>{props.credentials?.user.nickname}</div>
-                    <div className="link" onClick={()=>logOut()}>Logout</div>    
+                    <div className="link" onClick={() => navigate("/profile")}>{props.credentials?.user.nickname}</div>
+                    <div className="link" onClick={() => logOut()}>Logout</div>
                 </div>
             </div>
         )
     }
 
-    
+
 
 }
 
-export default connect((state)=>({
+export default connect((state) => ({
     credentials: state.credentials
 }))(Header);
 
@@ -91,5 +89,5 @@ export default connect((state)=>({
 // <div className="headerSpace"></div>
 // <div className="headerSpace linksDesign">
 //     <div className="link" onClick={()=>goTo("/login")}>Login</div>
-//     <div className="link" onClick={()=>goTo("/register")}>Register</div>    
+//     <div className="link" onClick={()=>goTo("/register")}>Register</div>
 // </div>
