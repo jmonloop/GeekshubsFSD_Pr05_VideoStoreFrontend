@@ -1,46 +1,98 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './LoginForm.css';
 
+import axios from 'axios';
+
 import { TextInput, Checkbox, Button } from '@mantine/core';
-import { useForm } from '@mantine/hooks';
+
+//REDUX...
+import { connect } from 'react-redux';
+import { LOGIN } from '../../redux/types';
 
 export const LoginForm = (props) => {
-    const form = useForm({
-        initialValues: {
-          email: '',
-          termsOfService: false,
-        },
-    
-        validationRules: {
-          email: (value) => /^\S+@\S+$/.test(value),
-        },
-      });
+  let navigate = useNavigate();
 
-    return (
-        <form onSubmit={form.onSubmit((values) => console.log(values))} className='LoginFormDesign'>
-        
-        <TextInput
-          required
-          label="Email"
-          placeholder="your@email.com"
-          {...form.getInputProps('email')}
-        />
-        <TextInput
-          required
-          label="Password"
-          placeholder="6 characters min"
-          {...form.getInputProps('password')}
-        />
-  
-        <Checkbox
-          mt="md"
-          label="Remember Me"
-          {...form.getInputProps('termsOfService', { type: 'checkbox' })}
-        />
-  
-        <Button type="submit">Submit</Button>
-      </form>
-    )
+  //1-Hooks
+  const [userData, setuserData] = useState({ email: "", password: "" });
+  const [msg, setMsg] = useState("");
+  const [msgError2, setMsgError2] = useState("");
+
+
+  //Handler funcs
+  const fillForm = (e) => {
+    //Funcion handler que setea los datos en el hook...[e.target.name] obtiene 
+    //el nombre de la propiedad a cambiar, e.target.value tiene el valor..ambos
+    //obtienen los datos del evento, que es el hecho de escribir en un input en concreto
+    setuserData({ ...userData, [e.target.name]: e.target.value })
+  };
+
+  //Local funcs
+  const login = async () => {
+
+    try {
+
+      let body = {
+        email: userData.email,
+        password: userData.password
+      }
+
+      let result = await axios.post("https://videostore-backend.herokuapp.com/users/login", body);
+
+      //Cambiamos el valor del hook credenciales, por lo tanto se recargará el componente
+      if (result.data === "Invalid email or password") {
+        setMsgError2(result.data)
+      } else {
+        setMsg(result.data.loginOKmessage)
+        // console.log(result.data)
+        //Guardaríamos los datos en redux...
+
+        setTimeout(() => {
+          //     navigate("/");
+          props.dispatch({ type: LOGIN, payload: result.data });
+        }, 1500);
+      }
+
+
+    } catch (error) {
+      console.log(error)
+    }
+
+
+  };
+
+
+  return (
+
+    <>
+      <TextInput
+        required
+        label="Email"
+        name="email"
+        placeholder="your@email.com"
+        onChange={(e) => { fillForm(e) }}
+      />
+      <TextInput
+        required
+        label="Password"
+        name="password"
+        type='password'
+        placeholder="6 characters min"
+        onChange={(e) => { fillForm(e) }}
+      />
+
+      <Checkbox
+        mt="md"
+        label="Remember Me"
+        name="rememberMe"
+      // {...form.getInputProps('termsOfService', { type: 'checkbox' })}
+      />
+
+      <Button type="submit" onClick={() => login()}>Submit</Button>
+      <br></br>
+      <span className='errorMsg'>{msgError2}</span>
+      <span className='okMsg'>{msg}</span>
+    </>
+  )
 }
-export default LoginForm;
+export default connect()(LoginForm);

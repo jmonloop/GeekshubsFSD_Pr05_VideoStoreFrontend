@@ -35,7 +35,9 @@ export const Link = styled.div`
     margin: 5%;
     display: ${({ RenderRegisterForm }) => (RenderRegisterForm ? "none" : "block")};
 
-    :hover{
-        color: orange;
+    :hover {
+    color: rgba(151, 149, 8, 0.698);
+    transition: 0.4s;
+    transform:scale(1.05);
     }
 `

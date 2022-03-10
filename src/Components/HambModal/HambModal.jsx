@@ -18,21 +18,17 @@ import * as S from './StHambModal.jsx';
 
 
 const HambModal = (props) => {
-    //own variables
+    //variables
     let navigate = useNavigate();
 
-    //own hooks
+
+    //hooks
     const [RenderLoginForm, setRenderLoginForm] = useState(false)
     const [RenderRegisterForm, setRenderRegisterForm] = useState(false)
 
-    // [<S.Link onClick={() => { setRenderLoginForm(true) }}>Login</S.Link>,
-    //                     <S.Link onClick={() => { setRenderRegisterForm(true) }}>Register</S.Link>
-    //                     ]
 
 
-
-
-    //Own funcs
+    //funcs
     const GoTo = (place) => {
         navigate(place)
     }
@@ -40,8 +36,11 @@ const HambModal = (props) => {
 
     const Logout = () => {
         //Borrar de RDX las credenciales
-        props.dispatch({ type: LOGOUT });
         setRenderLoginForm(false)
+
+        setTimeout(()=> {
+            props.dispatch({ type: LOGOUT });
+        },500)
     }
 
     //Mantine hooks
@@ -143,7 +142,7 @@ const HambModal = (props) => {
                 // title="Sign Up"
                 >
 
-                    <S.Link onClick={() => { GoTo('/profile'); setOpened(false) }}>{props.credentials?.usuario.nombre}</S.Link>
+                    <S.Link onClick={() => { GoTo('/profile'); setOpened(false) }}>{props.credentials?.user.nickname}</S.Link>
                     <S.Link onClick={() => { Logout(); setOpened(false) }}>Logout</S.Link>
                 </S.MyModal>
 
