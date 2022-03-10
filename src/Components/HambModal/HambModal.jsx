@@ -16,18 +16,31 @@ import * as S from './StHambModal.jsx';
 
 
 const HambModal = (props) => {
+    let navigate = useNavigate();
+
+    const goTo = (place) => {
+
+        setTimeout(() => {
+            navigate(place);
+        }, 200);
+
+    }
 
     const [opened, setOpened] = useState(false);
     const title = opened ? 'Close navigation' : 'Open navigation';
+
+
 
     return (
             <>
         <S.MyModal 
             opened={opened}
             onClose={() => setOpened(false)}
-            title="Sign Up"
+            // title="Sign Up"
         >
-            <RegisterForm/>
+            {/* <RegisterForm/> */}
+            <S.Link onClick={()=>{goTo("/login"); setOpened(false)}}>Login</S.Link>
+            <S.Link onClick={()=>{goTo("/register"); setOpened(false)}}>Register</S.Link>
         </S.MyModal>
 
         <S.MyGroup position="center">

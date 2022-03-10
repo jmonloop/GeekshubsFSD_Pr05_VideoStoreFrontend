@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import {Burger, Modal, Group } from '@mantine/core';
 
 
-//Genero elemento MyBurger que será lo que yo escribiré en React cuando quiera meter el elemento. se iguala a styled(tipoElemento). Si fuese un div tipoElemento sería un div
+//Mantine components
 export const MyBurger = styled(Burger)`
     /* background-color: white; */
     :hover {
@@ -21,4 +21,14 @@ export const MyModal = styled(Modal)`
 export const MyGroup = styled(Group)`
 
 
+`
+
+
+
+
+//Own components
+export const Link = styled.div`
+    font-weight: bold;
+    cursor:pointer;
+    margin: 5%;
 `

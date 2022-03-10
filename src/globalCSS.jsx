@@ -2,7 +2,7 @@ import {createGlobalStyle} from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
 
-//Aquí añado todos los elementos a los que necesito dar una clase global
+//Mantine components
     div .mantine-Modal-inner{
         overflow-y: hidden;
     }
@@ -17,6 +17,16 @@ const GlobalStyle = createGlobalStyle`
         height: 100%;
         overflow: hidden ;
     }
+
+    div .mantine-vfje8a {
+        width: 15em;
+        position: absolute;
+        top: 15%;
+        right: 8% ;
+    }
 `
+
+
+//Own elements
 
 export default GlobalStyle;
