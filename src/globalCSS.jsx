@@ -23,6 +23,7 @@ const GlobalStyle = createGlobalStyle`
         position: absolute;
         top: 15%;
         right: 8% ;
+        opacity: 0.5 !important;
     }
 `
 

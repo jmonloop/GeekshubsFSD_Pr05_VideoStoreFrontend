@@ -31,4 +31,8 @@ export const Link = styled.div`
     font-weight: bold;
     cursor:pointer;
     margin: 5%;
+
+    :hover{
+        color: orange;
+    }
 `
