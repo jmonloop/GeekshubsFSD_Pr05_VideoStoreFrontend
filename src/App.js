@@ -7,7 +7,6 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import Header from './Components/Header/Header';
 import Home from './Containers/Home/Home';
 import Login from './Containers/Login/Login';
-import Register from './Containers/Register/Register';
 
 function App() {
   return (
@@ -19,8 +18,6 @@ function App() {
         <Routes>
           <Route path="/" element={<Home/>}/>
           <Route path="/login" element={<Login/>}/>
-          <Route path="/register" element={<Register/>}/>
-
         </Routes>
       
     </BrowserRouter>

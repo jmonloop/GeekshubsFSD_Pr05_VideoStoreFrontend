@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import { LOGIN } from '../../redux/types';
 
 
-import './Login.css';
+import * as S from './StLogin.jsx';
 
 const Login = (props) => {
 
@@ -72,7 +72,7 @@ const Login = (props) => {
          
         return(
             
-            <div className='designLogin'>
+            <S.loginContainter>
                  {<pre>{JSON.stringify(userData, null,2)}</pre>}
                 <div className="designFormulario">
                     <input type="email" name="email" id="email" title="email" placeholder="Correo Electrónico" autoComplete="off" onChange={(e)=>{rellenarDatos(e)}}/>
@@ -80,8 +80,8 @@ const Login = (props) => {
                     {msgError}
                     {msgError2}
                 </div>
-                <div className="loginButton espacio" onClick={()=>login()}>LOG ME!</div>
-            </div>
+                <S.loginButton onClick={()=>login()}>LOG ME!</S.loginButton>
+            </S.loginContainter>
         );
 
 };

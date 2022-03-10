@@ -1,7 +1,8 @@
 //Importo styled-components
 import styled from 'styled-components';
-//Importo componente prefabricado 'Burger' de mantine
-import { Burger } from '@mantine/core';
+
+import {Burger, Modal, Group } from '@mantine/core';
+
 
 //Genero elemento MyBurger que será lo que yo escribiré en React cuando quiera meter el elemento. se iguala a styled(tipoElemento). Si fuese un div tipoElemento sería un div
 export const MyBurger = styled(Burger)`
@@ -13,3 +14,11 @@ export const MyBurger = styled(Burger)`
 }
 `
 
+export const MyModal = styled(Modal)`
+
+
+`
+export const MyGroup = styled(Group)`
+
+
+`

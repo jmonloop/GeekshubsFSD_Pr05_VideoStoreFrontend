@@ -1,14 +1,15 @@
 
 import React from 'react';
 
-import './Home.css';
+//Importo todo lo que venga de HambModalSt. Lo llamaré S y lo que venga detrás del punto será el elemento creado en el styled
+import * as S from './StHome.jsx';
 
 const Home = () => {
 
     return (
-        <div className='designHome'>
+        <S.homeContainter>
             HOME
-        </div>
+        </S.homeContainter>
     )
 
 }

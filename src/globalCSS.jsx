@@ -13,6 +13,10 @@ const GlobalStyle = createGlobalStyle`
     img .mantine-riw2j3{
         cursor: pointer;
     }
+    body {
+        height: 100%;
+        overflow: hidden ;
+    }
 `
 
 export default GlobalStyle;

@@ -8,11 +8,11 @@ import {connect} from 'react-redux';
 import { useState } from 'react';
 
 
-import { Modal, Group } from '@mantine/core';
+
 import RegisterForm from '../RegisterForm/RegisterForm';
 
 //Importo todo lo que venga de HambModalSt. Lo llamaré S y lo que venga detrás del punto será el elemento creado en el styled
-import * as S from './HambModalSt';
+import * as S from './StHambModal.jsx';
 
 
 const HambModal = (props) => {
@@ -22,18 +22,18 @@ const HambModal = (props) => {
 
     return (
             <>
-        <Modal 
+        <S.MyModal 
             opened={opened}
             onClose={() => setOpened(false)}
             title="Sign Up"
         >
             <RegisterForm/>
-        </Modal>
+        </S.MyModal>
 
-        <Group position="center">
+        <S.MyGroup position="center">
             {/* Pinto el elemento MyBurger que viene de la hoja styled */}
             <S.MyBurger color="white" onClick={() => setOpened(true)}>Open Modal</S.MyBurger>
-        </Group>
+        </S.MyGroup>
             </>
       );
 

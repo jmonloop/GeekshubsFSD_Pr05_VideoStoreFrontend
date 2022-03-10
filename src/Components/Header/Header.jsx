@@ -9,7 +9,7 @@ import HambModal from '../HambModal/HambModal';
 
 
 //Importo todo lo que venga de HambModalSt. Lo llamaré S y lo que venga detrás del punto será el elemento creado en el styled
-import * as S from './HeaderSt';
+import * as S from './StHeader';
 import MyTooltip from '../Tooltip/Tooltip';
 
 const Header = (props) => {

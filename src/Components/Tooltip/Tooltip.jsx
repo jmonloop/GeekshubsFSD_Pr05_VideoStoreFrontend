@@ -20,7 +20,7 @@ const MyTooltip = (props) => {
             color="orange"
             position="left"
             withArrow
-            opened={opened}
+
         >
             <SearchIcon
                 onMouseEnter={() => setOpened(true)}
