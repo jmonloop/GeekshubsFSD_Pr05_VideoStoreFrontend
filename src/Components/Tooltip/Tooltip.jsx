@@ -22,7 +22,10 @@ const MyTooltip = (props) => {
             withArrow
             opened={opened}
         >
-            <SearchIcon className='icon' onClick={() => setOpened((o) => !o)} src={require('../../assets/icons/search.png')} />
+            <SearchIcon
+                onMouseEnter={() => setOpened(true)}
+                onMouseLeave={() => setOpened(false)}
+                src={require('../../assets/icons/search.png')} />
         </Tooltip>
     )
 }
