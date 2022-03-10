@@ -11,7 +11,7 @@ import { useState } from 'react';
 
 
 import RegisterForm from '../RegisterForm/RegisterForm';
-// import Link from '../Link/Link';
+import LoginForm from '../LoginForm/LoginForm';
 
 //Importo todo lo que venga de HambModalSt. Lo llamaré S y lo que venga detrás del punto será el elemento creado en el styled
 import * as S from './StHambModal.jsx';
@@ -24,6 +24,10 @@ const HambModal = (props) => {
     //own hooks
     const [RenderLoginForm, setRenderLoginForm] = useState(false)
     const [RenderRegisterForm, setRenderRegisterForm] = useState(false)
+
+    // [<S.Link onClick={() => { setRenderLoginForm(true) }}>Login</S.Link>,
+    //                     <S.Link onClick={() => { setRenderRegisterForm(true) }}>Register</S.Link>
+    //                     ]
 
 
 
@@ -47,42 +51,89 @@ const HambModal = (props) => {
 
 
     if ((!props.credentials?.token)) {
-        return (
-            <>
-                <S.MyModal
-                    RenderRegisterForm={RenderRegisterForm}
-                    opened={opened}
-                    onClose={() => {
-                        setOpened(false);
-                        //Delay forms render for not to close while is rendering back
-                        setTimeout(() => {
-                            setRenderLoginForm(false);
-                            setRenderRegisterForm(false)
-                        }, 500)
+        if((!RenderLoginForm)&&(!RenderRegisterForm)) {
+            return (
+                <>
+                    <S.MyModal
+                        opened={opened}
+                        onClose={() => {
+                            setOpened(false);
+                            //Delay forms render for not to close while is rendering back
+                            setTimeout(() => {
+                                setRenderLoginForm(false);
+                                setRenderRegisterForm(false)
+                            }, 500)
+    
+                        }}
+                    //  title="Sign Up"
+                    >
+                        <S.Link onClick={() => { setRenderLoginForm(true) }}>
+                            Login</S.Link>,
+                        <S.Link onClick={() => { setRenderRegisterForm(true) }}>
+                            Register</S.Link>
+    
+                    </S.MyModal>
+    
+                    <S.MyGroup position="center">
+                        {/* Pinto el elemento MyBurger que viene de la hoja styled */}
+                        <S.MyBurger color="white" onClick={() => setOpened(true)}>Open Modal</S.MyBurger>
+                    </S.MyGroup>
+                </>
+            );
+        } else if(RenderLoginForm) {
+            return (
+                <>
+                    <S.MyModal
+                        opened={opened}
+                        onClose={() => {
+                            setOpened(false);
+                            //Delay forms render for not to close while is rendering back
+                            setTimeout(() => {
+                                setRenderLoginForm(false);
+                                setRenderRegisterForm(false)
+                            }, 500)
+    
+                        }}
+                    //  title="Sign Up"
+                    >
+                    <LoginForm></LoginForm>
+    
+                    </S.MyModal>
+    
+                    <S.MyGroup position="center">
+                        {/* Pinto el elemento MyBurger que viene de la hoja styled */}
+                        <S.MyBurger color="white" onClick={() => setOpened(true)}>Open Modal</S.MyBurger>
+                    </S.MyGroup>
+                </>
+            );
+        } else if(RenderRegisterForm) {
+            return (
+                <>
+                    <S.MyModal
+                        opened={opened}
+                        onClose={() => {
+                            setOpened(false);
+                            //Delay forms render for not to close while is rendering back
+                            setTimeout(() => {
+                                setRenderLoginForm(false);
+                                setRenderRegisterForm(false)
+                            }, 500)
+    
+                        }}
+                    //  title="Sign Up"
+                    >
+                    <RegisterForm></RegisterForm>
+    
+                    </S.MyModal>
+    
+                    <S.MyGroup position="center">
+                        {/* Pinto el elemento MyBurger que viene de la hoja styled */}
+                        <S.MyBurger color="white" onClick={() => setOpened(true)}>Open Modal</S.MyBurger>
+                    </S.MyGroup>
+                </>
+            );
+        } 
 
-                    }}
-                // title="Sign Up"
-                >
-                    {/* <>{RenderLoginForm && <LoginForm/> : null}</> */}
-                    <>{RenderRegisterForm
-                        ? <RegisterForm />
-                        : [<S.Link onClick={() => { setRenderLoginForm(true) }}>Login</S.Link>,
-                        <S.Link onClick={() => { setRenderRegisterForm(true) }}>Register</S.Link>
-                        ]
-
-                    }</>
-
-
-                    {/* <S.Link onClick={() => { setRenderLoginForm(true) }}>Login</S.Link>
-                     */}
-                </S.MyModal>
-
-                <S.MyGroup position="center">
-                    {/* Pinto el elemento MyBurger que viene de la hoja styled */}
-                    <S.MyBurger color="white" onClick={() => setOpened(true)}>Open Modal</S.MyBurger>
-                </S.MyGroup>
-            </>
-        );
     } else {
         return (
             <>

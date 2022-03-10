@@ -1,11 +1,11 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import './RegisterForm.css';
+import './LoginForm.css';
 
 import { TextInput, Checkbox, Button } from '@mantine/core';
 import { useForm } from '@mantine/hooks';
 
-export const RegisterForm = (props) => {
+export const LoginForm = (props) => {
     const form = useForm({
         initialValues: {
           email: '',
@@ -18,32 +18,8 @@ export const RegisterForm = (props) => {
       });
 
     return (
-        <form onSubmit={form.onSubmit((values) => console.log(values))} className='registerFormDesign'>
+        <form onSubmit={form.onSubmit((values) => console.log(values))} className='LoginFormDesign'>
         
-        <TextInput
-          required
-          label="Name"
-          placeholder=""
-          {...form.getInputProps('name')}
-        />
-        <TextInput
-          required
-          label="Surname"
-          placeholder=""
-          {...form.getInputProps('surname')}
-        />
-        <TextInput
-          required
-          label="Age"
-          placeholder=""
-          {...form.getInputProps('age')}
-        />
-        <TextInput
-          required
-          label="Nickname"
-          placeholder=""
-          {...form.getInputProps('nickname')}
-        />
         <TextInput
           required
           label="Email"
@@ -59,7 +35,7 @@ export const RegisterForm = (props) => {
   
         <Checkbox
           mt="md"
-          label="Ain't gonna read so I agree with whatever"
+          label="Remember Me"
           {...form.getInputProps('termsOfService', { type: 'checkbox' })}
         />
   
@@ -67,4 +43,4 @@ export const RegisterForm = (props) => {
       </form>
     )
 }
-export default RegisterForm;
+export default LoginForm;

@@ -24,6 +24,10 @@ const GlobalStyle = createGlobalStyle`
         right: 8% ;
         /* opacity: 0.5 !important; */
     }
+
+    div .mantine-1khjw2v{
+        margin-top: 5%;
+    }
 `
 
 
