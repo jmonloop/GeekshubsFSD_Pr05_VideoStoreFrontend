@@ -59,7 +59,7 @@ export const RegisterForm = (props) => {
   
         <Checkbox
           mt="md"
-          label="I agree to sell my privacy to this corporation"
+          label="I agree to whatever"
           {...form.getInputProps('termsOfService', { type: 'checkbox' })}
         />
   

@@ -1,6 +1,8 @@
 //Importo styled-components
 import styled from 'styled-components';
 
+import RenderRegisterForm from './HambModal'
+
 import {Burger, Modal, Group } from '@mantine/core';
 
 
@@ -31,6 +33,7 @@ export const Link = styled.div`
     font-weight: bold;
     cursor:pointer;
     margin: 5%;
+    display: ${({ RenderRegisterForm }) => (RenderRegisterForm ? "none" : "block")};
 
     :hover{
         color: orange;

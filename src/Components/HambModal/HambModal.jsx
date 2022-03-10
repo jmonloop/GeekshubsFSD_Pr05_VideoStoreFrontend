@@ -11,6 +11,7 @@ import { useState } from 'react';
 
 
 import RegisterForm from '../RegisterForm/RegisterForm';
+// import Link from '../Link/Link';
 
 //Importo todo lo que venga de HambModalSt. Lo llamaré S y lo que venga detrás del punto será el elemento creado en el styled
 import * as S from './StHambModal.jsx';
@@ -49,11 +50,12 @@ const HambModal = (props) => {
         return (
             <>
                 <S.MyModal
+                    RenderRegisterForm={RenderRegisterForm}
                     opened={opened}
                     onClose={() => {
                         setOpened(false);
                         //Delay forms render for not to close while is rendering back
-                        setTimeout(()=>{
+                        setTimeout(() => {
                             setRenderLoginForm(false);
                             setRenderRegisterForm(false)
                         }, 500)
@@ -61,13 +63,18 @@ const HambModal = (props) => {
                     }}
                 // title="Sign Up"
                 >
-                    {/* <>{RenderLoginForm && <LoginForm/>}</> */}
-                    <>{RenderRegisterForm && <RegisterForm />}</>
+                    {/* <>{RenderLoginForm && <LoginForm/> : null}</> */}
+                    <>{RenderRegisterForm
+                        ? <RegisterForm />
+                        : [<S.Link onClick={() => { setRenderLoginForm(true) }}>Login</S.Link>,
+                        <S.Link onClick={() => { setRenderRegisterForm(true) }}>Register</S.Link>
+                        ]
+
+                    }</>
 
 
-                    <S.Link onClick={() => { setRenderLoginForm(true) }}>Login</S.Link>
-                    {/* <S.Link onClick={()=>{GoToLogin()}}>Login</S.Link> */}
-                    <S.Link onClick={() => { setRenderRegisterForm(true) }}>Register</S.Link>
+                    {/* <S.Link onClick={() => { setRenderLoginForm(true) }}>Login</S.Link>
+                     */}
                 </S.MyModal>
 
                 <S.MyGroup position="center">

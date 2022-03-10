@@ -1,11 +1,9 @@
 import {createGlobalStyle} from 'styled-components'
+import RenderRegisterForm from './Components/HambModal/HambModal'
 
 const GlobalStyle = createGlobalStyle`
 
 //Mantine components
-    div .mantine-Modal-inner{
-        overflow-y: hidden;
-    }
     div .mantine-1hseney{
         pointer-events: auto ;
         cursor: pointer ;
@@ -19,11 +17,12 @@ const GlobalStyle = createGlobalStyle`
     }
 
     div .mantine-vfje8a {
-        width: 15em;
+        width: 20em;
+        /* width: ${({ RenderRegisterForm }) => (RenderRegisterForm ? "30em" : "15em")}; */
         position: absolute;
         top: 15%;
         right: 8% ;
-        opacity: 0.5 !important;
+        /* opacity: 0.5 !important; */
     }
 `
 
