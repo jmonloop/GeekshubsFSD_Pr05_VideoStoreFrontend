@@ -28,7 +28,7 @@ const Header = (props) => {
 
     }
 
-    
+
     const logOut = () => {
         //Borrar de RDX las credenciales
         props.dispatch({ type: LOGOUT });
@@ -38,35 +38,24 @@ const Header = (props) => {
         }, 1500);
     }
 
-    if (!props.credentials?.token) {
-        return (
-            <S.headerContainter>
-                <S.mainIcon onClick={() => goTo('/')} src={require('../../assets/logos/istreaming.png')} />
-                <S.MyInput
 
-                    icon={
-                        <MyTooltip />
-                    }
+    return (
+        <S.headerContainter>
+            <S.mainIcon onClick={() => goTo('/')} src={require('../../assets/logos/istreaming.png')} />
+            <S.MyInput
 
-                    placeholder="Search movie..."
-                    radius="xl"
-                    size="md"
-                />
-                <HambModal />
-            </S.headerContainter>
-        )
-    } else {
-        return (
-            <div className='designHeader'>
-                <div className="headerSpace"></div>
-                <div className="headerSpace"></div>
-                <div className="headerSpace linksDesign">
-                    <div className="link" onClick={() => navigate("/profile")}>{props.credentials?.user.nickname}</div>
-                    <div className="link" onClick={() => logOut()}>Logout</div>
-                </div>
-            </div>
-        )
-    }
+                icon={
+                    <MyTooltip />
+                }
+
+                placeholder="Search movie..."
+                radius="xl"
+                size="md"
+            />
+            <HambModal />
+        </S.headerContainter>
+    )
+
 
 
 

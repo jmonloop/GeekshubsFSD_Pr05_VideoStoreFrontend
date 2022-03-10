@@ -1,8 +1,9 @@
 
-import React, {useEffect} from 'react';
-import {useNavigate} from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { LOGOUT } from '../../redux/types';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
+
 
 
 import { useState } from 'react';
@@ -16,45 +17,91 @@ import * as S from './StHambModal.jsx';
 
 
 const HambModal = (props) => {
+    //own variables
     let navigate = useNavigate();
 
-    const goTo = (place) => {
+    //own hooks
+    const [RenderLoginForm, setRenderLoginForm] = useState(false)
+    const [RenderRegisterForm, setRenderRegisterForm] = useState(false)
 
-        setTimeout(() => {
-            navigate(place);
-        }, 200);
 
+
+
+    //Own funcs
+    const GoTo = (place) => {
+        navigate(place)
     }
 
+
+    const Logout = () => {
+        //Borrar de RDX las credenciales
+        props.dispatch({ type: LOGOUT });
+        setRenderLoginForm(false)
+    }
+
+    //Mantine hooks
     const [opened, setOpened] = useState(false);
     const title = opened ? 'Close navigation' : 'Open navigation';
 
 
 
-    return (
+    if ((!props.credentials?.token)) {
+        return (
             <>
-        <S.MyModal 
-            opened={opened}
-            onClose={() => setOpened(false)}
-            // title="Sign Up"
-        >
-            {/* <RegisterForm/> */}
-            <S.Link onClick={()=>{goTo("/login"); setOpened(false)}}>Login</S.Link>
-            <S.Link onClick={()=>{goTo("/register"); setOpened(false)}}>Register</S.Link>
-        </S.MyModal>
+                <S.MyModal
+                    opened={opened}
+                    onClose={() => {
+                        setOpened(false);
+                        //Delay forms render for not to close while is rendering back
+                        setTimeout(()=>{
+                            setRenderLoginForm(false);
+                            setRenderRegisterForm(false)
+                        }, 500)
 
-        <S.MyGroup position="center">
-            {/* Pinto el elemento MyBurger que viene de la hoja styled */}
-            <S.MyBurger color="white" onClick={() => setOpened(true)}>Open Modal</S.MyBurger>
-        </S.MyGroup>
+                    }}
+                // title="Sign Up"
+                >
+                    {/* <>{RenderLoginForm && <LoginForm/>}</> */}
+                    <>{RenderRegisterForm && <RegisterForm />}</>
+
+
+                    <S.Link onClick={() => { setRenderLoginForm(true) }}>Login</S.Link>
+                    {/* <S.Link onClick={()=>{GoToLogin()}}>Login</S.Link> */}
+                    <S.Link onClick={() => { setRenderRegisterForm(true) }}>Register</S.Link>
+                </S.MyModal>
+
+                <S.MyGroup position="center">
+                    {/* Pinto el elemento MyBurger que viene de la hoja styled */}
+                    <S.MyBurger color="white" onClick={() => setOpened(true)}>Open Modal</S.MyBurger>
+                </S.MyGroup>
             </>
-      );
+        );
+    } else {
+        return (
+            <>
+                <S.MyModal
+                    opened={opened}
+                    onClose={() => setOpened(false)}
+                // title="Sign Up"
+                >
+
+                    <S.Link onClick={() => { GoTo('/profile'); setOpened(false) }}>{props.credentials?.usuario.nombre}</S.Link>
+                    <S.Link onClick={() => { Logout(); setOpened(false) }}>Logout</S.Link>
+                </S.MyModal>
+
+                <S.MyGroup position="center">
+                    {/* Pinto el elemento MyBurger que viene de la hoja styled */}
+                    <S.MyBurger color="white" onClick={() => setOpened(true)}>Open Modal</S.MyBurger>
+                </S.MyGroup>
+            </>
+        );
+    }
 
 }
 
 
 
-export default connect((state)=>({
+export default connect((state) => ({
     credentials: state.credentials
 }))(HambModal);
 
