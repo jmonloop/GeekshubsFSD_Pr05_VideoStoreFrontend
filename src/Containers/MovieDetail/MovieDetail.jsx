@@ -102,8 +102,72 @@ const MovieDetail = (props) => {
 
     return (
         <S.movieDetailContainter>
-            {/* <S.movieDetailTitle>{props.search.original_title}</S.movieDetailTitle> */}
             <S.detailsBox>
+                <S.detailsCol>
+                    <S.detailDiv>
+                        <S.detailKey>Original Title</S.detailKey>
+                    </S.detailDiv>
+                    <S.detailDiv>
+                        <S.detailKey>Genres</S.detailKey>
+                    </S.detailDiv>
+                    <S.detailDiv>
+                        <S.detailKey>Original Language</S.detailKey>
+                    </S.detailDiv>
+                    <S.detailDiv>
+                        <S.detailKey>Relase Date</S.detailKey>
+                    </S.detailDiv>
+                    <S.detailDiv>
+                        <S.detailKey>Score</S.detailKey>
+                    </S.detailDiv>
+                </S.detailsCol>
+
+                <S.detailsCol>
+                    <S.detailDiv>
+                        <S.detailValue>{props.search.original_title}</S.detailValue>
+                    </S.detailDiv>
+                    <S.detailDiv>
+                        <S.detailValue>
+                            {genres[0].map(genre => {
+                                return (<span>{genresTMDB(genre)}</span>)
+                            })}
+                        </S.detailValue>
+                    </S.detailDiv>
+                    <S.detailDiv>
+                        <S.detailValue>{props.search.original_language}</S.detailValue>
+                    </S.detailDiv>
+                    <S.detailDiv>
+                        <S.detailValue>{props.search.release_date}</S.detailValue>
+                    </S.detailDiv>
+                    <S.detailDiv>
+                        <S.detailValue>{props.search.vote_average}</S.detailValue>
+                    </S.detailDiv>
+                </S.detailsCol>
+
+                <S.detailsCol>
+                    <S.detailPoster>
+                        <S.posterImg src={root + props.search.poster_path} alt="" />
+                    </S.detailPoster>
+                </S.detailsCol>
+            </S.detailsBox>
+        </S.movieDetailContainter>
+    )
+}
+
+// export default MovieDetail;
+
+export default connect((state) => ({
+    search: state.search
+}))(MovieDetail);
+
+
+
+
+
+
+
+
+
+{/* <S.detailsBox>
                 <S.detailDiv>
                     <S.detailKey>Original Title</S.detailKey>
                     <S.detailValue>{props.search.original_title}</S.detailValue>
@@ -119,18 +183,4 @@ const MovieDetail = (props) => {
 
                 </S.detailDiv>
 
-            </S.detailsBox>
-
-
-
-
-        </S.movieDetailContainter>
-    )
-}
-
-
-// export default MovieDetail;
-
-export default connect((state) => ({
-    search: state.search
-}))(MovieDetail);
+            </S.detailsBox> */}
