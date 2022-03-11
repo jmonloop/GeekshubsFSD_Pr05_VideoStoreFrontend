@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { MOVIE_DETAIL } from '../../redux/types';
 import {root} from '../../utiles';
 import PaginationComp from '../../Components/Pagination/Pagination';
-import { Pagination } from '@mantine/core';
 
 //Importo todo lo que venga de HambModalSt. Lo llamaré S y lo que venga detrás del punto será el elemento creado en el styled
 import * as S from './StHome.jsx';
@@ -34,7 +33,7 @@ const Home = (props) => {
     }, [films]);
 
     useEffect(() => {
-        getFilms(props.pageNum)
+        getFilms(props.pageNum-1)
     });
 
 
@@ -70,9 +69,10 @@ const Home = (props) => {
         navigate("/moviedetail");
     }
 
-    if (films[0]?.id != undefined) {
+    if (films[0]?.id !== undefined) {
         return (
             <S.homeContainter>
+                <S.roosterTitle>TOP RATED MOVIES</S.roosterTitle>
                 <S.filmsRooster>
 
                     {

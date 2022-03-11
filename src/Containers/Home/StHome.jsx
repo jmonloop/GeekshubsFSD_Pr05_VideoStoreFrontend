@@ -12,6 +12,15 @@ export const homeContainter = styled.div`
 
 `
 
+export const roosterTitle = styled.div`
+    height: 10%;
+    width: 50%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 8vh;
+    margin-top: 3%;
+    margin-bottom: 3%;
+`
+
 export const filmsRooster = styled.div`
     display: flex;
     flex-wrap: wrap;
