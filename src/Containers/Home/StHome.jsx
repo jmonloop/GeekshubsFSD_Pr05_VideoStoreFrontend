@@ -5,6 +5,11 @@ export const homeContainter = styled.div`
     background: rgb(6,126,68);
     background: linear-gradient(180deg, rgba(6,126,68,1) 2%, rgba(5,111,26,1) 28%, rgba(53,106,6,1) 92%);
 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
 `
 
 export const filmsRooster = styled.div`
@@ -14,6 +19,8 @@ export const filmsRooster = styled.div`
     > * {
         flex-basis: 25%;
     }
+
+    margin-bottom: 2%;
 `
 
 export const filmDiv = styled.div`

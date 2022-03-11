@@ -6,11 +6,13 @@ import {combineReducers} from 'redux';
 import credentials from './loginData-reducer';
 //Importo el reducer filmsSearch-reducer.js
 import search from './filmsSearch-reducer';
+import pageNum from './pagination-reducer';
 
 //Aquí metería todos los reducers importados para combinarlos
 const rootReducer = combineReducers({
     credentials,
-    search
+    search,
+    pageNum
 });
 
 

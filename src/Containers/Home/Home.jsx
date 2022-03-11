@@ -4,15 +4,21 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { MOVIE_DETAIL } from '../../redux/types';
 import {root} from '../../utiles';
+import PaginationComp from '../../Components/Pagination/Pagination';
+import { Pagination } from '@mantine/core';
 
 //Importo todo lo que venga de HambModalSt. Lo llamaré S y lo que venga detrás del punto será el elemento creado en el styled
 import * as S from './StHome.jsx';
+
+let res;
 
 const Home = (props) => {
     //vars
     let navigate = useNavigate();
     //hooks
     const [films, setFilms] = useState([]);
+
+
     //useEffects
     useEffect(() => {
         //No es correcto realizar el try catch del axios en el useEffect
@@ -20,28 +26,32 @@ const Home = (props) => {
         //asíncrono traería problemas y React no lo permite, por ello, llamamos a una funcion
         //que habremos hecho nosotros y se encargará de ello
 
-        getFilms();
+        getFilms(0);
     }, []);
 
     useEffect(() => {
         console.log("vaya, , films ha cambiado, ", films);
     }, [films]);
 
+    useEffect(() => {
+        getFilms(props.pageNum)
+    });
+
 
     //funcs
-    const getFilms = async (req, res) => {
+    const getFilms = async (page) => {
 
         try {
 
-            let res = await axios.get("https://videostore-backend.herokuapp.com/films/toprated");
+            res = await axios.get("https://videostore-backend.herokuapp.com/films/toprated");
 
             //Una vez han venido los datos del backend, nosotros, lo siguiente que haremos para que no se pierdan
             //será setear esos datos en el hook, haciendo que las peliculas estén disponibles 
             //para los return del componente.
-            console.log(res.data[0].results)
+            console.log(res.data[page].results)
             // setTimeout(() => {
 
-                setFilms(res.data[0].results);
+                setFilms(res.data[page].results);
                 // console.log(setFilms)
             // }, 2000);
 
@@ -83,6 +93,13 @@ const Home = (props) => {
                     }
 
                 </S.filmsRooster>
+
+                <PaginationComp total={res.data.length}></PaginationComp>
+                
+    
+
+
+
             </S.homeContainter>
 
         )
@@ -98,4 +115,7 @@ const Home = (props) => {
 
 }
 
-export default connect()(Home);
+
+export default connect((state) => ({
+    pageNum: state.pageNum
+}))(Home);
