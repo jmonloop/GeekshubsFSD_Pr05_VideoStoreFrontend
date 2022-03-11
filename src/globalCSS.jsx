@@ -11,10 +11,7 @@ const GlobalStyle = createGlobalStyle`
     img .mantine-riw2j3{
         cursor: pointer;
     }
-    body {
-        height: 100%;
-        overflow: hidden ;
-    }
+
 
     div .mantine-vfje8a {
         width: 20em;

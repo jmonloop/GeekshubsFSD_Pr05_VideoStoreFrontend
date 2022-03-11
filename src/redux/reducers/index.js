@@ -4,12 +4,13 @@ import {combineReducers} from 'redux';
 
 //Importo el reducer loginData-reducer.js
 import credentials from './loginData-reducer';
-//Aquí importaría otros reducers si los hubiese
-//************* */
+//Importo el reducer filmsSearch-reducer.js
+import search from './filmsSearch-reducer';
 
 //Aquí metería todos los reducers importados para combinarlos
 const rootReducer = combineReducers({
-    credentials
+    credentials,
+    search
 });
 
 
