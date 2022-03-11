@@ -6,7 +6,7 @@ export const movieDetailContainter = styled.div`
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 
     height: 100vh;
@@ -15,7 +15,7 @@ export const movieDetailContainter = styled.div`
 
 export const detailsBox = styled.div`
     margin-top: 5%;
-    height: 100%;
+    height: 80%;
     width: 80%;
 
     display: flex;
@@ -27,7 +27,7 @@ export const detailsBox = styled.div`
 `
 
 export const detailsCol = styled.div`
-    height: 100%;
+    height: 80%;
     width: 33.33%;
 
     display: flex;
@@ -43,8 +43,7 @@ export const detailDiv = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
-    
+    align-items: center; 
 `
 
 

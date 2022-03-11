@@ -35,7 +35,8 @@ export const searchBar = styled.input`
 
 //Declaro un nuevo elemento del tipo "IMG" llamado mainIcon
 export const mainIcon = styled.img`
-    height: 100%;
+    max-height: 100%;
+    max-width: 100%;
     cursor: pointer;
 `
 
