@@ -11,11 +11,15 @@ const PaginationComp = (props) => {
 
     //useEffects
     useEffect(() => {
-        props.dispatch({ type: PAGINATION, payload: activePage });
     });
+    
+    const change = () => {
+        
+        props.dispatch({ type: PAGINATION, payload: activePage });
+    }
 
 
-    return <Pagination page={activePage} onChange={setPage} total={props.total} color="yellow" />;
+    return <Pagination page={activePage} onChange={setPage} onClick={change()} total={props.total} color="yellow" />;
 }
 
 export default connect()(PaginationComp);

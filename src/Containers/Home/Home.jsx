@@ -14,6 +14,8 @@ let res;
 const Home = (props) => {
     //vars
     let navigate = useNavigate();
+    let lastPage;
+    let actualPage;
     //hooks
     const [films, setFilms] = useState([]);
 
@@ -26,18 +28,28 @@ const Home = (props) => {
         //que habremos hecho nosotros y se encargará de ello
 
         getFilms(0);
+        lastPage = 0;
+        actualPage = 0;
     }, []);
 
     useEffect(() => {
-        console.log("vaya, , films ha cambiado, ", films);
+        // console.log("vaya, , films ha cambiado, ", films);
     }, [films]);
 
     useEffect(() => {
-        getFilms(props.pageNum-1)
+        console.log(lastPage, actualPage)
+        if(lastPage !== actualPage) {
+            getFilms(props.pageNum-1)
+            lastPage = props.pageNum;
+            actualPage = props.pageNum;
+        }
     });
 
 
     //funcs
+    const updatePage = () => {
+        actualPage = props.pageNum;
+    }
     const getFilms = async (page) => {
 
         try {
@@ -94,7 +106,7 @@ const Home = (props) => {
 
                 </S.filmsRooster>
 
-                <PaginationComp total={res.data.length}></PaginationComp>
+                <PaginationComp total={res.data.length} onClick={updatePage()}></PaginationComp>
                 
     
 
