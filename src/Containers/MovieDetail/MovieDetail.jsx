@@ -20,7 +20,6 @@ const MovieDetail = (props) => {
     //hooks
     const [genres, setGenres] = useState([props.search.genre_ids]);
 
-    console.log("genres",genres[0])
 
     //useEffects
     useEffect(() => {
@@ -39,67 +38,67 @@ const MovieDetail = (props) => {
         switch (genre) {
             case 28:
                 return "Action";
-    
+
             case 12:
                 return "Adventure";
-    
+
             case 16:
                 return "Adventure";
-    
+
             case 35:
                 return "Comedy";
-    
+
             case 80:
                 return "Crime";
-    
+
             case 99:
                 return "Documentary"
-    
+
             case 18:
                 return "Drama";
-            
+
             case 10751:
                 return "Family";
-    
+
             case 14:
                 return "Fantasy";
-    
+
             case 36:
                 return "History";
-    
+
             case 27:
                 return "Horror";
-    
+
             case 10402:
                 return "Music";
-    
+
             case 9648:
                 return "Mysery";
-    
+
             case 10749:
                 return "Romance";
-    
+
             case 878:
                 return "Science Fiction";
-    
+
             case 10770:
                 return "TV Movie";
-    
+
             case 53:
                 return "Thriller";
-    
+
             case 10752:
                 return "War";
-    
+
             case 37:
                 return "Western"
-    
+
             default:
                 break
-    
+
         }
     }
-    
+
 
     return (
         <S.movieDetailContainter>
@@ -112,12 +111,12 @@ const MovieDetail = (props) => {
                 <S.detailDiv>
                     <S.detailKey>Genres</S.detailKey>
 
-                            <S.detailValue>
-                                {genres[0].map(genre => {
-                                    return (<span>{genre}</span>)
-                                })}
-                            </S.detailValue>
-                        
+                    <S.detailValue>
+                        {genres[0].map(genre => {
+                            return (<span>{genresTMDB(genre)}</span>)
+                        })}
+                    </S.detailValue>
+
                 </S.detailDiv>
 
             </S.detailsBox>
