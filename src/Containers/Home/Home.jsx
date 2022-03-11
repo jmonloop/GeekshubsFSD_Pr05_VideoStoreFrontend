@@ -10,12 +10,13 @@ import PaginationComp from '../../Components/Pagination/Pagination';
 import * as S from './StHome.jsx';
 
 let res;
+let lastPage;
+let actualPage;
 
 const Home = (props) => {
     //vars
     let navigate = useNavigate();
-    let lastPage;
-    let actualPage;
+
     //hooks
     const [films, setFilms] = useState([]);
 
@@ -38,11 +39,14 @@ const Home = (props) => {
 
     useEffect(() => {
         console.log(lastPage, actualPage)
+
         if(lastPage !== actualPage) {
             getFilms(props.pageNum-1)
+            
             lastPage = props.pageNum;
-            actualPage = props.pageNum;
+            
         }
+
     });
 
 
@@ -51,7 +55,7 @@ const Home = (props) => {
         actualPage = props.pageNum;
     }
     const getFilms = async (page) => {
-
+        
         try {
 
             res = await axios.get("https://videostore-backend.herokuapp.com/films/toprated");
@@ -63,6 +67,7 @@ const Home = (props) => {
             // setTimeout(() => {
 
                 setFilms(res.data[page].results);
+                lastPage = actualPage;
                 // console.log(setFilms)
             // }, 2000);
 
