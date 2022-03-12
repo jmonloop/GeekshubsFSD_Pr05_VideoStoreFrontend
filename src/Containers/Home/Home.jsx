@@ -6,6 +6,7 @@ import { MOVIE_DETAIL } from '../../redux/types';
 import { root, API_KEY } from '../../utiles';
 import PaginationComp from '../../Components/Pagination/Pagination';
 
+
 //Importo todo lo que venga de HambModalSt. Lo llamaré S y lo que venga detrás del punto será el elemento creado en el styled
 import * as S from './StHome.jsx';
 
