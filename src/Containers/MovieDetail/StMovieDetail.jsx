@@ -10,12 +10,13 @@ export const movieDetailContainer = styled.div`
     align-items: center;
 
     height: 100vh;
+    height: 100%;
     width: 100%;
 `
 
 export const detailsBox = styled.div`
     margin-top: 5%;
-    height: 80%;
+    height: auto;
     width: 90%;
 
     display: flex;
@@ -30,12 +31,16 @@ export const detailsPosterDiv = styled.div `
     height: 60%;
     width: 80%;
 
+    margin-top: 5%;
+    margin-bottom: 5%;
+
+    /* border-style: solid; */
+
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
 
-    /* background-color: beige; */
 `
 
 export const detailsCol = styled.div`
@@ -52,11 +57,12 @@ export const detailsCol = styled.div`
 export const posterCol = styled.div`
     height: 100%;
     width: 50%;
+    
 
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-end;
+    justify-content: center;
+    align-items: center;
 
     /* background-color: pink; */
 `
@@ -64,13 +70,21 @@ export const synopsisRow = styled.div`
     height: 40%;
     width: 80%;
 
-    display: flex;
-    flex-direction: row;
-    text-align: justify;
-    justify-content: space-around;
-    align-items: center;
+    margin-bottom: 5%;
+    /* padding-top: 1%;
+    padding: 1%;
+    padding-bottom: 1%;
+    padding-bottom: 1%; */
 
-    /* background-color: red; */
+    /* border-style: solid; */
+
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+
+    justify-content: flex-start;
+    align-items: flex-start;
+
 `
 
 

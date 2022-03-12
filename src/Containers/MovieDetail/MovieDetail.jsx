@@ -18,7 +18,8 @@ let res;
 const MovieDetail = (props) => {
     //vars
     let navigate = useNavigate();
-    let castResults;
+    let crewResults = props.search[1].data.crew;
+    let castResults = props.search[1].data.cast;
     //hooks
     const [genres, setGenres] = useState([props.search[0].data.genres]);
 
@@ -33,7 +34,8 @@ const MovieDetail = (props) => {
 
     });
 
-    //funcs
+    //FUNCS
+    //Converts from genre id to genre name
     const genresTMDB = (genre) => {
         switch (genre) {
             case 28:
@@ -98,9 +100,14 @@ const MovieDetail = (props) => {
 
         }
     }
-
-   
-
+    //Finds director name
+    const findDirector = () => {
+        for (let i = 0; i < crewResults.length; i++) {
+            if (crewResults[i].known_for_department === "Directing") {
+                return crewResults[i].name
+            }
+        }
+    }
 
     return (
         <S.movieDetailContainer>
@@ -110,10 +117,12 @@ const MovieDetail = (props) => {
                         <Table>
                             <tbody>
                                 <tr>
-                                    <td>Title</td>
-                                    <S.detailValue>
-                                        <td>{props.search[0].data.title}</td>
-                                    </S.detailValue>
+                                    <td></td>
+                                    <td>
+                                        <S.detailValue>
+                                            {props.search[0].data.title}
+                                        </S.detailValue>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Genres</td>
@@ -126,10 +135,18 @@ const MovieDetail = (props) => {
                                     </td>
                                 </tr>
                                 <tr>
+                                    <td>Directed By</td>
+                                    <td>
+                                        <S.detailValue>
+                                            {findDirector()}
+                                        </S.detailValue>
+                                    </td>
+                                </tr>
+                                <tr>
                                     <td>Cast</td>
                                     <td>
                                         <S.detailValue>
-
+                                            {castResults[0].name}, {castResults[1].name}, {castResults[2].name}, {castResults[3].name}, {castResults[4].name}, {castResults[5].name}
                                         </S.detailValue>
                                     </td>
                                 </tr>
