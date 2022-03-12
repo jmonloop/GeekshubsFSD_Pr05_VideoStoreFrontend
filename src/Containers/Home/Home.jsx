@@ -17,6 +17,7 @@ let actualPage;
 const Home = (props) => {
     //vars
     let navigate = useNavigate();
+    let movieDetails = [];
 
     //hooks
     const [films, setFilms] = useState([]);
@@ -72,17 +73,32 @@ const Home = (props) => {
     };
     const selectFilm = async (filmId) => {
         let film = filmId;
+        let movieData = []
+        let movieCast = [];
 
         try {
-            details = await axios.get(`https://api.themoviedb.org/3/movie/${film}?api_key=${API_KEY}&language=en-US`)
+           movieData = await axios.get(`https://api.themoviedb.org/3/movie/${film}?api_key=${API_KEY}&language=en-US`)
+           
+           movieDetails.push(movieData)
+
             
         } catch(error) {
             console.log('error')
         }
 
+        try {
+            let movieCast = await axios.get(`https://api.themoviedb.org/3/movie/${film}/credits?api_key=${API_KEY}&language=en-US`);
+
+            movieDetails.push(movieCast)
+            console.log(movieDetails)
+
+        }catch(error) {
+            console.log('error')
+        }
+
 
         //Guardamos la pelicula escogida en redux
-        props.dispatch({ type: MOVIE_DETAIL, payload: details });
+        props.dispatch({ type: MOVIE_DETAIL, payload: movieDetails });
 
 
         //Redirigimos a movieDetail con navigate
