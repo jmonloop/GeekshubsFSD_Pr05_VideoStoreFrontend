@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { MOVIE_DETAIL } from '../../redux/types';
-import {root} from '../../utiles';
+import { root, API_KEY } from '../../utiles';
 import PaginationComp from '../../Components/Pagination/Pagination';
 
 //Importo todo lo que venga de HambModalSt. Lo llamaré S y lo que venga detrás del punto será el elemento creado en el styled
@@ -76,6 +76,8 @@ const Home = (props) => {
         }
     };
     const selectFilm = (film) => {
+
+        
 
         console.log(film);
         //Guardamos la pelicula escogida en redux

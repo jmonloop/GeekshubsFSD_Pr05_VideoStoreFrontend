@@ -28,6 +28,34 @@ export const detailsBox = styled.div`
 
 export const detailsCol = styled.div`
     height: 80%;
+    width: 66.66%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+`
+export const detailRow = styled.div`
+    height: 20%;
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+`
+
+export const detailRowSynopsis = styled.div`
+    height: 40%;
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+`
+export const posterCol = styled.div`
+    height: 80%;
     width: 33.33%;
 
     display: flex;
@@ -37,7 +65,7 @@ export const detailsCol = styled.div`
 `
 
 export const detailDiv = styled.div`
-    height: 10%;
+    height: auto;
     width: 100%;
 
     display: flex;

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { MOVIE_DETAIL } from '../../redux/types';
-import { root } from '../../utiles';
+import { root, API_KEY } from '../../utiles';
 import PaginationComp from '../../Components/Pagination/Pagination';
 
 //Importo todo lo que venga de HambModalSt. Lo llamaré S y lo que venga detrás del punto será el elemento creado en el styled
@@ -104,56 +104,70 @@ const MovieDetail = (props) => {
         <S.movieDetailContainter>
             <S.detailsBox>
                 <S.detailsCol>
-                    <S.detailDiv>
-                        <S.detailKey>Original Title</S.detailKey>
-                    </S.detailDiv>
-                    <S.detailDiv>
-                        <S.detailKey>Genres</S.detailKey>
-                    </S.detailDiv>
-                    <S.detailDiv>
-                        <S.detailKey>Original Language</S.detailKey>
-                    </S.detailDiv>
-                    <S.detailDiv>
-                        <S.detailKey>Relase Date</S.detailKey>
-                    </S.detailDiv>
-                    <S.detailDiv>
-                        <S.detailKey>Score</S.detailKey>
-                    </S.detailDiv>
+                    <S.detailRow>
+                        <S.detailDiv>
+                            <S.detailKey>Original Title</S.detailKey>
+                        </S.detailDiv>
+                        <S.detailDiv>
+                            <S.detailValue>{props.search.original_title}</S.detailValue>
+                        </S.detailDiv>
+                    </S.detailRow>
+                    <S.detailRow>
+                        <S.detailDiv>
+                            <S.detailKey>Genres</S.detailKey>
+                        </S.detailDiv>
+                        <S.detailDiv>
+                            <S.detailValue>
+                                {genres[0].map(genre => {
+                                    return (<span>{genresTMDB(genre)}</span>)
+                                })}
+                            </S.detailValue>
+                        </S.detailDiv>
+                    </S.detailRow>
+                    <S.detailRow>
+                        <S.detailDiv>
+                            <S.detailKey>Original Language</S.detailKey>
+                        </S.detailDiv>
+                        <S.detailDiv>
+                            <S.detailValue>{props.search.original_language}</S.detailValue>
+                        </S.detailDiv>
+                    </S.detailRow>
+                    <S.detailRow>
+                        <S.detailDiv>
+                            <S.detailKey>Relase Date</S.detailKey>
+                        </S.detailDiv>
+                        <S.detailDiv>
+                            <S.detailValue>{props.search.release_date}</S.detailValue>
+                        </S.detailDiv>
+                    </S.detailRow>
+                    <S.detailRow>
+                        <S.detailDiv>
+                            <S.detailKey>Score</S.detailKey>
+                        </S.detailDiv>
+                        <S.detailDiv>
+                            <S.detailValue>{props.search.vote_average}</S.detailValue>
+                        </S.detailDiv>
+                    </S.detailRow>
+                    <S.detailRowSynopsis>
+                        <S.detailDiv>
+                            <S.detailKey>Synopsis</S.detailKey>
+                        </S.detailDiv>
+                        <S.detailDiv>
+                            <S.detailValue>{props.search.overview}</S.detailValue>
+                        </S.detailDiv>
+                    </S.detailRowSynopsis>
                 </S.detailsCol>
 
-                <S.detailsCol>
-                    <S.detailDiv>
-                        <S.detailValue>{props.search.original_title}</S.detailValue>
-                    </S.detailDiv>
-                    <S.detailDiv>
-                        <S.detailValue>
-                            {genres[0].map(genre => {
-                                return (<span>{genresTMDB(genre)}</span>)
-                            })}
-                        </S.detailValue>
-                    </S.detailDiv>
-                    <S.detailDiv>
-                        <S.detailValue>{props.search.original_language}</S.detailValue>
-                    </S.detailDiv>
-                    <S.detailDiv>
-                        <S.detailValue>{props.search.release_date}</S.detailValue>
-                    </S.detailDiv>
-                    <S.detailDiv>
-                        <S.detailValue>{props.search.vote_average}</S.detailValue>
-                    </S.detailDiv>
-                </S.detailsCol>
-
-                <S.detailsCol>
+                <S.posterCol>
                     <S.detailPoster>
                         <S.posterImg src={root + props.search.poster_path} alt="" />
                     </S.detailPoster>
-                </S.detailsCol>
+                </S.posterCol>
             </S.detailsBox>
         </S.movieDetailContainter>
     )
 }
 
-// export default MovieDetail;
 
 export default connect((state) => ({
     search: state.search
