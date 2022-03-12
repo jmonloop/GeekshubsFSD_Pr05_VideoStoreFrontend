@@ -7,6 +7,11 @@ import { Input } from '@mantine/core';
 export const headerContainter = styled.div`
 
     height: 20vh;
+    /* width: 100vw; */
+
+    @media (max-width: 768px) {
+    height: 10vh;
+  }
 
     background-color: rgb(0, 0, 0);
 
@@ -23,13 +28,6 @@ export const headerContainter = styled.div`
 `
 
 
-export const searchBar = styled.input`
-    height: 5%;
-    width: 20%;
-
-    background-color: white ;
-    border-radius: 50%;
-`
 
 
 

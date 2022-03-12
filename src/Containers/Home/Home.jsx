@@ -41,11 +41,11 @@ const Home = (props) => {
 
     useEffect(() => {
 
-        if(lastPage !== actualPage) {
-            getFilms(props.pageNum-1)
-            
+        if (lastPage !== actualPage) {
+            getFilms(props.pageNum - 1)
+
             lastPage = props.pageNum;
-            
+
         }
 
     });
@@ -56,7 +56,7 @@ const Home = (props) => {
         actualPage = props.pageNum;
     }
     const getFilms = async (page) => {
-        
+
         try {
 
             res = await axios.get("https://videostore-backend.herokuapp.com/films/toprated");
@@ -77,12 +77,12 @@ const Home = (props) => {
         let movieCast = [];
 
         try {
-           movieData = await axios.get(`https://api.themoviedb.org/3/movie/${film}?api_key=${API_KEY}&language=en-US`)
-           
-           movieDetails.push(movieData)
+            movieData = await axios.get(`https://api.themoviedb.org/3/movie/${film}?api_key=${API_KEY}&language=en-US`)
 
-            
-        } catch(error) {
+            movieDetails.push(movieData)
+
+
+        } catch (error) {
             console.log('error')
         }
 
@@ -92,7 +92,7 @@ const Home = (props) => {
             movieDetails.push(movieCast)
             console.log(movieDetails)
 
-        }catch(error) {
+        } catch (error) {
             console.log('error')
         }
 
@@ -108,31 +108,33 @@ const Home = (props) => {
     if (films[0]?.id !== undefined) {
         return (
             <S.homeContainter>
-                <S.roosterTitle>TOP RATED MOVIES</S.roosterTitle>
-                <S.filmsRooster>
 
-                    {
-                        //Voy a mapear las películas
-                        films.map(film => {
-                            //a cada elemento que voy a mapear
-                            //le brindo un KEY (obligatorio) que lo distinguirá de
-                            //el resto de elementos
-                            return (
-                                //Al mapear, cada elemento que se itera del array (en este caso pelicula es ese elemento),
-                                //si le hacemos propiedad onclick y pasamos el elemento como argumento,
-                                //a esa funcion le va a llegar el objeto que hayamos clickado entero
-                                <S.filmDiv key={film} onClick={() => selectFilm(film.id)}>
-                                    <S.filmImg src={root + film.poster_path} alt={film.title} />
-                                </S.filmDiv>
-                            )
-                        })
-                    }
+                <S.filmsDiv>
+                    <S.filmsRooster>
 
-                </S.filmsRooster>
+                        {
+                            //Voy a mapear las películas
+                            films.map(film => {
+                                //a cada elemento que voy a mapear
+                                //le brindo un KEY (obligatorio) que lo distinguirá de
+                                //el resto de elementos
+                                return (
+                                    //Al mapear, cada elemento que se itera del array (en este caso pelicula es ese elemento),
+                                    //si le hacemos propiedad onclick y pasamos el elemento como argumento,
+                                    //a esa funcion le va a llegar el objeto que hayamos clickado entero
+                                    <S.filmDiv key={film} onClick={() => selectFilm(film.id)}>
+                                        <S.filmImg src={root + film.poster_path} alt={film.title} />
+                                    </S.filmDiv>
+                                )
+                            })
+                        }
+
+                    </S.filmsRooster>
+                </S.filmsDiv>
 
                 <PaginationComp total={res.data.length} onClick={updatePage()}></PaginationComp>
-                
-    
+
+
 
 
 

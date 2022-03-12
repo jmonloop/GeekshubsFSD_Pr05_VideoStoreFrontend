@@ -13,20 +13,36 @@ export const homeContainter = styled.div`
 `
 
 export const roosterTitle = styled.div`
-    height: 10%;
+    /* height: 10%;
     width: 50%;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 8vh;
     margin-top: 3%;
-    margin-bottom: 3%;
+    margin-bottom: 3%; */
+`
+export const filmsDiv = styled.div`
+    height: 100%;
+    /* width: 100%; */
+
+    margin: 2%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
 `
 
 export const filmsRooster = styled.div`
     display: flex;
+    /* flex-wrap: wrap; */
     flex-wrap: wrap;
+
+    /* margin: 3%; */
 
     > * {
         flex-basis: 25%;
+        /* margin: 0.5%; */
     }
 
     margin-bottom: 2%;
