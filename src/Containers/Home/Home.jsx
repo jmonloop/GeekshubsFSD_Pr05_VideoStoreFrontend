@@ -10,6 +10,7 @@ import PaginationComp from '../../Components/Pagination/Pagination';
 import * as S from './StHome.jsx';
 
 let res;
+let details;
 let lastPage;
 let actualPage;
 
@@ -38,7 +39,6 @@ const Home = (props) => {
     }, [films]);
 
     useEffect(() => {
-        console.log(lastPage, actualPage)
 
         if(lastPage !== actualPage) {
             getFilms(props.pageNum-1)
@@ -60,28 +60,29 @@ const Home = (props) => {
 
             res = await axios.get("https://videostore-backend.herokuapp.com/films/toprated");
 
-            //Una vez han venido los datos del backend, nosotros, lo siguiente que haremos para que no se pierdan
-            //será setear esos datos en el hook, haciendo que las peliculas estén disponibles 
-            //para los return del componente.
-            console.log(res.data[page].results)
-            // setTimeout(() => {
 
-                setFilms(res.data[page].results);
-                lastPage = actualPage;
-                // console.log(setFilms)
-            // }, 2000);
+            //Save topRated films in Films hook
+            setFilms(res.data[page].results);
+
+
 
         } catch (error) {
             console.log(error);
         }
     };
-    const selectFilm = (film) => {
+    const selectFilm = async (filmId) => {
+        let film = filmId;
 
-        
+        try {
+            details = await axios.get(`https://api.themoviedb.org/3/movie/${film}?api_key=${API_KEY}&language=en-US`)
+            
+        } catch(error) {
+            console.log('error')
+        }
 
-        console.log(film);
+
         //Guardamos la pelicula escogida en redux
-        props.dispatch({ type: MOVIE_DETAIL, payload: film });
+        props.dispatch({ type: MOVIE_DETAIL, payload: details });
 
 
         //Redirigimos a movieDetail con navigate
@@ -104,7 +105,7 @@ const Home = (props) => {
                                 //Al mapear, cada elemento que se itera del array (en este caso pelicula es ese elemento),
                                 //si le hacemos propiedad onclick y pasamos el elemento como argumento,
                                 //a esa funcion le va a llegar el objeto que hayamos clickado entero
-                                <S.filmDiv key={film.id} onClick={() => selectFilm(film)}>
+                                <S.filmDiv key={film} onClick={() => selectFilm(film.id)}>
                                     <S.filmImg src={root + film.poster_path} alt={film.title} />
                                 </S.filmDiv>
                             )

@@ -18,7 +18,8 @@ const MovieDetail = (props) => {
     //vars
     let navigate = useNavigate();
     //hooks
-    const [genres, setGenres] = useState([props.search.genre_ids]);
+    const [genres, setGenres] = useState([props.search.data.genres]);
+    console.log(genres)
 
 
     //useEffects
@@ -106,10 +107,10 @@ const MovieDetail = (props) => {
                 <S.detailsCol>
                     <S.detailRow>
                         <S.detailDiv>
-                            <S.detailKey>Original Title</S.detailKey>
+                            <S.detailKey>Title</S.detailKey>
                         </S.detailDiv>
                         <S.detailDiv>
-                            <S.detailValue>{props.search.original_title}</S.detailValue>
+                            <S.detailValue>{props.search.data.title}</S.detailValue>
                         </S.detailDiv>
                     </S.detailRow>
                     <S.detailRow>
@@ -119,7 +120,7 @@ const MovieDetail = (props) => {
                         <S.detailDiv>
                             <S.detailValue>
                                 {genres[0].map(genre => {
-                                    return (<span>{genresTMDB(genre)}</span>)
+                                    return (<span key={genre.id} >{genre.name}</span>)
                                 })}
                             </S.detailValue>
                         </S.detailDiv>
@@ -129,7 +130,7 @@ const MovieDetail = (props) => {
                             <S.detailKey>Original Language</S.detailKey>
                         </S.detailDiv>
                         <S.detailDiv>
-                            <S.detailValue>{props.search.original_language}</S.detailValue>
+                            <S.detailValue>{props.search.data.original_language}</S.detailValue>
                         </S.detailDiv>
                     </S.detailRow>
                     <S.detailRow>
@@ -137,7 +138,7 @@ const MovieDetail = (props) => {
                             <S.detailKey>Relase Date</S.detailKey>
                         </S.detailDiv>
                         <S.detailDiv>
-                            <S.detailValue>{props.search.release_date}</S.detailValue>
+                            <S.detailValue>{props.search.data.release_date}</S.detailValue>
                         </S.detailDiv>
                     </S.detailRow>
                     <S.detailRow>
@@ -145,7 +146,7 @@ const MovieDetail = (props) => {
                             <S.detailKey>Score</S.detailKey>
                         </S.detailDiv>
                         <S.detailDiv>
-                            <S.detailValue>{props.search.vote_average}</S.detailValue>
+                            <S.detailValue>{props.search.data.vote_average}</S.detailValue>
                         </S.detailDiv>
                     </S.detailRow>
                     <S.detailRowSynopsis>
@@ -153,14 +154,14 @@ const MovieDetail = (props) => {
                             <S.detailKey>Synopsis</S.detailKey>
                         </S.detailDiv>
                         <S.detailDiv>
-                            <S.detailValue>{props.search.overview}</S.detailValue>
+                            <S.detailValue>{props.search.data.overview}</S.detailValue>
                         </S.detailDiv>
                     </S.detailRowSynopsis>
                 </S.detailsCol>
 
                 <S.posterCol>
                     <S.detailPoster>
-                        <S.posterImg src={root + props.search.poster_path} alt="" />
+                        <S.posterImg src={root + props.search.data.poster_path} alt="" />
                     </S.detailPoster>
                 </S.posterCol>
             </S.detailsBox>
