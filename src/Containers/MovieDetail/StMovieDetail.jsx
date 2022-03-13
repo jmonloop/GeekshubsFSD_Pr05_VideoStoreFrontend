@@ -27,7 +27,7 @@ export const detailsBox = styled.div`
     background-color: gray;
 `
 
-export const detailsPosterDiv = styled.div `
+export const detailsPosterDiv = styled.div`
     height: 60%;
     width: 80%;
 
@@ -103,9 +103,38 @@ export const orderRow = styled.div`
     flex-direction: column;
     text-align: justify;
 
-    justify-content: flex-start;
-    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
 
+`
+
+export const orderButton = styled.div`
+    height: 5%;
+    width: 15%;
+
+    background: rgb(6,126,68);
+    background: linear-gradient(180deg, rgba(6,126,68,1) 2%, rgba(5,111,26,1) 28%, rgba(53,106,6,1) 92%);
+
+    text-align: center;
+
+    padding: 2%;
+
+    :hover{
+        cursor: pointer;
+        transition: 0.2s;
+        transform:scale(1.05);
+    }
+`
+export const Link = styled.div`
+    font-weight: bold;
+    cursor:pointer;
+    margin: 5%;
+
+    :hover {
+    color: rgba(151, 149, 8, 0.698);
+    transition: 0.4s;
+    transform:scale(1.05);
+    }
 `
 
 export const detailValue = styled.div`

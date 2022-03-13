@@ -23,7 +23,7 @@ const MovieDetail = (props) => {
 
     //useEffects
     useEffect(() => {
-        
+
     }, []);
 
     useEffect(() => {
@@ -34,7 +34,7 @@ const MovieDetail = (props) => {
     });
 
     //FUNCS
-    //Converts from genre id to genre name
+    //Convert from genre id to genre name
     const genresTMDB = (genre) => {
         switch (genre) {
             case 28:
@@ -99,7 +99,7 @@ const MovieDetail = (props) => {
 
         }
     }
-    //Finds director name
+    //Find director name
     const findDirector = () => {
         for (let i = 0; i < crewResults.length; i++) {
             if (crewResults[i].known_for_department === "Directing") {
@@ -108,6 +108,7 @@ const MovieDetail = (props) => {
         }
     }
 
+    //Render bottom orders options
     const renderOrder = () => {
         //If no credentials, ask for login
         if (!props.credentials?.token) {
@@ -115,7 +116,7 @@ const MovieDetail = (props) => {
         } else {
             //If no orders, ask for order
             if (props.ordersData == "There are no fields with the searched term") {
-                return (<span>Order this movie</span>)
+                return (<S.orderButton>Order Movie</S.orderButton>)
             } else {
                 //if orders, look for movie
                 for (let i = 0; i < props.ordersData.length; i++) {
@@ -124,7 +125,7 @@ const MovieDetail = (props) => {
                         return (<span>You already have this movie</span>)
                     } else {
                         //if not, ask for order
-                        return (<span>Order this movie</span>)
+                        return (<S.orderButton>Order Movie</S.orderButton>)
                     }
                 }
             }

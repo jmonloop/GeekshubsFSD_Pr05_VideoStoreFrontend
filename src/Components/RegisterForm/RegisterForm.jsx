@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import './RegisterForm.css';
+// import './RegisterForm.css';
 
 import { TextInput, Checkbox, Button } from '@mantine/core';
 import { useForm } from '@mantine/hooks';
@@ -16,6 +16,10 @@ export const RegisterForm = (props) => {
       email: (value) => /^\S+@\S+$/.test(value),
     },
   });
+
+  const registerUser = async () => {
+
+  }
 
   return (
     <form onSubmit={form.onSubmit((values) => console.log(values))} className='registerFormDesign'>
@@ -70,7 +74,7 @@ export const RegisterForm = (props) => {
         {...form.getInputProps('termsOfService', { type: 'checkbox' })}
       />
 
-      <Button type="submit">Submit</Button>
+      <Button type="submit" onClick={registerUser()}>Submit</Button>
     </form>
   )
 }

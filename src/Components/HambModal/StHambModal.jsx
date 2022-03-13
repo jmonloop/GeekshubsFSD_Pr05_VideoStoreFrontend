@@ -33,7 +33,6 @@ export const Link = styled.div`
     font-weight: bold;
     cursor:pointer;
     margin: 5%;
-    display: ${({ RenderRegisterForm }) => (RenderRegisterForm ? "none" : "block")};
 
     :hover {
     color: rgba(151, 149, 8, 0.698);
