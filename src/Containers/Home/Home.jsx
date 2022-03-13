@@ -31,10 +31,9 @@ const Home = (props) => {
         //asíncrono traería problemas y React no lo permite, por ello, llamamos a una funcion
         //que habremos hecho nosotros y se encargará de ello
 
-        getFilms(0);
-        lastPage = 0;
-        actualPage = 0;
-        console.log('home se ha montado')
+        getFilms(1);
+        lastPage = 1;
+        actualPage = 1;
     }, []);
 
     useEffect(() => {
@@ -44,7 +43,7 @@ const Home = (props) => {
     useEffect(() => {
 
         if (lastPage !== actualPage) {
-            getFilms(props.pageNum - 1)
+            getFilms(props.pageNum)
 
             lastPage = props.pageNum;
 
@@ -61,11 +60,12 @@ const Home = (props) => {
 
         try {
 
-            res = await axios.get("https://videostore-backend.herokuapp.com/films/toprated");
+            // res = await axios.get(`https://api.themoviedb.org/3/movie/top_rated?api_key=210d6a5dd3f16419ce349c9f1b200d6d&language=en-US&page=1`);
+            res = await axios.get(`https://api.themoviedb.org/3/movie/top_rated?api_key=210d6a5dd3f16419ce349c9f1b200d6d&language=en-US&page=${page}`);
 
 
             //Save topRated films in Films hook
-            setFilms(res.data[page].results);
+            setFilms(res.data.results);
 
 
 
@@ -134,7 +134,7 @@ const Home = (props) => {
                     </S.filmsRooster>
                 </S.filmsDiv>
 
-                <PaginationComp total={res.data.length} onClick={updatePage()}></PaginationComp>
+                <PaginationComp total={res.data.total_pages} onClick={updatePage()}></PaginationComp>
 
 
 
