@@ -87,32 +87,25 @@ export const synopsisRow = styled.div`
 
 `
 
+export const orderRow = styled.div`
+    height: 40%;
+    width: 80%;
 
-export const detailRow = styled.div`
-    height: 20%;
-    width: 100%;
+    margin-bottom: 5%;
+    /* padding-top: 1%;
+    padding: 1%;
+    padding-bottom: 1%;
+    padding-bottom: 1%; */
 
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-`
-
-
-
-
-export const detailDiv = styled.div`
-    height: auto;
-    width: 100%;
+    /* border-style: solid; */
 
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center; 
-`
+    flex-direction: column;
+    text-align: justify;
 
+    justify-content: flex-start;
+    align-items: flex-start;
 
-export const detailKey = styled.div`
 `
 
 export const detailValue = styled.div`
@@ -122,13 +115,6 @@ export const detailValue = styled.div`
     align-items: center;
 `
 
-export const detailPoster = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-`
 
 export const posterImg = styled.img`
     margin-top: 5%;

@@ -17,11 +17,13 @@ const MovieDetail = (props) => {
     let navigate = useNavigate();
     let crewResults = props.search[1].data.crew;
     let castResults = props.search[1].data.cast;
+
     //hooks
     const [genres, setGenres] = useState([props.search[0].data.genres]);
 
     //useEffects
     useEffect(() => {
+        
     }, []);
 
     useEffect(() => {
@@ -106,6 +108,29 @@ const MovieDetail = (props) => {
         }
     }
 
+    const renderOrder = () => {
+        //If no credentials, ask for login
+        if (!props.credentials?.token) {
+            return (<span>Log in to order this movie</span>)
+        } else {
+            //If no orders, ask for order
+            if (props.ordersData == "There are no fields with the searched term") {
+                return (<span>Order this movie</span>)
+            } else {
+                //if orders, look for movie
+                for (let i = 0; i < props.ordersData.length; i++) {
+                    if (props.ordersData[i].filmTitle === props.search[0].original_title) {
+                        //if movie, say it's already booked
+                        return (<span>You already have this movie</span>)
+                    } else {
+                        //if not, ask for order
+                        return (<span>Order this movie</span>)
+                    }
+                }
+            }
+        }
+    }
+
     return (
         <S.movieDetailContainer>
             <S.detailsBox>
@@ -179,6 +204,7 @@ const MovieDetail = (props) => {
                     </S.posterCol>
                 </S.detailsPosterDiv>
                 <S.synopsisRow>{props.search[0].data.overview}</S.synopsisRow>
+                <S.orderRow>{renderOrder()}</S.orderRow>
             </S.detailsBox>
         </S.movieDetailContainer >
     )
@@ -186,5 +212,7 @@ const MovieDetail = (props) => {
 
 
 export default connect((state) => ({
-    search: state.search
+    credentials: state.credentials,
+    search: state.search,
+    ordersData: state.ordersData
 }))(MovieDetail);
