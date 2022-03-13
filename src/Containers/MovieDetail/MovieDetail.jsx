@@ -12,9 +12,6 @@ import * as S from './StMovieDetail.jsx';
 
 let res;
 
-
-
-
 const MovieDetail = (props) => {
     //vars
     let navigate = useNavigate();
@@ -185,102 +182,9 @@ const MovieDetail = (props) => {
             </S.detailsBox>
         </S.movieDetailContainer >
     )
-
-    // return (
-    //     <S.movieDetailContainter>
-    //         <S.detailsBox>
-    //             <S.detailsCol>
-    //                 <S.detailRow>
-    //                     <S.detailDiv>
-    //                         <S.detailKey>Title</S.detailKey>
-    //                     </S.detailDiv>
-    //                     <S.detailDiv>
-    //                         <S.detailValue>{props.search[0].data.title}</S.detailValue>
-    //                     </S.detailDiv>
-    //                 </S.detailRow>
-    //                 <S.detailRow>
-    //                     <S.detailDiv>
-    //                         <S.detailKey>Genres</S.detailKey>
-    //                     </S.detailDiv>
-    //                     <S.detailDiv>
-    //                         <S.detailValue>
-    // {genres[0].map(genre => {
-    //     return (<span key={genre.id} >{genre.name}</span>)
-    // })}
-    //                         </S.detailValue>
-    //                     </S.detailDiv>
-    //                 </S.detailRow>
-    //                 <S.detailRow>
-    //                     <S.detailDiv>
-    //                         <S.detailKey>Original Language</S.detailKey>
-    //                     </S.detailDiv>
-    //                     <S.detailDiv>
-    //                         <S.detailValue>{props.search[0].data.original_language}</S.detailValue>
-    //                     </S.detailDiv>
-    //                 </S.detailRow>
-    //                 <S.detailRow>
-    //                     <S.detailDiv>
-    //                         <S.detailKey>Relase Date</S.detailKey>
-    //                     </S.detailDiv>
-    //                     <S.detailDiv>
-    //                         <S.detailValue>{props.search[0].data.release_date}</S.detailValue>
-    //                     </S.detailDiv>
-    //                 </S.detailRow>
-    //                 <S.detailRow>
-    //                     <S.detailDiv>
-    //                         <S.detailKey>Score</S.detailKey>
-    //                     </S.detailDiv>
-    //                     <S.detailDiv>
-    //                         <S.detailValue>{props.search[0].data.vote_average}</S.detailValue>
-    //                     </S.detailDiv>
-    //                 </S.detailRow>
-    //                 <S.detailRowSynopsis>
-    //                     <S.detailDiv>
-    //                         <S.detailKey>Synopsis</S.detailKey>
-    //                     </S.detailDiv>
-    //                     <S.detailDiv>
-    //                         <S.detailValue>{props.search[0].data.overview}</S.detailValue>
-    //                     </S.detailDiv>
-    //                 </S.detailRowSynopsis>
-    //             </S.detailsCol>
-
-    //             <S.posterCol>
-    //                 <S.detailPoster>
-    //                     <S.posterImg src={root + props.search[0].data.poster_path} alt="" />
-    //                 </S.detailPoster>
-    //             </S.posterCol>
-    //         </S.detailsBox>
-    //     </S.movieDetailContainter>
-    // )
 }
 
 
 export default connect((state) => ({
     search: state.search
 }))(MovieDetail);
-
-
-
-
-
-
-
-
-
-{/* <S.detailsBox>
-                <S.detailDiv>
-                    <S.detailKey>Original Title</S.detailKey>
-                    <S.detailValue>{props.search[0].original_title}</S.detailValue>
-                </S.detailDiv>
-                <S.detailDiv>
-                    <S.detailKey>Genres</S.detailKey>
-
-                    <S.detailValue>
-                        {genres[0].map(genre => {
-                            return (<span>{genresTMDB(genre)}</span>)
-                        })}
-                    </S.detailValue>
-
-                </S.detailDiv>
-
-            </S.detailsBox> */}

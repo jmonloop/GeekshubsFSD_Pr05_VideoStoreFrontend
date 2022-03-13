@@ -1,8 +1,9 @@
 
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LOGOUT } from '../../redux/types';
+import { LOGOUT, USER_ORDERS } from '../../redux/types';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 
 
@@ -33,14 +34,30 @@ const HambModal = (props) => {
         navigate(place)
     }
 
+    const getOrders = async () => {
+        let ordersArr = [];
+        try {
+            ordersArr = await axios.get(`https://videostore-backend.herokuapp.com/orders/${props.credentials.user.id}`)
+            // ordersArr = await axios.get(`https://videostore-backend.herokuapp.com/orders/${5}`)
+
+        } catch (error) {
+            console.log(error)
+        }
+
+        //Guardamos datos de pedidos de usuario en redux
+        props.dispatch({ type: USER_ORDERS, payload: ordersArr.data });
+
+
+    }
+
 
     const Logout = () => {
         //Borrar de RDX las credenciales
         setRenderLoginForm(false)
 
-        setTimeout(()=> {
+        setTimeout(() => {
             props.dispatch({ type: LOGOUT });
-        },500)
+        }, 500)
     }
 
     //Mantine hooks
@@ -50,7 +67,7 @@ const HambModal = (props) => {
 
 
     if ((!props.credentials?.token)) {
-        if((!RenderLoginForm)&&(!RenderRegisterForm)) {
+        if ((!RenderLoginForm) && (!RenderRegisterForm)) {
             return (
                 <>
                     <S.MyModal
@@ -62,7 +79,7 @@ const HambModal = (props) => {
                                 setRenderLoginForm(false);
                                 setRenderRegisterForm(false)
                             }, 500)
-    
+
                         }}
                     //  title="Sign Up"
                     >
@@ -70,16 +87,16 @@ const HambModal = (props) => {
                             Login</S.Link>,
                         <S.Link onClick={() => { setRenderRegisterForm(true) }}>
                             Register</S.Link>
-    
+
                     </S.MyModal>
-    
+
                     <S.MyGroup position="center">
                         {/* Pinto el elemento MyBurger que viene de la hoja styled */}
                         <S.MyBurger color="white" onClick={() => setOpened(true)}>Open Modal</S.MyBurger>
                     </S.MyGroup>
                 </>
             );
-        } else if(RenderLoginForm) {
+        } else if (RenderLoginForm) {
             return (
                 <>
                     <S.MyModal
@@ -91,21 +108,21 @@ const HambModal = (props) => {
                                 setRenderLoginForm(false);
                                 setRenderRegisterForm(false)
                             }, 500)
-    
+
                         }}
                     //  title="Sign Up"
                     >
-                    <LoginForm></LoginForm>
-    
+                        <LoginForm></LoginForm>
+
                     </S.MyModal>
-    
+
                     <S.MyGroup position="center">
                         {/* Pinto el elemento MyBurger que viene de la hoja styled */}
                         <S.MyBurger color="white" onClick={() => setOpened(true)}>Open Modal</S.MyBurger>
                     </S.MyGroup>
                 </>
             );
-        } else if(RenderRegisterForm) {
+        } else if (RenderRegisterForm) {
             return (
                 <>
                     <S.MyModal
@@ -117,21 +134,21 @@ const HambModal = (props) => {
                                 setRenderLoginForm(false);
                                 setRenderRegisterForm(false)
                             }, 500)
-    
+
                         }}
                     //  title="Sign Up"
                     >
-                    <RegisterForm></RegisterForm>
-    
+                        <RegisterForm></RegisterForm>
+
                     </S.MyModal>
-    
+
                     <S.MyGroup position="center">
                         {/* Pinto el elemento MyBurger que viene de la hoja styled */}
                         <S.MyBurger color="white" onClick={() => setOpened(true)}>Open Modal</S.MyBurger>
                     </S.MyGroup>
                 </>
             );
-        } 
+        }
 
     } else {
         return (
@@ -142,8 +159,18 @@ const HambModal = (props) => {
                 // title="Sign Up"
                 >
 
-                    <S.Link onClick={() => { GoTo('/profile'); setOpened(false) }}>{props.credentials?.user.nickname}</S.Link>
-                    <S.Link onClick={() => { Logout(); setOpened(false) }}>Logout</S.Link>
+                    <S.Link onClick={() => {
+                        GoTo('/profile');
+                        setOpened(false);
+                        getOrders()
+                    }}>{props.credentials?.user.nickname}
+                    </S.Link>
+                    <S.Link onClick={() => {
+                        Logout();
+                        GoTo('/');
+                        setOpened(false)
+                    }}>Logout
+                    </S.Link>
                 </S.MyModal>
 
                 <S.MyGroup position="center">
@@ -159,7 +186,8 @@ const HambModal = (props) => {
 
 
 export default connect((state) => ({
-    credentials: state.credentials
+    credentials: state.credentials,
+    ordersData: state.ordersData
 }))(HambModal);
 
 

@@ -34,6 +34,7 @@ const Home = (props) => {
         getFilms(0);
         lastPage = 0;
         actualPage = 0;
+        console.log('home se ha montado')
     }, []);
 
     useEffect(() => {

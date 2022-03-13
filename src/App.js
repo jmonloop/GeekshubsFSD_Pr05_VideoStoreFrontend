@@ -8,7 +8,7 @@ import Sticky from 'react-sticky-el';
 //Importo componentes
 import Header from './Components/Header/Header';
 import Home from './Containers/Home/Home';
-import Login from './Containers/Login/Login';
+import Profile from './Containers/Profile/Profile';
 import MovieDetail from './Containers/MovieDetail/MovieDetail';
 
 function App() {
@@ -22,8 +22,8 @@ function App() {
 
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
           <Route path="/moviedetail" element={<MovieDetail />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
 
       </BrowserRouter>
