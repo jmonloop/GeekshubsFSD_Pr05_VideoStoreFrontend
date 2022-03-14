@@ -22,20 +22,27 @@ export const checkError = (type, value) => {
 
         case 'name':
 
-            if (! /[a-z]/gi.test(value)) {
-                return "Introduce a valid name (without numbers";
+            if (! /^[a-zA-Z ]*$/gi.test(value)) {
+                return "Introduce a valid name (without numbers)";
             } else {
                 return "ok";
             };
 
         case 'surname':
 
-            if (! /[a-z]/gi.test(value)) {
-                return "Introduce a valid surname (without numbers";
+            if (! /^[a-zA-Z ]*$/gi.test(value)) {
+                return "Introduce a valid surname (without numbers)";
             } else {
                 return "ok";
             };
 
+        case 'age':
+
+            if (! /^[0-9]*$/gi.test(value)) {
+                return "Introduce a valid age (only numbers";
+            } else {
+                return "ok";
+            };
 
         case 'phone':
 
@@ -44,6 +51,7 @@ export const checkError = (type, value) => {
             } else {
                 return "ok";
             };
+
 
         default:
             return "ok";

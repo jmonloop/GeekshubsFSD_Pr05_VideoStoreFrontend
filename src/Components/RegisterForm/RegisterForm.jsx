@@ -8,6 +8,9 @@ import axios from 'axios';
 
 export const RegisterForm = (props) => {
   let navigate = useNavigate();
+  let regexError;
+  let passLengthError;
+  let passMisError;
 
   //1-Hooks
   const [userData, setuserData] = useState({
@@ -19,8 +22,8 @@ export const RegisterForm = (props) => {
     password: "",
     password2: ""
   });
-  const [msg, setMsg] = useState("");
-  const [msg2, setMsg2] = useState("");
+  const [msgLength, setMsgLength] = useState("");
+  const [msgMis, setMsgMis] = useState("");
   const [errorMsg, seterrorMsg] = useState("");
 
 
@@ -33,55 +36,87 @@ export const RegisterForm = (props) => {
 
 
   //Handler function
+  //Shows msgs while writting
   const fillForm = (e) => {
-    //Set data while writting
+    //Set data
     setuserData({ ...userData, [e.target.name]: e.target.value })
 
-    //Password min length checking
+    //Check password min length
     if (e.target.name == "password" && e.target.value.length < 6) {
-      return (setMsg2("Password must be 6 characters min"))
+      return (setMsgLength("Password must be 6 characters min"))
     } else {
-      setMsg2("");
+      setMsgLength("");
     }
 
-    //Password max length checking
-    if (e.target.name == "password" && e.target.value.length > 10) {
-      return (setMsg2("Password must be 10 characters max"))
+    //Check password max length
+    if ((e.target.name == "password" && e.target.value.length > 10)||(e.target.name == "password2" && e.target.value.length > 10)) {
+      return (setMsgLength("Password must be 10 characters max"))
     } else {
-      setMsg2("");
+      setMsgLength("");
     }
 
+    //Check passwords mismatching
 
-    //Password fields mismatching
-    if(e.target.name == "password" || e.target.name == "password2") {
       if (e.target.name == "password" && e.target.value !== userData.password2) {
-        return (setMsg("Passwords must match"))
+        return (setMsgMis("Passwords must match"))
       } else if (e.target.name == "password2" && e.target.value !== userData.password) {
-        return (setMsg("Passwords must match"))
+        return (setMsgMis("Passwords must match"))
       } else {
-        return (setMsg(""))
+        return (setMsgMis(""))
       }
-    } else (setMsg(""))
+
 
 
   }
 
 
 
-  const register = async () => {
-    setMsg("");
+  const register = () => {
 
     let fieldsArr = Object.entries(userData);
     let error = "";
+    seterrorMsg("");
 
-    //Error inputs check with checkError function
+    //Inputs regex validation
     for (let element of fieldsArr) {
       error = checkError(element[0], element[1]);
-
+      console.log(element[0], element[1])
+      console.log(error)
       if (error !== "ok") {
         seterrorMsg(error)
+        regexError = true;
         return
       }
+    }
+    if(error == "ok") {
+      seterrorMsg("")
+      regexError = false;
+    }
+ 
+
+    //Password mismatch validation
+    if (userData.password !== userData.password2) {
+      seterrorMsg("Passwords must match")
+      passMisError = true;
+    } else {
+      if(seterrorMsg == "") {
+        seterrorMsg("")
+        passMisError = false;
+      }
+
+    }
+
+    //Password length validation
+    if ((userData.password.length < 6)||(userData.password.length >10)) {
+      console.log(userData.password)
+      seterrorMsg("Password must be between 6 and 10 characters")
+      passLengthError = true;
+    } else {
+      if(seterrorMsg == "") {
+        seterrorMsg("")
+        passLengthError = false;
+      }
+
     }
 
     let body = {
@@ -92,18 +127,23 @@ export const RegisterForm = (props) => {
       email: userData.email,
       password: userData.password
     }
-    try {
 
-      let result = await axios.post("https://videostore-backend.herokuapp.com/users/register")
+    if(!regexError && !passMisError && !passLengthError){
+      try {
 
-      setTimeout(() => {
-        navigate("/")
-      }, 1500)
+        axios.post("https://videostore-backend.herokuapp.com/users/register", body)
 
+        setTimeout(() => {
+          navigate("/")
+        }, 1500)
 
-    } catch (error) {
-      console.log("Register error", error)
+      } catch (error) {
+        console.log("Register error", error)
+      }
+    } else {
+      console.log('nok')
     }
+     
 
   }
 
@@ -111,6 +151,9 @@ export const RegisterForm = (props) => {
     <>
       <>
         {<pre>{JSON.stringify(userData, null, 2)}</pre>}
+        {<pre>{JSON.stringify(msgLength, null, 2)}</pre>}
+        {<pre>{JSON.stringify(msgMis, null, 2)}</pre>}
+        {<pre>{JSON.stringify(errorMsg, null, 2)}</pre>}
       </>
 
       <TextInput
@@ -175,9 +218,9 @@ export const RegisterForm = (props) => {
       <br></br>
       <span className='errorMsg'>{errorMsg}</span>
       <br></br>
-      <span className='okMsg'>{msg}</span>
+      <span className='okMsg'>{msgLength}</span>
       <br></br>
-      <span className='okMsg'>{msg2}</span>
+      <span className='okMsg'>{msgMis}</span>
     </>
   )
 }
