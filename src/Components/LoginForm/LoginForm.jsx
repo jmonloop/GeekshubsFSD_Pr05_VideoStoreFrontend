@@ -16,7 +16,7 @@ export const LoginForm = (props) => {
   //1-Hooks
   const [userData, setuserData] = useState({ email: "", password: "" });
   const [msg, setMsg] = useState("");
-  const [msgError2, setMsgError2] = useState("");
+  const [errorMsg, seterrorMsg] = useState("");
 
 
   //Handler funcs
@@ -41,7 +41,7 @@ export const LoginForm = (props) => {
 
       //Cambiamos el valor del hook credenciales, por lo tanto se recargará el componente
       if (result.data === "Invalid email or password") {
-        setMsgError2(result.data)
+        seterrorMsg(result.data)
       } else {
         setMsg(result.data.loginOKmessage)
         // console.log(result.data)
@@ -90,7 +90,7 @@ export const LoginForm = (props) => {
 
       <Button type="submit" onClick={() => login()}>Submit</Button>
       <br></br>
-      <span className='errorMsg'>{msgError2}</span>
+      <span className='errorMsg'>{errorMsg}</span>
       <span className='okMsg'>{msg}</span>
     </>
   )

@@ -4,7 +4,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { MOVIE_DETAIL } from '../../redux/types';
 import { USER_ORDERS } from '../../redux/types';
-import { root, API_KEY } from '../../utiles';
+import { root, API_KEY } from '../../utils';
 import PaginationComp from '../../Components/Pagination/Pagination';
 import { Table } from '@mantine/core';
 
