@@ -16,7 +16,7 @@ const PaginationComp = (props) => {
     const change = () => {
         
         props.dispatch({ type: PAGINATION, payload: activePage });
-        console.log(activePage)
+
     }
 
 

@@ -40,8 +40,6 @@ export const LoginForm = (props) => {
     //Inputs regex validation
     for (let element of fieldsArr) {
       error = checkError(element[0], element[1]);
-      console.log(element[0], element[1])
-      console.log(error)
       if (error !== "ok") {
         seterrorMsg(error)
         regexError = true;
@@ -68,7 +66,6 @@ export const LoginForm = (props) => {
           seterrorMsg(result.data)
         } else {
           setMsg(result.data.loginOKmessage)
-          // console.log(result.data)
           //Guardaríamos los datos en redux...
 
           setTimeout(() => {
@@ -79,7 +76,7 @@ export const LoginForm = (props) => {
 
 
       } catch (error) {
-        console.log(error)
+        console.log("Login error = ", error)
       }
     }
 

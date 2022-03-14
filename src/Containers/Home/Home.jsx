@@ -37,7 +37,6 @@ const Home = (props) => {
     }, []);
 
     useEffect(() => {
-        // console.log("vaya, , films ha cambiado, ", films);
     }, [films]);
 
     useEffect(() => {
@@ -69,7 +68,7 @@ const Home = (props) => {
 
 
         } catch (error) {
-            console.log(error);
+            console.log("Get rooster films error = ", error);
         }
     };
     const selectFilm = async (filmId) => {
@@ -84,17 +83,16 @@ const Home = (props) => {
 
 
         } catch (error) {
-            console.log('error')
+            console.log("Select film error = ", error)
         }
 
         try {
             let movieCast = await axios.get(`https://api.themoviedb.org/3/movie/${film}/credits?api_key=${API_KEY}&language=en-US`);
 
             movieDetails.push(movieCast)
-            console.log(movieDetails)
 
         } catch (error) {
-            console.log('error')
+            console.log("Get movie cast error = ", error)
         }
 
 

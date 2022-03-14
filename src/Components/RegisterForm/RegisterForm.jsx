@@ -129,7 +129,7 @@ export const RegisterForm = (props) => {
       try {
 
         result = await axios.post("https://videostore-backend.herokuapp.com/users/register", body)
-        console.log(result.data)
+
         if (result.data != "The user with that email/nickname already figures in the database") {
           setTimeout(() => {
             setMsgLength(result.data)
@@ -146,10 +146,6 @@ export const RegisterForm = (props) => {
       } catch (error) {
         console.log("Register error", error)
       }
-    } else {
-
-      // console.log(result)
-
     }
 
 

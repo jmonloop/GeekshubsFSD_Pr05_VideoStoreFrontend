@@ -16,19 +16,13 @@ let res;
 const Profile = (props) => {
     //vars
     let navigate = useNavigate();
-    let ordersData = props.ordersData;
-
 
     //hooks
-
-
-
-
-
+    const [ordersArr, setordersArr] = useState([])
 
     //useEffects
     useEffect(() => {
-        console.log(ordersData)
+        refreshUserOrders()
     }, []);
 
     useEffect(() => {
@@ -39,8 +33,28 @@ const Profile = (props) => {
     });
 
 
+    const refreshUserOrders = async () => {
+        let results = [];
+        try {
+            //Endpoint for retrieving all orders from a user
+            results = await axios.get(`https://videostore-backend.herokuapp.com/orders/${props.credentials.user.id}`)
 
-    if(ordersData !== 'There are no fields with the searched term') {
+        } catch (error) {
+            console.log("Refresh orders error = ", error)
+        }
+
+        setordersArr(results.data)
+
+        console.log(ordersArr)
+
+    }
+
+
+
+
+
+
+    if(ordersArr!== 'There are no fields with the searched term') {
         return (
             <S.profileContainer>
                 <S.profileBox>
@@ -65,7 +79,7 @@ const Profile = (props) => {
                                     </td>
                                     <td>
                                         <S.profileValue>
-                                            {props.credentials.user.email}
+                                            {props.credentials.user.id}
                                         </S.profileValue>
                                     </td>
                                 </S.profileRow>
@@ -102,7 +116,7 @@ const Profile = (props) => {
                                     <td>
                                         <S.profileValue>
                                             {
-                                                ordersData.map(elmnt => {
+                                                ordersArr.map(elmnt => {
                                                     return (
                                                         <span key={elmnt.orderNumber} >{elmnt.filmTitle}</span>
                                                     )

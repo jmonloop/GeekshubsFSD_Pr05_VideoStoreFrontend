@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { MOVIE_DETAIL } from '../../redux/types';
+import { MOVIE_DETAIL, USER_ORDERS} from '../../redux/types';
 import { root, API_KEY } from '../../utils';
 import PaginationComp from '../../Components/Pagination/Pagination';
+import { getOrders } from '../../Components/HambModal/HambModal'
 import { Table } from '@mantine/core';
+import moment from 'moment'
 
 //Importo todo lo que venga de HambModalSt. Lo llamaré S y lo que venga detrás del punto será el elemento creado en el styled
 import * as S from './StMovieDetail.jsx';
@@ -20,9 +22,11 @@ const MovieDetail = (props) => {
 
     //hooks
     const [genres, setGenres] = useState([props.search[0].data.genres]);
+    const [userHasMovie, setuserHasMovie] = useState(false)
 
     //useEffects
     useEffect(() => {
+        userOwnsMovie(props.credentials.user.id, props.search[0].data.id)
 
     }, []);
 
@@ -34,72 +38,8 @@ const MovieDetail = (props) => {
     });
 
     //FUNCS
-    //Convert from genre id to genre name
-    const genresTMDB = (genre) => {
-        switch (genre) {
-            case 28:
-                return "Action";
 
-            case 12:
-                return "Adventure";
-
-            case 16:
-                return "Adventure";
-
-            case 35:
-                return "Comedy";
-
-            case 80:
-                return "Crime";
-
-            case 99:
-                return "Documentary"
-
-            case 18:
-                return "Drama";
-
-            case 10751:
-                return "Family";
-
-            case 14:
-                return "Fantasy";
-
-            case 36:
-                return "History";
-
-            case 27:
-                return "Horror";
-
-            case 10402:
-                return "Music";
-
-            case 9648:
-                return "Mysery";
-
-            case 10749:
-                return "Romance";
-
-            case 878:
-                return "Science Fiction";
-
-            case 10770:
-                return "TV Movie";
-
-            case 53:
-                return "Thriller";
-
-            case 10752:
-                return "War";
-
-            case 37:
-                return "Western"
-
-            default:
-                break
-
-        }
-    }
-    //Find director name
+    //Find director name for printing it
     const findDirector = () => {
         for (let i = 0; i < crewResults.length; i++) {
             if (crewResults[i].known_for_department === "Directing") {
@@ -108,7 +48,7 @@ const MovieDetail = (props) => {
         }
     }
 
-    //Register Film when click OrderMovie
+    //Register Film when click Order Movie
     const registerMovie = async () => {
 
         let results;
@@ -117,38 +57,82 @@ const MovieDetail = (props) => {
             id: props.search[0].data.id,
             title: props.search[0].data.title,
         }
-        try{
+        try {
             results = await axios.post(`https://videostore-backend.herokuapp.com/films`, body)
 
-            console.log(results)
-        }catch(error){
-            console.log(error)
+        } catch (error) {
+            console.log("Register new movie error = ", error)
         }
     }
 
-    //Render bottom orders options
-    const renderOrder = () => {
-        //If no credentials, ask for login
-        if (!props.credentials?.token) {
-            return (<span>Log in to order this movie</span>)
+
+    const makeOrder = async () => {
+        let results;
+        let currentDate = moment().format('YYYY/MM/DD');
+        let returnDate = moment().add(15, 'days').format('YYYY/MM/DD')
+
+        let body = {
+            filmId: props.search[0].data.id,
+            userId: props.credentials.user.id,
+            price: 3,
+            outDate: currentDate,
+            returnDate: returnDate
+        }
+        console.log("body", body)
+
+        try {
+            results = await axios.post(`https://videostore-backend.herokuapp.com/orders`, body)
+        } catch (error) {
+            console.log('Create order error = ', error)
+        }
+
+
+        let ordersArr = [];
+        try {
+            ordersArr = await axios.get(`https://videostore-backend.herokuapp.com/orders/${props.credentials.user.id}`)
+
+        } catch (error) {
+            console.log("Refresh orders error = ", error)
+        }
+
+        console.log("Orders Data = " ,ordersArr.data)
+
+    }
+
+    //Check if user already has the actual movie
+    const userOwnsMovie = async (userId, movieId) => {
+        let result = await axios.get(`https://videostore-backend.herokuapp.com/orders/user?user=${userId}&film=${movieId}`)
+
+        console.log("result", result)
+
+        if(result.data.length == 0) {
+            setuserHasMovie(false)
         } else {
-            //If no orders, ask for order
-            if (props.ordersData == "There are no fields with the searched term") {
-                return (<S.orderButton onClick={()=>registerMovie()}>Order Movie</S.orderButton>)
+            setuserHasMovie(true)
+        }
+
+        console.log(userHasMovie)
+    }
+
+    //Conditional render of the bottom order options
+    const renderOrdersView = () => {
+        //Si el user está logueado
+        if(props.credentials.token) {
+            //Y tiene ya la película..
+            if(userHasMovie) {
+                //Indica que ya la tiene
+                return (<span>You arleady have this movie</span>)
+                //Si no la tiene...
             } else {
-                //if orders, look for movie
-                for (let i = 0; i < props.ordersData.length; i++) {
-                    if (props.ordersData[i].filmTitle === props.search[0].original_title) {
-                        //if movie, say it's already booked
-                        return (<span>You already have this movie</span>)
-                    } else {
-                        //if not, ask for order
-                        return (<S.orderButton onClick={()=>registerMovie()}>Order Movie</S.orderButton>)
-                    }
-                }
+                //Muestra botón para pedirla
+                return (<span>Make order</span>)
             }
+
+        } else {
+            return (<span>Login for make an order</span>)
         }
     }
+
 
     return (
         <S.movieDetailContainer>
@@ -223,7 +207,7 @@ const MovieDetail = (props) => {
                     </S.posterCol>
                 </S.detailsPosterDiv>
                 <S.synopsisRow>{props.search[0].data.overview}</S.synopsisRow>
-                <S.orderRow>{renderOrder()}</S.orderRow>
+                <S.orderRow>{renderOrdersView()}</S.orderRow>
             </S.detailsBox>
         </S.movieDetailContainer >
     )
@@ -232,6 +216,5 @@ const MovieDetail = (props) => {
 
 export default connect((state) => ({
     credentials: state.credentials,
-    search: state.search,
-    ordersData: state.ordersData
+    search: state.search
 }))(MovieDetail);

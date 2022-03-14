@@ -33,26 +33,11 @@ const HambModal = (props) => {
     //useEffects
     useEffect(() => {
 
-    },[])
+    }, [])
 
     //funcs
     const GoTo = (place) => {
         navigate(place)
-    }
-
-    const getOrders = async () => {
-        let ordersArr = [];
-        try {
-            ordersArr = await axios.get(`https://videostore-backend.herokuapp.com/orders/${props.credentials.user.id}`)
-
-        } catch (error) {
-            console.log(error)
-        }
-
-        //Guardamos datos de pedidos de usuario en redux
-        props.dispatch({ type: USER_ORDERS, payload: ordersArr.data });
-
-
     }
 
 
@@ -164,7 +149,7 @@ const HambModal = (props) => {
                     <S.Link onClick={() => {
                         GoTo('/profile');
                         setOpened(false);
-                        getOrders()
+
                     }}>{props.credentials?.user.nickname}
                     </S.Link>
                     <S.Link onClick={() => {
@@ -188,8 +173,7 @@ const HambModal = (props) => {
 
 
 export default connect((state) => ({
-    credentials: state.credentials,
-    ordersData: state.ordersData
+    credentials: state.credentials
 }))(HambModal);
 
 

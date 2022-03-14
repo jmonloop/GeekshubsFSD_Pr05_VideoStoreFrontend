@@ -17,7 +17,7 @@ const Header = (props) => {
     let navigate = useNavigate();
 
     useEffect(() => {
-        console.log(props.credentials);
+        // console.log(props.credentials);
     })
 
     const goTo = (place) => {
