@@ -108,6 +108,24 @@ const MovieDetail = (props) => {
         }
     }
 
+    //Register Film when click OrderMovie
+    const registerMovie = async () => {
+
+        let results;
+
+        let body = {
+            id: props.search[0].data.id,
+            title: props.search[0].data.title,
+        }
+        try{
+            results = await axios.post(`https://videostore-backend.herokuapp.com/films`, body)
+
+            console.log(results)
+        }catch(error){
+            console.log(error)
+        }
+    }
+
     //Render bottom orders options
     const renderOrder = () => {
         //If no credentials, ask for login
@@ -116,7 +134,7 @@ const MovieDetail = (props) => {
         } else {
             //If no orders, ask for order
             if (props.ordersData == "There are no fields with the searched term") {
-                return (<S.orderButton>Order Movie</S.orderButton>)
+                return (<S.orderButton onClick={()=>registerMovie()}>Order Movie</S.orderButton>)
             } else {
                 //if orders, look for movie
                 for (let i = 0; i < props.ordersData.length; i++) {
@@ -125,7 +143,7 @@ const MovieDetail = (props) => {
                         return (<span>You already have this movie</span>)
                     } else {
                         //if not, ask for order
-                        return (<S.orderButton>Order Movie</S.orderButton>)
+                        return (<S.orderButton onClick={()=>registerMovie()}>Order Movie</S.orderButton>)
                     }
                 }
             }

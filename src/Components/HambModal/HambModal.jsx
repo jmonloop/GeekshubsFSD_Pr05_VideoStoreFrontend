@@ -26,8 +26,14 @@ const HambModal = (props) => {
     //hooks
     const [RenderLoginForm, setRenderLoginForm] = useState(false)
     const [RenderRegisterForm, setRenderRegisterForm] = useState(false)
+    //Mantine hooks
+    const [opened, setOpened] = useState(false);
+    const title = opened ? 'Close navigation' : 'Open navigation';
 
+    //useEffects
+    useEffect(() => {
 
+    },[])
 
     //funcs
     const GoTo = (place) => {
@@ -38,7 +44,6 @@ const HambModal = (props) => {
         let ordersArr = [];
         try {
             ordersArr = await axios.get(`https://videostore-backend.herokuapp.com/orders/${props.credentials.user.id}`)
-            // ordersArr = await axios.get(`https://videostore-backend.herokuapp.com/orders/${5}`)
 
         } catch (error) {
             console.log(error)
@@ -52,20 +57,17 @@ const HambModal = (props) => {
 
 
     const Logout = () => {
-        //Borrar de RDX las credenciales
         setRenderLoginForm(false)
 
+        //Borrar de RDX las credenciales
         setTimeout(() => {
             props.dispatch({ type: LOGOUT });
         }, 500)
     }
 
-    //Mantine hooks
-    const [opened, setOpened] = useState(false);
-    const title = opened ? 'Close navigation' : 'Open navigation';
 
 
-
+    //renders
     if ((!props.credentials?.token)) {
         if ((!RenderLoginForm) && (!RenderRegisterForm)) {
             return (
