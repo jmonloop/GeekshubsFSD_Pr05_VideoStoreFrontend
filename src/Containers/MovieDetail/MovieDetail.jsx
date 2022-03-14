@@ -23,11 +23,12 @@ const MovieDetail = (props) => {
     //hooks
     const [genres, setGenres] = useState([props.search[0].data.genres]);
     const [userHasMovie, setuserHasMovie] = useState(false)
-    const [ordersArr, setordersArr] = useState([])
+    const [ordersChanged, setordersChanged] = useState(false)
 
     //useEffects
     useEffect(() => {
         userOwnsMovie(props.credentials.user.id, props.search[0].data.id)
+        setordersChanged(false)
 
     }, []);
 
@@ -35,6 +36,8 @@ const MovieDetail = (props) => {
     }, []);
 
     useEffect(() => {
+     userOwnsMovie(props.credentials.user.id, props.search[0].data.id)
+     console.log('me he renderizado')
 
     });
 
@@ -66,19 +69,6 @@ const MovieDetail = (props) => {
         }
     }
 
-    const refreshUserOrders = async () => {
-        let results = [];
-        try {
-            //Endpoint for retrieving all orders from a user
-            results = await axios.get(`https://videostore-backend.herokuapp.com/orders/${props.credentials.user.id}`)
-
-        } catch (error) {
-            console.log("Refresh orders error = ", error)
-        }
-
-        setordersArr(results.data)
-
-    }
 
     const makeOrder = async () => {
         let results;
@@ -96,6 +86,7 @@ const MovieDetail = (props) => {
 
         try {
             results = await axios.post(`https://videostore-backend.herokuapp.com/orders`, body)
+            setordersChanged(true)
         } catch (error) {
             console.log('Create order error = ', error)
         }
@@ -106,18 +97,21 @@ const MovieDetail = (props) => {
     const userOwnsMovie = async (userId, movieId) => {
         let result = await axios.get(`https://videostore-backend.herokuapp.com/orders/user?user=${userId}&film=${movieId}`)
 
+        console.log("busqueda", result)
+
 
         if(result.data.length === 0) {
             setuserHasMovie(false)
         } else {
             setuserHasMovie(true)
         }
-        console.log("result", result)
+
         console.log(userHasMovie)
     }
 
     //Conditional render of the bottom order options
     const renderOrdersView = () => {
+        console.log("userHas", userHasMovie)
         //Si el user está logueado
         if(props.credentials.token) {
             //Y tiene ya la película..
@@ -127,7 +121,8 @@ const MovieDetail = (props) => {
                 //Si no la tiene...
             } else {
                 //Muestra botón para pedirla
-                return (<S.orderButton onClick={() => {registerMovie(); makeOrder(); refreshUserOrders()}}>Make order</S.orderButton>)
+                return (<S.orderButton onClick={() => {registerMovie(); makeOrder()}}>Make order</S.orderButton>)
+                // return (<S.orderButton onClick={() => {registerMovie(); makeOrder(); userOwnsMovie(props.credentials.user.id, props.search[0].data.id)}}>Make order</S.orderButton>)
             }
 
         } else {
