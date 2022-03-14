@@ -22,7 +22,7 @@ export const checkError = (type, value) => {
 
         case 'name':
 
-            if (! /^[a-zA-Z ]*$/gi.test(value)) {
+            if (! /[A-Za-zÀ-ÖØ-öø-ÿ ]/gi.test(value)) {
                 return "Introduce a valid name (without numbers)";
             } else {
                 return "ok";
@@ -30,7 +30,7 @@ export const checkError = (type, value) => {
 
         case 'surname':
 
-            if (! /^[a-zA-Z ]*$/gi.test(value)) {
+            if (! /[A-Za-zÀ-ÖØ-öø-ÿ ]/gi.test(value)) {
                 return "Introduce a valid surname (without numbers)";
             } else {
                 return "ok";

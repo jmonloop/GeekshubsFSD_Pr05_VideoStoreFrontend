@@ -49,7 +49,7 @@ export const RegisterForm = (props) => {
     }
 
     //Check password max length
-    if ((e.target.name == "password" && e.target.value.length > 10)||(e.target.name == "password2" && e.target.value.length > 10)) {
+    if ((e.target.name == "password" && e.target.value.length > 10) || (e.target.name == "password2" && e.target.value.length > 10)) {
       return (setMsgLength("Password must be 10 characters max"))
     } else {
       setMsgLength("");
@@ -57,13 +57,13 @@ export const RegisterForm = (props) => {
 
     //Check passwords mismatching
 
-      if (e.target.name == "password" && e.target.value !== userData.password2) {
-        return (setMsgMis("Passwords must match"))
-      } else if (e.target.name == "password2" && e.target.value !== userData.password) {
-        return (setMsgMis("Passwords must match"))
-      } else {
-        return (setMsgMis(""))
-      }
+    if (e.target.name == "password" && e.target.value !== userData.password2) {
+      return (setMsgMis("Passwords must match"))
+    } else if (e.target.name == "password2" && e.target.value !== userData.password) {
+      return (setMsgMis("Passwords must match"))
+    } else {
+      return (setMsgMis(""))
+    }
 
 
 
@@ -71,7 +71,7 @@ export const RegisterForm = (props) => {
 
 
 
-  const register = () => {
+  const register = async () => {
 
     let fieldsArr = Object.entries(userData);
     let error = "";
@@ -80,26 +80,24 @@ export const RegisterForm = (props) => {
     //Inputs regex validation
     for (let element of fieldsArr) {
       error = checkError(element[0], element[1]);
-      console.log(element[0], element[1])
-      console.log(error)
       if (error !== "ok") {
         seterrorMsg(error)
         regexError = true;
         return
       }
     }
-    if(error == "ok") {
+    if (error == "ok") {
       seterrorMsg("")
       regexError = false;
     }
- 
+
 
     //Password mismatch validation
     if (userData.password !== userData.password2) {
       seterrorMsg("Passwords must match")
       passMisError = true;
     } else {
-      if(seterrorMsg == "") {
+      if (seterrorMsg == "") {
         seterrorMsg("")
         passMisError = false;
       }
@@ -107,12 +105,11 @@ export const RegisterForm = (props) => {
     }
 
     //Password length validation
-    if ((userData.password.length < 6)||(userData.password.length >10)) {
-      console.log(userData.password)
+    if ((userData.password.length < 6) || (userData.password.length > 10)) {
       seterrorMsg("Password must be between 6 and 10 characters")
       passLengthError = true;
     } else {
-      if(seterrorMsg == "") {
+      if (seterrorMsg == "") {
         seterrorMsg("")
         passLengthError = false;
       }
@@ -127,23 +124,34 @@ export const RegisterForm = (props) => {
       email: userData.email,
       password: userData.password
     }
-
-    if(!regexError && !passMisError && !passLengthError){
+    let result;
+    if (!regexError && !passMisError && !passLengthError) {
       try {
 
-        axios.post("https://videostore-backend.herokuapp.com/users/register", body)
+        result = await axios.post("https://videostore-backend.herokuapp.com/users/register", body)
+        console.log(result.data)
+        if (result.data != "The user with that email/nickname already figures in the database") {
+          setTimeout(() => {
+            setMsgLength(result.data)
 
-        setTimeout(() => {
-          navigate("/")
-        }, 1500)
+            navigate("/")
+          }, 1500)
+        } else {
+          
+          seterrorMsg(result.data)
+        }
+
+
 
       } catch (error) {
         console.log("Register error", error)
       }
     } else {
-      console.log('nok')
+
+      // console.log(result)
+
     }
-     
+
 
   }
 

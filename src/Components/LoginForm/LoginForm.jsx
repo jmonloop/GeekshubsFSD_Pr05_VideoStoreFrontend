@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './LoginForm.css';
 
+import { checkError } from '../../utils';
+
 import axios from 'axios';
 
 import { TextInput, Checkbox, Button } from '@mantine/core';
@@ -12,6 +14,7 @@ import { LOGIN } from '../../redux/types';
 
 export const LoginForm = (props) => {
   let navigate = useNavigate();
+  let regexError;
 
   //1-Hooks
   const [userData, setuserData] = useState({ email: "", password: "" });
@@ -30,33 +33,56 @@ export const LoginForm = (props) => {
   //Local funcs
   const login = async () => {
 
-    try {
+    let fieldsArr = Object.entries(userData);
+    let error = "";
+    seterrorMsg("");
 
-      let body = {
-        email: userData.email,
-        password: userData.password
-      }
-
-      let result = await axios.post("https://videostore-backend.herokuapp.com/users/login", body);
-
-      //Cambiamos el valor del hook credenciales, por lo tanto se recargará el componente
-      if (result.data === "Invalid email or password") {
-        seterrorMsg(result.data)
-      } else {
-        setMsg(result.data.loginOKmessage)
-        // console.log(result.data)
-        //Guardaríamos los datos en redux...
-
-        setTimeout(() => {
-          //     navigate("/");
-          props.dispatch({ type: LOGIN, payload: result.data });
-        }, 1500);
-      }
-
-
-    } catch (error) {
+    //Inputs regex validation
+    for (let element of fieldsArr) {
+      error = checkError(element[0], element[1]);
+      console.log(element[0], element[1])
       console.log(error)
+      if (error !== "ok") {
+        seterrorMsg(error)
+        regexError = true;
+        return
+      }
     }
+    if (error == "ok") {
+      seterrorMsg("")
+      regexError = false;
+    }
+
+    let body = {
+      email: userData.email,
+      password: userData.password
+    }
+
+    if (!regexError) {
+      try {
+
+        let result = await axios.post("https://videostore-backend.herokuapp.com/users/login", body);
+
+        //Cambiamos el valor del hook credenciales, por lo tanto se recargará el componente
+        if (result.data === "Invalid email or password") {
+          seterrorMsg(result.data)
+        } else {
+          setMsg(result.data.loginOKmessage)
+          // console.log(result.data)
+          //Guardaríamos los datos en redux...
+
+          setTimeout(() => {
+            //     navigate("/");
+            props.dispatch({ type: LOGIN, payload: result.data });
+          }, 1500);
+        }
+
+
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
 
 
   };
