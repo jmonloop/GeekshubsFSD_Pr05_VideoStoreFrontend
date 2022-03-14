@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './RegisterForm.css';
-import {checkError} from '../../utils';
+import { checkError } from '../../utils';
 import { TextInput, Checkbox, Button } from '@mantine/core';
 import { useForm } from '@mantine/hooks';
 import axios from 'axios';
@@ -9,23 +9,62 @@ import axios from 'axios';
 export const RegisterForm = (props) => {
   let navigate = useNavigate();
 
-    //1-Hooks
-    const [userData, setuserData] = useState({
-      name: "",
-      surname: "",
-      age: "",
-      nickname: "",
-      email: "",
-      password: "",
-      password2: ""
-    });
-    const [msg, setMsg] = useState("");
-    const [errorMsg, seterrorMsg] = useState("");
+  //1-Hooks
+  const [userData, setuserData] = useState({
+    name: "",
+    surname: "",
+    age: "",
+    nickname: "",
+    email: "",
+    password: "",
+    password2: ""
+  });
+  const [msg, setMsg] = useState("");
+  const [msg2, setMsg2] = useState("");
+  const [errorMsg, seterrorMsg] = useState("");
 
-    //Handler function
-    const fillForm = (e) => {
-      setuserData({ ...userData, [e.target.name]: e.target.value })
+
+
+  //useEffect
+  //userData useEffect
+  useEffect(() => {
+
+  })
+
+
+  //Handler function
+  const fillForm = (e) => {
+    //Set data while writting
+    setuserData({ ...userData, [e.target.name]: e.target.value })
+
+    //Password min length checking
+    if (e.target.name == "password" && e.target.value.length < 6) {
+      return (setMsg2("Password must be 6 characters min"))
+    } else {
+      setMsg2("");
     }
+
+    //Password max length checking
+    if (e.target.name == "password" && e.target.value.length > 10) {
+      return (setMsg2("Password must be 10 characters max"))
+    } else {
+      setMsg2("");
+    }
+
+
+    //Password fields mismatching
+    if(e.target.name == "password" || e.target.name == "password2") {
+      if (e.target.name == "password" && e.target.value !== userData.password2) {
+        return (setMsg("Passwords must match"))
+      } else if (e.target.name == "password2" && e.target.value !== userData.password) {
+        return (setMsg("Passwords must match"))
+      } else {
+        return (setMsg(""))
+      }
+    } else (setMsg(""))
+
+
+  }
 
 
 
@@ -35,19 +74,12 @@ export const RegisterForm = (props) => {
     let fieldsArr = Object.entries(userData);
     let error = "";
 
-    //Password fields mismatching
-    if(userData.password !== userData.password2) {
-      return (seterrorMsg("Passwords must match"))
-    } else {
-       (seterrorMsg(""))
-    }
-
     //Error inputs check with checkError function
-    for(let element of fieldsArr) {
+    for (let element of fieldsArr) {
       error = checkError(element[0], element[1]);
 
-      if(error !== "ok") {
-        setMsg(error)
+      if (error !== "ok") {
+        seterrorMsg(error)
         return
       }
     }
@@ -64,29 +96,29 @@ export const RegisterForm = (props) => {
 
       let result = await axios.post("https://videostore-backend.herokuapp.com/users/register")
 
-      setTimeout(()=>{
+      setTimeout(() => {
         navigate("/")
       }, 1500)
 
 
-    } catch(error) {
-      console.log("Register error",error)
+    } catch (error) {
+      console.log("Register error", error)
     }
 
   }
 
   return (
     <>
-    <>
-    {<pre>{JSON.stringify(userData, null,2)}</pre>}
-    </>
+      <>
+        {<pre>{JSON.stringify(userData, null, 2)}</pre>}
+      </>
 
       <TextInput
         required
         label="Name"
         placeholder=""
         onChange={(e) => { fillForm(e) }}
-        name= "name"
+        name="name"
       />
       <TextInput
         required
@@ -142,7 +174,10 @@ export const RegisterForm = (props) => {
       <Button type="submit" onClick={() => register()}>Submit</Button>
       <br></br>
       <span className='errorMsg'>{errorMsg}</span>
+      <br></br>
       <span className='okMsg'>{msg}</span>
+      <br></br>
+      <span className='okMsg'>{msg2}</span>
     </>
   )
 }

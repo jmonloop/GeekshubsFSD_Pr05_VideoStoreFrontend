@@ -5,42 +5,49 @@ export const API_KEY = "210d6a5dd3f16419ce349c9f1b200d6d";
 
 
 //Custom function for checking input errors by regex
-export const checkError = (type,value) => {
+export const checkError = (type, value) => {
 
 
-    switch(type) {
+    switch (type) {
 
-        case 'email' :
+        case 'email':
 
-            if (! /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(value) ) {
-                
+            if (! /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(value)) {
+
                 return "Introduce a valid email";
-            }else{
+            } else {
                 return "ok";
             };
-            
-        
+
+
         case 'name':
+
+            if (! /[a-z]/gi.test(value)) {
+                return "Introduce a valid name (without numbers";
+            } else {
+                return "ok";
+            };
+
         case 'surname':
 
-            if (! /[a-z]/gi.test(value) ) {
-                return "Introduce a valid name (without numbers";
-            }else{
+            if (! /[a-z]/gi.test(value)) {
+                return "Introduce a valid surname (without numbers";
+            } else {
                 return "ok";
             };
 
-        
+
         case 'phone':
 
-            if (! /[\d()+-]/g.test(value) ) {
+            if (! /[\d()+-]/g.test(value)) {
                 return "Introduce a valid phone";
-            }else{
+            } else {
                 return "ok";
             };
 
         default:
             return "ok";
-        
+
 
     }
 };
