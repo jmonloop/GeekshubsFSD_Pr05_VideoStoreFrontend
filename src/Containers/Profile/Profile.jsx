@@ -45,8 +45,6 @@ const Profile = (props) => {
 
         setordersArr(results.data)
 
-        console.log(ordersArr)
-
     }
 
 

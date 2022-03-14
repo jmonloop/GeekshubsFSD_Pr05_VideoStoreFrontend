@@ -23,6 +23,7 @@ const MovieDetail = (props) => {
     //hooks
     const [genres, setGenres] = useState([props.search[0].data.genres]);
     const [userHasMovie, setuserHasMovie] = useState(false)
+    const [ordersArr, setordersArr] = useState([])
 
     //useEffects
     useEffect(() => {
@@ -65,6 +66,19 @@ const MovieDetail = (props) => {
         }
     }
 
+    const refreshUserOrders = async () => {
+        let results = [];
+        try {
+            //Endpoint for retrieving all orders from a user
+            results = await axios.get(`https://videostore-backend.herokuapp.com/orders/${props.credentials.user.id}`)
+
+        } catch (error) {
+            console.log("Refresh orders error = ", error)
+        }
+
+        setordersArr(results.data)
+
+    }
 
     const makeOrder = async () => {
         let results;
@@ -86,31 +100,19 @@ const MovieDetail = (props) => {
             console.log('Create order error = ', error)
         }
 
-
-        let ordersArr = [];
-        try {
-            ordersArr = await axios.get(`https://videostore-backend.herokuapp.com/orders/${props.credentials.user.id}`)
-
-        } catch (error) {
-            console.log("Refresh orders error = ", error)
-        }
-
-        console.log("Orders Data = " ,ordersArr.data)
-
     }
 
     //Check if user already has the actual movie
     const userOwnsMovie = async (userId, movieId) => {
         let result = await axios.get(`https://videostore-backend.herokuapp.com/orders/user?user=${userId}&film=${movieId}`)
 
-        console.log("result", result)
 
-        if(result.data.length == 0) {
+        if(result.data.length === 0) {
             setuserHasMovie(false)
         } else {
             setuserHasMovie(true)
         }
-
+        console.log("result", result)
         console.log(userHasMovie)
     }
 
@@ -125,7 +127,7 @@ const MovieDetail = (props) => {
                 //Si no la tiene...
             } else {
                 //Muestra botón para pedirla
-                return (<span>Make order</span>)
+                return (<S.orderButton onClick={() => {registerMovie(); makeOrder(); refreshUserOrders()}}>Make order</S.orderButton>)
             }
 
         } else {
