@@ -27,8 +27,10 @@ const MovieDetail = (props) => {
 
     //useEffects
     useEffect(() => {
+        registerMovie(); 
         userOwnsMovie(props.credentials.user.id, props.search[0].data.id)
         setordersChanged(false)
+        console.log("Monto Componente")
 
     }, []);
 
@@ -37,7 +39,8 @@ const MovieDetail = (props) => {
 
     useEffect(() => {
      userOwnsMovie(props.credentials.user.id, props.search[0].data.id)
-     console.log('me he renderizado')
+     console.log("Actualizo componente")
+    //  setordersChanged(true)
 
     });
 
@@ -63,6 +66,7 @@ const MovieDetail = (props) => {
         }
         try {
             results = await axios.post(`https://videostore-backend.herokuapp.com/films`, body)
+            console.log("0 PELICULA REGISTRADA CON: ", results)
 
         } catch (error) {
             console.log("Register new movie error = ", error)
@@ -82,11 +86,11 @@ const MovieDetail = (props) => {
             outDate: currentDate,
             returnDate: returnDate
         }
-        console.log("body", body)
-
+        
         try {
             results = await axios.post(`https://videostore-backend.herokuapp.com/orders`, body)
             setordersChanged(true)
+            console.log("1 ORDER HECHA CON: ", body)
         } catch (error) {
             console.log('Create order error = ', error)
         }
@@ -97,7 +101,7 @@ const MovieDetail = (props) => {
     const userOwnsMovie = async (userId, movieId) => {
         let result = await axios.get(`https://videostore-backend.herokuapp.com/orders/user?user=${userId}&film=${movieId}`)
 
-        console.log("busqueda", result)
+        console.log("2 RESULTADO BUSQUEDA: ", result)
 
 
         if(result.data.length === 0) {
@@ -105,28 +109,25 @@ const MovieDetail = (props) => {
         } else {
             setuserHasMovie(true)
         }
-
-        console.log(userHasMovie)
     }
 
     //Conditional render of the bottom order options
     const renderOrdersView = () => {
-        console.log("userHas", userHasMovie)
+        console.log("3 El user la tiene antes de renderizar? ", userHasMovie)
         //Si el user está logueado
         if(props.credentials.token) {
             //Y tiene ya la película..
             if(userHasMovie) {
                 //Indica que ya la tiene
-                return (<span>You arleady have this movie</span>)
+                return (<span>You already have this movie</span>)
                 //Si no la tiene...
             } else {
                 //Muestra botón para pedirla
-                return (<S.orderButton onClick={() => {registerMovie(); makeOrder()}}>Make order</S.orderButton>)
-                // return (<S.orderButton onClick={() => {registerMovie(); makeOrder(); userOwnsMovie(props.credentials.user.id, props.search[0].data.id)}}>Make order</S.orderButton>)
+                return (<S.orderButton onClick={() => {makeOrder()}}>Place order</S.orderButton>)
             }
 
         } else {
-            return (<span>Login for make an order</span>)
+            return (<span>Login to place an order</span>)
         }
     }
 
