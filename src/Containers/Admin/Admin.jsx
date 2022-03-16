@@ -77,18 +77,22 @@ const Admin = (props) => {
 
     //useEffects
     useEffect(() => {
-        getUsers();
-        getFilms();
-        getOrders();
-        console.log("me monto")
+
+        console.log("me actualizo")
 
     }, []);
 
 
     useEffect(() => {
 
-        console.log("me actualizo")
+        console.log("me monto")
+        if (props.credentials.user.rol !== "admin") {
+            navigate("/");
+        }
 
+        getUsers();
+        getFilms();
+        getOrders();
 
     });
 

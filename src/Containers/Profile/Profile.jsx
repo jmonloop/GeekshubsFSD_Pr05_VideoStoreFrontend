@@ -22,14 +22,17 @@ const Profile = (props) => {
 
     //useEffects
     useEffect(() => {
+
+    }, []);
+
+    useEffect(() => {
+    }, []);
+
+    useEffect(() => {
+        if (props.credentials.token === '') {
+            navigate("/");
+        }
         refreshUserOrders()
-    }, []);
-
-    useEffect(() => {
-    }, []);
-
-    useEffect(() => {
-
     });
 
 
