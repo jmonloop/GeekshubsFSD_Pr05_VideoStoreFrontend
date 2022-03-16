@@ -19,14 +19,14 @@ const Header = (props) => {
     let filmsArr = [];
 
     //Hooks
-    const [searchInput, setsearchInput] = useState("");
+    const [searchResults, setsearchResults] = useState([]);
 
 
 
     useEffect(() => {
-        console.log("actualizo search input a", searchInput)
+        console.log("actualizo search results a", searchResults)
         console.log("actualizo filmsArr a ", filmsArr)
-    }, [searchInput])
+    }, [searchResults])
 
     const goTo = (place) => {
 
@@ -47,28 +47,26 @@ const Header = (props) => {
     }
 
     //Search by title in TMDB endpoint and save result in filmsArr
-    const findMovieByTitle = async (arg) => {
+    const findMovieByTitle = async (e) => {
+        let input = e.target.value;
+        // setsearchInput(e.target.value)
+
         let result = [];
+        console.log("soy input", input)
         try {
-            result = await axios.get(`https://videostore-backend.herokuapp.com/films/title?arg=${arg}`)
+            result = await axios.get(`https://videostore-backend.herokuapp.com/films/title?arg=${input}`)
 
         } catch (error) {
             console.log("Search movie by title error = ", error)
         }
         filmsArr = result.data.results;
-        console.log("soy filmsArr debounceada", filmsArr)
+        
+        setsearchResults(result.data.results)
     }
 
     //Debounce func for findMovieByTitle
     const debouncedFindMovie = debounce(findMovieByTitle, 1500)
 
-    //Search while typing. Call debounced func
-    const quickSearch = (e) => {
-        setsearchInput(e.target.value)
-
-        debouncedFindMovie(searchInput);
-
-    }
 
 
 
@@ -76,7 +74,7 @@ const Header = (props) => {
         <S.headerContainter>
             <S.mainIcon onClick={() => goTo('/')} src={require('../../assets/logos/istreaming.png')} />
             <S.MyInput
-                onChange={(e) => quickSearch(e)}
+                onChange={(e) => debouncedFindMovie(e)}
                 icon={
                     <MyTooltip />
                 }
