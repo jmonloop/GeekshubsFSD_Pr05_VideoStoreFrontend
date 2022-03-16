@@ -38,9 +38,11 @@ const MovieDetail = (props) => {
     }, []);
 
     useEffect(() => {
-     userOwnsMovie(props.credentials.user.id, props.search[0].data.id)
-    //  console.log("Actualizo componente")
-
+        if(!setordersChanged) {
+            userOwnsMovie(props.credentials.user.id, props.search[0].data.id)
+            console.log("Actualizo componente")
+        }
+        setordersChanged(true);
     });
 
     //FUNCS

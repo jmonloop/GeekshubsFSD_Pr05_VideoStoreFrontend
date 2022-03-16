@@ -33,7 +33,7 @@ const Profile = (props) => {
             navigate("/");
         }
         refreshUserOrders()
-    });
+    },[]);
 
 
     const refreshUserOrders = async () => {
