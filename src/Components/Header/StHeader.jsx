@@ -41,3 +41,17 @@ export const mainIcon = styled.img`
 export const MyInput = styled(Input)`
     margin-right: 9%;
 `
+
+export const divResults = styled.div`
+    height: 5em;
+    width: 20em;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+`
+
+export const rowResult = styled.div`
+    background-color: gray;
+`

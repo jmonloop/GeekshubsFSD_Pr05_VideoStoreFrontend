@@ -16,7 +16,8 @@ import axios from 'axios';
 const Header = (props) => {
 
     let navigate = useNavigate();
-    let filmsArr = [];
+
+    let input = "";
 
     //Hooks
     const [searchResults, setsearchResults] = useState([]);
@@ -24,8 +25,8 @@ const Header = (props) => {
 
 
     useEffect(() => {
-        console.log("actualizo search results a", searchResults)
-        console.log("actualizo filmsArr a ", filmsArr)
+        // console.log("actualizo search results a", searchResults)
+        // console.log("actualizo filmsArr a ", filmsArr)
     }, [searchResults])
 
     const goTo = (place) => {
@@ -46,28 +47,55 @@ const Header = (props) => {
         }, 1500);
     }
 
+
+
     //Search by title in TMDB endpoint and save result in filmsArr
     const findMovieByTitle = async (e) => {
-        let input = e.target.value;
+        input = e.target.value;
         // setsearchInput(e.target.value)
 
         let result = [];
-        console.log("soy input", input)
-        try {
-            result = await axios.get(`https://videostore-backend.herokuapp.com/films/title?arg=${input}`)
+        if (input != "") {
+            try {
+                result = await axios.get(`https://videostore-backend.herokuapp.com/films/title?arg=${input}`)
 
-        } catch (error) {
-            console.log("Search movie by title error = ", error)
+            } catch (error) {
+                console.log("Search movie by title error = ", error)
+            }
+
+            setsearchResults(result.data.results)
+        } else {
+            setsearchResults([])
         }
-        filmsArr = result.data.results;
-        
-        setsearchResults(result.data.results)
+
     }
 
     //Debounce func for findMovieByTitle
     const debouncedFindMovie = debounce(findMovieByTitle, 1500)
 
+    //Conditional rendering of quick search results
+    const resultsRender = () => {
+        console.log(searchResults.length)
+        let renderArr = [];
 
+        if (searchResults != []) {
+            renderArr = [
+                searchResults.map(elmnt => {
+                    return (
+
+                        <S.rowResult key={elmnt.id}>
+                            <span>{elmnt.title}</span>
+                        </S.rowResult>
+                    )
+                })
+            ]
+
+            return renderArr
+        } else {
+            renderArr = [];
+            return (<>{renderArr}</>)
+        }
+    }
 
 
     return (
@@ -85,6 +113,9 @@ const Header = (props) => {
                 name="input"
             />
             <HambModal />
+            <S.divResults>
+                {resultsRender()}
+            </S.divResults>
         </S.headerContainter>
     )
 
