@@ -38,7 +38,7 @@ const MovieDetail = (props) => {
     }, []);
 
     useEffect(() => {
-        if(!setordersChanged) {
+        if(!ordersChanged) {
             userOwnsMovie(props.credentials.user.id, props.search[0].data.id)
             console.log("Actualizo componente")
         }
@@ -95,6 +95,8 @@ const MovieDetail = (props) => {
             console.log('Create order error = ', error)
         }
 
+        setordersChanged(false);
+
     }
 
     //Check if user already has the actual movie
@@ -123,7 +125,7 @@ const MovieDetail = (props) => {
                 //Si no la tiene...
             } else {
                 //Muestra botón para pedirla
-                return (<S.orderButton onClick={() => {makeOrder()}}>Place order</S.orderButton>)
+                return (<S.orderButton onClick={() => {makeOrder();}}>Place order</S.orderButton>)
             }
 
         } else {
