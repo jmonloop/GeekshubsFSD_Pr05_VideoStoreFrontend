@@ -1,5 +1,5 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LOGOUT } from '../../redux/types';
 import { connect } from 'react-redux';
@@ -16,9 +16,14 @@ const Header = (props) => {
 
     let navigate = useNavigate();
 
+    //Hooks
+    const [searchInput, setsearchInput] = useState("");
+
+
+
     useEffect(() => {
-        // console.log(props.credentials);
-    })
+        console.log("actualizo search input a", searchInput)
+    },[searchInput])
 
     const goTo = (place) => {
 
@@ -39,11 +44,15 @@ const Header = (props) => {
     }
 
 
+    const quickSearch = (e) =>{
+        setsearchInput(e.target.value)
+    }
+
     return (
         <S.headerContainter>
             <S.mainIcon onClick={() => goTo('/')} src={require('../../assets/logos/istreaming.png')} />
             <S.MyInput
-
+                onChange={(e)=>quickSearch(e)}
                 icon={
                     <MyTooltip />
                 }
@@ -51,6 +60,7 @@ const Header = (props) => {
                 placeholder="Search movie..."
                 radius="xl"
                 size="md"
+                name="input"
             />
             <HambModal />
         </S.headerContainter>
