@@ -47,7 +47,6 @@ const Home = (props) => {
             lastPage = props.pageNum;
 
         }
-        console.log("me actualizo")
 
     });
 

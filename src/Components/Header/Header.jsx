@@ -1,9 +1,10 @@
 
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LOGOUT } from '../../redux/types';
+import { LOGOUT, MOVIE_DETAIL } from '../../redux/types';
 import { connect } from 'react-redux';
 import debounce from 'lodash.debounce';
+import { root, API_KEY } from '../../utils';
 
 import HambModal from '../HambModal/HambModal';
 
@@ -18,6 +19,7 @@ const Header = (props) => {
     let navigate = useNavigate();
 
     let input = "";
+    let movieDetails = [];
 
     //Hooks
     const [searchResults, setsearchResults] = useState([]);
@@ -47,7 +49,41 @@ const Header = (props) => {
         }, 1500);
     }
 
+    const selectFilm = async (filmId) => {
+        let film = filmId;
+        let movieData = []
+        let movieCast = [];
 
+        try {
+            movieData = await axios.get(`https://api.themoviedb.org/3/movie/${film}?api_key=${API_KEY}&language=en-US`)
+
+            movieDetails.push(movieData)
+
+
+        } catch (error) {
+            console.log("Select film error = ", error)
+        }
+
+        try {
+            let movieCast = await axios.get(`https://api.themoviedb.org/3/movie/${film}/credits?api_key=${API_KEY}&language=en-US`);
+
+            movieDetails.push(movieCast)
+
+        } catch (error) {
+            console.log("Get movie cast error = ", error)
+        }
+
+
+        //Guardamos la pelicula escogida en redux
+        props.dispatch({ type: MOVIE_DETAIL, payload: movieDetails });
+
+
+        //Redirigimos a movieDetail con navigate
+        navigate("/moviedetail");
+
+        setsearchResults([])
+        input="";
+    }
 
     //Search by title in TMDB endpoint and save result in filmsArr
     const findMovieByTitle = async (e) => {
@@ -75,15 +111,14 @@ const Header = (props) => {
 
     //Conditional rendering of quick search results
     const resultsRender = () => {
-        console.log(searchResults.length)
         let renderArr = [];
 
-        if (searchResults != []) {
+        if (searchResults.length != 0) {
             renderArr = [
                 searchResults.map(elmnt => {
                     return (
 
-                        <S.rowResult key={elmnt.id}>
+                        <S.rowResult key={elmnt.id} onClick={() => selectFilm(elmnt.id)}>
                             <span>{elmnt.title}</span>
                         </S.rowResult>
                     )
@@ -91,10 +126,7 @@ const Header = (props) => {
             ]
             return renderArr
 
-        } else {
-            renderArr = [];
-            return (<>{renderArr}</>)
-        }
+        } 
     }
 
 
