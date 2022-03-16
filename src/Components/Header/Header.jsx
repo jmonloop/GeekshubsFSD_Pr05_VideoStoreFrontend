@@ -26,7 +26,7 @@ const Header = (props) => {
     useEffect(() => {
         console.log("actualizo search input a", searchInput)
         console.log("actualizo filmsArr a ", filmsArr)
-    },[searchInput])
+    }, [searchInput])
 
     const goTo = (place) => {
 
@@ -46,28 +46,37 @@ const Header = (props) => {
         }, 1500);
     }
 
-
-    const quickSearch = (e) =>{
-        setsearchInput(e.target.value)
-        findMovieByTitle(searchInput)
-    }
-
+    //Search by title in TMDB endpoint and save result in filmsArr
     const findMovieByTitle = async (arg) => {
         let result = [];
         try {
             result = await axios.get(`https://videostore-backend.herokuapp.com/films/title?arg=${arg}`)
 
-        } catch(error) {
+        } catch (error) {
             console.log("Search movie by title error = ", error)
         }
         filmsArr = result.data.results;
+        console.log("soy filmsArr debounceada", filmsArr)
     }
+
+    //Debounce func for findMovieByTitle
+    const debouncedFindMovie = debounce(findMovieByTitle, 1500)
+
+    //Search while typing. Call debounced func
+    const quickSearch = (e) => {
+        setsearchInput(e.target.value)
+
+        debouncedFindMovie(searchInput);
+
+    }
+
+
 
     return (
         <S.headerContainter>
             <S.mainIcon onClick={() => goTo('/')} src={require('../../assets/logos/istreaming.png')} />
             <S.MyInput
-                onChange={(e)=>quickSearch(e)}
+                onChange={(e) => quickSearch(e)}
                 icon={
                     <MyTooltip />
                 }
