@@ -38,20 +38,39 @@ export const mainIcon = styled.img`
     cursor: pointer;
 `
 
+export const inputResultsDiv = styled.div`
+    height: 100%;
+    width: 25em;
+
+    /* background-color: blue; */
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center
+
+`
+
 export const MyInput = styled(Input)`
     margin-right: 9%;
 `
 
 export const divResults = styled.div`
-    height: 5em;
-    width: 20em;
-    background-color: black;
+    position: absolute;
+    top: 70%;
+    height: auto;
+    width: auto;
+    background-color: white;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 `
 
 export const rowResult = styled.div`
-    background-color: gray;
+    color: black;
+    :hover{
+        background-color: orange;
+        cursor: pointer;
+    }
 `

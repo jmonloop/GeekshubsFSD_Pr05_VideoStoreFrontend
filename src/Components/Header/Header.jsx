@@ -71,7 +71,7 @@ const Header = (props) => {
     }
 
     //Debounce func for findMovieByTitle
-    const debouncedFindMovie = debounce(findMovieByTitle, 1500)
+    const debouncedFindMovie = debounce(findMovieByTitle, 1000)
 
     //Conditional rendering of quick search results
     const resultsRender = () => {
@@ -89,8 +89,8 @@ const Header = (props) => {
                     )
                 })
             ]
-
             return renderArr
+
         } else {
             renderArr = [];
             return (<>{renderArr}</>)
@@ -101,21 +101,25 @@ const Header = (props) => {
     return (
         <S.headerContainter>
             <S.mainIcon onClick={() => goTo('/')} src={require('../../assets/logos/istreaming.png')} />
-            <S.MyInput
-                onChange={(e) => debouncedFindMovie(e)}
-                icon={
-                    <MyTooltip />
-                }
+            <S.inputResultsDiv>
+                <S.MyInput
+                    onChange={(e) => debouncedFindMovie(e)}
+                    icon={
+                        <MyTooltip />
+                    }
 
-                placeholder="Search movie..."
-                radius="xl"
-                size="md"
-                name="input"
-            />
+                    placeholder="Search movie..."
+                    radius="xl"
+                    size="md"
+                    name="input"
+                />
+                <S.divResults>
+                    {resultsRender()}
+                </S.divResults>
+            </S.inputResultsDiv>
+
             <HambModal />
-            <S.divResults>
-                {resultsRender()}
-            </S.divResults>
+
         </S.headerContainter>
     )
 
