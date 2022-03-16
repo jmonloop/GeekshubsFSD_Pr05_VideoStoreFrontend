@@ -50,6 +50,14 @@ const HambModal = (props) => {
         }, 500)
     }
 
+    //If logged user is admin, his link navigates to admin view
+    const renderProfileLinks = () => {
+        if(props.credentials?.user.rol == "admin"){
+            return(<S.Link onClick={() => {GoTo('/admin');setOpened(false);}}>{props.credentials?.user.nickname}</S.Link>)
+        } else {
+            return(<S.Link onClick={() => {GoTo('/profile');setOpened(false);}}>{props.credentials?.user.nickname}</S.Link>)
+        }
+    }
 
 
     //renders
@@ -145,13 +153,7 @@ const HambModal = (props) => {
                     onClose={() => setOpened(false)}
                 // title="Sign Up"
                 >
-
-                    <S.Link onClick={() => {
-                        GoTo('/profile');
-                        setOpened(false);
-
-                    }}>{props.credentials?.user.nickname}
-                    </S.Link>
+                    {renderProfileLinks()}
                     <S.Link onClick={() => {
                         Logout();
                         GoTo('/');

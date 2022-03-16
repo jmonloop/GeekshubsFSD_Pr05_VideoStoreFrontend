@@ -10,6 +10,7 @@ import Header from './Components/Header/Header';
 import Home from './Containers/Home/Home';
 import Profile from './Containers/Profile/Profile';
 import MovieDetail from './Containers/MovieDetail/MovieDetail';
+import Admin from './Containers/Admin/Admin';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/moviedetail" element={<MovieDetail />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/admin" element={<Admin />} />
         </Routes>
 
       </BrowserRouter>

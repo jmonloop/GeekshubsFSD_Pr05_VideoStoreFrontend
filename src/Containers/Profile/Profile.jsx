@@ -201,7 +201,6 @@ const Profile = (props) => {
             </S.profileContainer >
         )
     }
-
 }
 
 
