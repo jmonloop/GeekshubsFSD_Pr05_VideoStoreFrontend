@@ -114,13 +114,24 @@ const Admin = (props) => {
                     <S.usersDiv>
                         <S.sectionTitle>USERS</S.sectionTitle>
                         <ScrollArea style={{ width: 300, height: 200 }}>
-                            <div style={{ width: 600}}>
+                            <div style={{ width: 600 }}>
                                 <S.tableBody>
+                                    <td>
+                                        <th>ID</th>
+                                        {
+                                            usersArr.map(elmnt => {
+                                                return (
+                                                    <>
+                                                        <tr><span>{elmnt.id} </span></tr>
+                                                    </>
+                                                )
+                                            })
+                                        }
+                                    </td>
                                     <td>
                                         <th>Name</th>
                                         {
                                             usersArr.map(elmnt => {
-                                                console.log(usersArr)
                                                 return (
                                                     <>
                                                         <tr><span>{elmnt.name} </span></tr>
@@ -133,7 +144,6 @@ const Admin = (props) => {
                                         <th>Surname</th>
                                         {
                                             usersArr.map(elmnt => {
-                                                console.log(usersArr)
                                                 return (
                                                     <>
                                                         <tr><span>{elmnt.surname} </span></tr>
@@ -146,7 +156,6 @@ const Admin = (props) => {
                                         <th>Age</th>
                                         {
                                             usersArr.map(elmnt => {
-                                                console.log(usersArr)
                                                 return (
                                                     <>
                                                         <tr><span>{elmnt.age} </span></tr>
@@ -159,7 +168,6 @@ const Admin = (props) => {
                                         <th>Email</th>
                                         {
                                             usersArr.map(elmnt => {
-                                                console.log(usersArr)
                                                 return (
                                                     <>
                                                         <tr><span>{elmnt.email} </span></tr>
@@ -172,7 +180,6 @@ const Admin = (props) => {
                                         <th>Nickname</th>
                                         {
                                             usersArr.map(elmnt => {
-                                                console.log(usersArr)
                                                 return (
                                                     <>
                                                         <tr><span>{elmnt.nickname} </span></tr>
@@ -185,10 +192,33 @@ const Admin = (props) => {
                                         <th>Rol</th>
                                         {
                                             usersArr.map(elmnt => {
-                                                console.log(usersArr)
                                                 return (
                                                     <>
                                                         <tr><span>{elmnt.rol} </span></tr>
+                                                    </>
+                                                )
+                                            })
+                                        }
+                                    </td>
+                                    <td>
+                                        <th>Created At</th>
+                                        {
+                                            usersArr.map(elmnt => {
+                                                return (
+                                                    <>
+                                                        <tr><span>{elmnt.createdAt} </span></tr>
+                                                    </>
+                                                )
+                                            })
+                                        }
+                                    </td>
+                                    <td>
+                                        <th>Updated At</th>
+                                        {
+                                            usersArr.map(elmnt => {
+                                                return (
+                                                    <>
+                                                        <tr><span>{elmnt.updatedAt} </span></tr>
                                                     </>
                                                 )
                                             })
@@ -201,9 +231,144 @@ const Admin = (props) => {
                     </S.usersDiv>
                     <S.filmsDiv>
                         <S.sectionTitle>MOVIES</S.sectionTitle>
+                        <ScrollArea style={{ width: 300, height: 200 }}>
+                            <div style={{ width: 600 }}>
+                                <S.tableBody>
+                                    <td>
+                                        <th>ID</th>
+                                        {
+                                            filmsArr.map(elmnt => {
+                                                return (
+                                                    <>
+                                                        <tr><span>{elmnt.id} </span></tr>
+                                                    </>
+                                                )
+                                            })
+                                        }
+                                    </td>
+                                    <td>
+                                        <th>Title</th>
+                                        {
+                                            filmsArr.map(elmnt => {
+                                                console.log(elmnt.title)
+                                                return (
+                                                    <>
+                                                        <tr><span>{elmnt.title} </span></tr>
+                                                    </>
+                                                )
+                                            })
+                                        }
+                                    </td>
+                                    <td>
+                                        <th>Created At</th>
+                                        {
+                                            filmsArr.map(elmnt => {
+                                                return (
+                                                    <>
+                                                        <tr><span>{elmnt.createdAt} </span></tr>
+                                                    </>
+                                                )
+                                            })
+                                        }
+                                    </td>
+                                    <td>
+                                        <th>Updated At</th>
+                                        {
+                                            filmsArr.map(elmnt => {
+                                                return (
+                                                    <>
+                                                        <tr><span>{elmnt.updatedAt} </span></tr>
+                                                    </>
+                                                )
+                                            })
+                                        }
+                                    </td>
+                                </S.tableBody>
+
+                            </div>
+                        </ScrollArea>
                     </S.filmsDiv>
                     <S.ordersDiv>
                         <S.sectionTitle>ORDERS</S.sectionTitle>
+                        <ScrollArea style={{ width: 300, height: 200 }}>
+                            <div style={{ width: 600 }}>
+                                <S.tableBody>
+                                    <td>
+                                        <th>ID</th>
+                                        {
+                                            ordersArr.map(elmnt => {
+                                                return (
+                                                    <>
+                                                        <tr><span>{elmnt.orderNumber} </span></tr>
+                                                    </>
+                                                )
+                                            })
+                                        }
+                                    </td>
+                                    <td>
+                                        <th>Price</th>
+                                        {
+                                            ordersArr.map(elmnt => {
+                                                return (
+                                                    <>
+                                                        <tr><span>{elmnt.price} </span></tr>
+                                                    </>
+                                                )
+                                            })
+                                        }
+                                    </td>
+                                    <td>
+                                        <th>Owner name</th>
+                                        {
+                                            ordersArr.map(elmnt => {
+                                                return (
+                                                    <>
+                                                        <tr><span>{elmnt.userName} </span></tr>
+                                                    </>
+                                                )
+                                            })
+                                        }
+                                    </td>
+                                    <td>
+                                        <th>Owner email</th>
+                                        {
+                                            ordersArr.map(elmnt => {
+                                                return (
+                                                    <>
+                                                        <tr><span>{elmnt.userEmail} </span></tr>
+                                                    </>
+                                                )
+                                            })
+                                        }
+                                    </td>
+                                    <td>
+                                        <th>Movie title</th>
+                                        {
+                                            ordersArr.map(elmnt => {
+                                                return (
+                                                    <>
+                                                        <tr><span>{elmnt.filmTitle} </span></tr>
+                                                    </>
+                                                )
+                                            })
+                                        }
+                                    </td>
+                                    <td>
+                                        <th>Created at</th>
+                                        {
+                                            ordersArr.map(elmnt => {
+                                                return (
+                                                    <>
+                                                        <tr><span>{elmnt.outDate} </span></tr>
+                                                    </>
+                                                )
+                                            })
+                                        }
+                                    </td>
+                                </S.tableBody>
+
+                            </div>
+                        </ScrollArea>
                     </S.ordersDiv>
                 </S.adminBox>
             </S.adminContainer >
