@@ -83,7 +83,6 @@ const Admin = (props) => {
                 <td>{elmnt.nickname}</td>
                 <td>{elmnt.rol}</td>
                 <td>{elmnt.createdAt}</td>
-                <td>{elmnt.updatedAt}</td>
             </tr>
         )
     })
@@ -93,7 +92,6 @@ const Admin = (props) => {
                 <td>{elmnt.id}</td>
                 <td>{elmnt.title}</td>
                 <td>{elmnt.createdAt}</td>
-                <td>{elmnt.updatedAt}</td>
             </tr>
         )
     })
@@ -119,7 +117,6 @@ const Admin = (props) => {
             <th>NICKNAME</th>
             <th>ROL</th>
             <th>CREATED AT</th>
-            <th>UPDATED AT</th>
         </tr>
     )
 
@@ -128,7 +125,6 @@ const Admin = (props) => {
             <th>ID</th>
             <th>TITLE</th>
             <th>CREATED AT</th>
-            <th>UPDATED AT</th>
         </tr>
     )
     const ordersThs = (
