@@ -73,14 +73,81 @@ const Admin = (props) => {
 
     }
 
+    const usersRows = usersArr.map((elmnt) => {
+        return (
+            <tr key={elmnt.id}>
+                <td>{elmnt.id}</td>
+                <td>{elmnt.name}</td>
+                <td>{elmnt.age}</td>
+                <td>{elmnt.email}</td>
+                <td>{elmnt.nickname}</td>
+                <td>{elmnt.rol}</td>
+                <td>{elmnt.createdAt}</td>
+                <td>{elmnt.updatedAt}</td>
+            </tr>
+        )
+    })
+    const filmsRows = filmsArr.map((elmnt) => {
+        return (
+            <tr key={elmnt.id}>
+                <td>{elmnt.id}</td>
+                <td>{elmnt.title}</td>
+                <td>{elmnt.createdAt}</td>
+                <td>{elmnt.updatedAt}</td>
+            </tr>
+        )
+    })
+    const ordersRows = ordersArr.map((elmnt) => {
+        return (
+            <tr key={elmnt.orderNumber}>
+                <td>{elmnt.orderNumber}</td>
+                <td>{elmnt.price}</td>
+                <td>{elmnt.userName}</td>
+                <td>{elmnt.userEmail}</td>
+                <td>{elmnt.filmTitle}</td>
+                <td>{elmnt.outDate}</td>
+            </tr>
+        )
+    })
 
+    const usersThs = (
+        <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>AGE</th>
+            <th>EMAIL</th>
+            <th>NICKNAME</th>
+            <th>ROL</th>
+            <th>CREATED AT</th>
+            <th>UPDATED AT</th>
+        </tr>
+    )
 
+    const filmsThs = (
+        <tr>
+            <th>ID</th>
+            <th>TITLE</th>
+            <th>CREATED AT</th>
+            <th>UPDATED AT</th>
+        </tr>
+    )
+    const ordersThs = (
+        <tr>
+            <th>ID</th>
+            <th>PRICE</th>
+            <th>OWNER NAME</th>
+            <th>OWNER EMAIL</th>
+            <th>MOVIE TITLE</th>
+            <th>ORDER DATE</th>
+        </tr>
+    )
 
 
     //useEffects
     useEffect(() => {
 
         console.log("me monto")
+        
         if (props.credentials.user.rol !== "admin") {
             navigate("/");
         }
@@ -114,260 +181,37 @@ const Admin = (props) => {
                     <S.usersDiv>
                         <S.sectionTitle>USERS</S.sectionTitle>
                         <ScrollArea style={{ width: 300, height: 200 }}>
-                            <div style={{ width: 600 }}>
-                                <S.tableBody>
-                                    <td>
-                                        <th>ID</th>
-                                        {
-                                            usersArr.map(elmnt => {
-                                                return (
-                                                    <>
-                                                        <tr><span>{elmnt.id} </span></tr>
-                                                    </>
-                                                )
-                                            })
-                                        }
-                                    </td>
-                                    <td>
-                                        <th>Name</th>
-                                        {
-                                            usersArr.map(elmnt => {
-                                                return (
-                                                    <>
-                                                        <tr><span>{elmnt.name} </span></tr>
-                                                    </>
-                                                )
-                                            })
-                                        }
-                                    </td>
-                                    <td>
-                                        <th>Surname</th>
-                                        {
-                                            usersArr.map(elmnt => {
-                                                return (
-                                                    <>
-                                                        <tr><span>{elmnt.surname} </span></tr>
-                                                    </>
-                                                )
-                                            })
-                                        }
-                                    </td>
-                                    <td>
-                                        <th>Age</th>
-                                        {
-                                            usersArr.map(elmnt => {
-                                                return (
-                                                    <>
-                                                        <tr><span>{elmnt.age} </span></tr>
-                                                    </>
-                                                )
-                                            })
-                                        }
-                                    </td>
-                                    <td>
-                                        <th>Email</th>
-                                        {
-                                            usersArr.map(elmnt => {
-                                                return (
-                                                    <>
-                                                        <tr><span>{elmnt.email} </span></tr>
-                                                    </>
-                                                )
-                                            })
-                                        }
-                                    </td>
-                                    <td>
-                                        <th>Nickname</th>
-                                        {
-                                            usersArr.map(elmnt => {
-                                                return (
-                                                    <>
-                                                        <tr><span>{elmnt.nickname} </span></tr>
-                                                    </>
-                                                )
-                                            })
-                                        }
-                                    </td>
-                                    <td>
-                                        <th>Rol</th>
-                                        {
-                                            usersArr.map(elmnt => {
-                                                return (
-                                                    <>
-                                                        <tr><span>{elmnt.rol} </span></tr>
-                                                    </>
-                                                )
-                                            })
-                                        }
-                                    </td>
-                                    <td>
-                                        <th>Created At</th>
-                                        {
-                                            usersArr.map(elmnt => {
-                                                return (
-                                                    <>
-                                                        <tr><span>{elmnt.createdAt} </span></tr>
-                                                    </>
-                                                )
-                                            })
-                                        }
-                                    </td>
-                                    <td>
-                                        <th>Updated At</th>
-                                        {
-                                            usersArr.map(elmnt => {
-                                                return (
-                                                    <>
-                                                        <tr><span>{elmnt.updatedAt} </span></tr>
-                                                    </>
-                                                )
-                                            })
-                                        }
-                                    </td>
-                                </S.tableBody>
-
-                            </div>
+                            <S.tableDiv style={{ width: 600 }}>
+                                <Table striped highlightOnHover>
+                                    <caption>Click in a row to edit</caption>
+                                    <thead>{usersThs}</thead>
+                                    <tbody>{usersRows}</tbody>
+                                </Table>
+                            </S.tableDiv>
                         </ScrollArea>
                     </S.usersDiv>
                     <S.filmsDiv>
                         <S.sectionTitle>MOVIES</S.sectionTitle>
                         <ScrollArea style={{ width: 300, height: 200 }}>
-                            <div style={{ width: 600 }}>
-                                <S.tableBody>
-                                    <td>
-                                        <th>ID</th>
-                                        {
-                                            filmsArr.map(elmnt => {
-                                                return (
-                                                    <>
-                                                        <tr><span>{elmnt.id} </span></tr>
-                                                    </>
-                                                )
-                                            })
-                                        }
-                                    </td>
-                                    <td>
-                                        <th>Title</th>
-                                        {
-                                            filmsArr.map(elmnt => {
-                                                console.log(elmnt.title)
-                                                return (
-                                                    <>
-                                                        <tr><span>{elmnt.title} </span></tr>
-                                                    </>
-                                                )
-                                            })
-                                        }
-                                    </td>
-                                    <td>
-                                        <th>Created At</th>
-                                        {
-                                            filmsArr.map(elmnt => {
-                                                return (
-                                                    <>
-                                                        <tr><span>{elmnt.createdAt} </span></tr>
-                                                    </>
-                                                )
-                                            })
-                                        }
-                                    </td>
-                                    <td>
-                                        <th>Updated At</th>
-                                        {
-                                            filmsArr.map(elmnt => {
-                                                return (
-                                                    <>
-                                                        <tr><span>{elmnt.updatedAt} </span></tr>
-                                                    </>
-                                                )
-                                            })
-                                        }
-                                    </td>
-                                </S.tableBody>
-
-                            </div>
+                            <S.tableDiv style={{ width: 600 }}>
+                                <Table striped highlightOnHover>
+                                    <caption>Click in a row to edit</caption>
+                                    <thead>{filmsThs}</thead>
+                                    <tbody>{filmsRows}</tbody>
+                                </Table>
+                            </S.tableDiv>
                         </ScrollArea>
                     </S.filmsDiv>
                     <S.ordersDiv>
                         <S.sectionTitle>ORDERS</S.sectionTitle>
                         <ScrollArea style={{ width: 300, height: 200 }}>
-                            <div style={{ width: 600 }}>
-                                <S.tableBody>
-                                    <td>
-                                        <th>ID</th>
-                                        {
-                                            ordersArr.map(elmnt => {
-                                                return (
-                                                    <>
-                                                        <tr><span>{elmnt.orderNumber} </span></tr>
-                                                    </>
-                                                )
-                                            })
-                                        }
-                                    </td>
-                                    <td>
-                                        <th>Price</th>
-                                        {
-                                            ordersArr.map(elmnt => {
-                                                return (
-                                                    <>
-                                                        <tr><span>{elmnt.price} </span></tr>
-                                                    </>
-                                                )
-                                            })
-                                        }
-                                    </td>
-                                    <td>
-                                        <th>Owner name</th>
-                                        {
-                                            ordersArr.map(elmnt => {
-                                                return (
-                                                    <>
-                                                        <tr><span>{elmnt.userName} </span></tr>
-                                                    </>
-                                                )
-                                            })
-                                        }
-                                    </td>
-                                    <td>
-                                        <th>Owner email</th>
-                                        {
-                                            ordersArr.map(elmnt => {
-                                                return (
-                                                    <>
-                                                        <tr><span>{elmnt.userEmail} </span></tr>
-                                                    </>
-                                                )
-                                            })
-                                        }
-                                    </td>
-                                    <td>
-                                        <th>Movie title</th>
-                                        {
-                                            ordersArr.map(elmnt => {
-                                                return (
-                                                    <>
-                                                        <tr><span>{elmnt.filmTitle} </span></tr>
-                                                    </>
-                                                )
-                                            })
-                                        }
-                                    </td>
-                                    <td>
-                                        <th>Created at</th>
-                                        {
-                                            ordersArr.map(elmnt => {
-                                                return (
-                                                    <>
-                                                        <tr><span>{elmnt.outDate} </span></tr>
-                                                    </>
-                                                )
-                                            })
-                                        }
-                                    </td>
-                                </S.tableBody>
-
-                            </div>
+                            <S.tableDiv style={{ width: 600 }}>
+                                <Table striped highlightOnHover>
+                                    <caption>Click in a row to edit</caption>
+                                    <thead>{ordersThs}</thead>
+                                    <tbody>{ordersRows}</tbody>
+                                </Table>
+                            </S.tableDiv>
                         </ScrollArea>
                     </S.ordersDiv>
                 </S.adminBox>

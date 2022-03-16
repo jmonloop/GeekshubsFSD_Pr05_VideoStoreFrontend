@@ -83,12 +83,11 @@ export const ordersDiv = styled.div`
     align-items: center;
 `
 
-export const tableBody= styled.table`
+export const tableDiv= styled.div`
 
 border: 2px solid black;
 background-color: white;
 
-border-spacing: 5%;
 
 `
 
