@@ -67,3 +67,16 @@ export const ordersDiv = styled.div`
         width: 100%;
     }
 `
+
+export const tableBody= styled.table`
+
+border: 2px solid black;
+background-color: white;
+
+border-spacing: 5%;
+
+`
+
+export const tableData= styled.td`
+background-color: gray;
+`

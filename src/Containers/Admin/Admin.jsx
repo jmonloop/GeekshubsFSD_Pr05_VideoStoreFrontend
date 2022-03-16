@@ -42,7 +42,7 @@ const Admin = (props) => {
         }
 
         setusersArr(results.data)
-        console.log("ejecuto funcion")
+        console.log("ejecuto getUsers")
 
     }
     const getFilms = async () => {
@@ -56,6 +56,7 @@ const Admin = (props) => {
         }
 
         setfilmsArr(results.data)
+        console.log("ejecuto getFilms")
     }
     const getOrders = async () => {
         let results = [];
@@ -68,6 +69,7 @@ const Admin = (props) => {
         }
 
         setordersArr(results.data)
+        console.log("ejecuto getOrders")
 
     }
 
@@ -76,13 +78,6 @@ const Admin = (props) => {
 
 
     //useEffects
-    useEffect(() => {
-
-        console.log("me actualizo")
-
-    }, []);
-
-
     useEffect(() => {
 
         console.log("me monto")
@@ -94,6 +89,20 @@ const Admin = (props) => {
         getFilms();
         getOrders();
 
+    }, []);
+
+
+    useEffect(() => {
+
+
+        console.log("me actualizo")
+
+    });
+
+    useEffect(() => {
+        return () => {
+            console.log("me desmonto")
+        };
     });
 
 
@@ -105,15 +114,88 @@ const Admin = (props) => {
                     <S.usersDiv>
                         <S.sectionTitle>USERS</S.sectionTitle>
                         <ScrollArea style={{ width: 300, height: 200 }}>
-                            <div style={{ width: 600 }}>
-                                {
-                                    usersArr.map(elmnt => {
-                                        console.log(usersArr)
-                                        return (
-                                            <span>hola</span>
-                                        )
-                                    })
-                                }
+                            <div style={{ width: 600}}>
+                                <S.tableBody>
+                                    <td>
+                                        <th>Name</th>
+                                        {
+                                            usersArr.map(elmnt => {
+                                                console.log(usersArr)
+                                                return (
+                                                    <>
+                                                        <tr><span>{elmnt.name} </span></tr>
+                                                    </>
+                                                )
+                                            })
+                                        }
+                                    </td>
+                                    <td>
+                                        <th>Surname</th>
+                                        {
+                                            usersArr.map(elmnt => {
+                                                console.log(usersArr)
+                                                return (
+                                                    <>
+                                                        <tr><span>{elmnt.surname} </span></tr>
+                                                    </>
+                                                )
+                                            })
+                                        }
+                                    </td>
+                                    <td>
+                                        <th>Age</th>
+                                        {
+                                            usersArr.map(elmnt => {
+                                                console.log(usersArr)
+                                                return (
+                                                    <>
+                                                        <tr><span>{elmnt.age} </span></tr>
+                                                    </>
+                                                )
+                                            })
+                                        }
+                                    </td>
+                                    <td>
+                                        <th>Email</th>
+                                        {
+                                            usersArr.map(elmnt => {
+                                                console.log(usersArr)
+                                                return (
+                                                    <>
+                                                        <tr><span>{elmnt.email} </span></tr>
+                                                    </>
+                                                )
+                                            })
+                                        }
+                                    </td>
+                                    <td>
+                                        <th>Nickname</th>
+                                        {
+                                            usersArr.map(elmnt => {
+                                                console.log(usersArr)
+                                                return (
+                                                    <>
+                                                        <tr><span>{elmnt.nickname} </span></tr>
+                                                    </>
+                                                )
+                                            })
+                                        }
+                                    </td>
+                                    <td>
+                                        <th>Rol</th>
+                                        {
+                                            usersArr.map(elmnt => {
+                                                console.log(usersArr)
+                                                return (
+                                                    <>
+                                                        <tr><span>{elmnt.rol} </span></tr>
+                                                    </>
+                                                )
+                                            })
+                                        }
+                                    </td>
+                                </S.tableBody>
+
                             </div>
                         </ScrollArea>
                     </S.usersDiv>

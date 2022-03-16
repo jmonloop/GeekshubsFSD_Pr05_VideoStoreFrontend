@@ -122,7 +122,7 @@ const Home = (props) => {
                                     //Al mapear, cada elemento que se itera del array (en este caso pelicula es ese elemento),
                                     //si le hacemos propiedad onclick y pasamos el elemento como argumento,
                                     //a esa funcion le va a llegar el objeto que hayamos clickado entero
-                                    <S.filmDiv key={film} onClick={() => selectFilm(film.id)}>
+                                    <S.filmDiv key={film.id} onClick={() => selectFilm(film.id)}>
                                         <S.filmImg src={root + film.poster_path} alt={film.title} />
                                     </S.filmDiv>
                                 )
