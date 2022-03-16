@@ -46,6 +46,11 @@ export const usersDiv = styled.div`
     @media (max-width: 768px) {
         width: 100%;
     }
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
 `
 export const sectionTitle = styled.div`
 `
@@ -57,6 +62,11 @@ export const filmsDiv = styled.div`
     @media (max-width: 768px) {
         width: 100%;
     }
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
 `
 
 export const ordersDiv = styled.div`
@@ -66,6 +76,11 @@ export const ordersDiv = styled.div`
     @media (max-width: 768px) {
         width: 100%;
     }
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
 `
 
 export const tableBody= styled.table`
