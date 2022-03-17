@@ -10,6 +10,7 @@ import { MOVIE_DETAIL } from '../../redux/types';
 import { root, API_KEY } from '../../utils';
 import PaginationComp from '../../Components/Pagination/Pagination';
 import { Table } from '@mantine/core';
+import './Admin.css'
 
 //Importo todo lo que venga de HambModalSt. Lo llamaré S y lo que venga detrás del punto será el elemento creado en el styled
 import * as S from './StAdmin.jsx';
@@ -74,7 +75,7 @@ const Admin = (props) => {
 
     const usersRows = usersArr.map((elmnt) => {
         return (
-            <tr key={elmnt.id}>
+            <tr className='row' key={elmnt.id}>
                 <td>{elmnt.id}</td>
                 <td>{elmnt.name}</td>
                 <td>{elmnt.age}</td>
@@ -82,6 +83,7 @@ const Admin = (props) => {
                 <td>{elmnt.nickname}</td>
                 <td>{elmnt.rol}</td>
                 <td>{elmnt.createdAt}</td>
+                
             </tr>
         )
     })

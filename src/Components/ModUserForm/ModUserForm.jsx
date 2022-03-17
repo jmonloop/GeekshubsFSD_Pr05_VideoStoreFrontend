@@ -72,7 +72,7 @@ export const ModUserForm = (props) => {
 
 
 
-  const update = async () => {
+  const update = async (id) => {
 
     let fieldsArr = Object.entries(userData);
     let error = "";
@@ -118,7 +118,7 @@ export const ModUserForm = (props) => {
     // }
 
     let body = {
-      id: props.credentials.user.id,
+      // id: props.credentials.user.id,
       name: userData.name,
       surname: userData.surname,
       age: userData.age,
@@ -134,7 +134,7 @@ export const ModUserForm = (props) => {
     if (!regexError && !passMisError && !passLengthError) {
       try {
 
-        result = await axios.put("https://videostore-backend.herokuapp.com/users/profile", body, config)
+        result = await axios.put(`https://videostore-backend.herokuapp.com/users/profile/${id}`, body, config)
 
 
         // if (result.data != "The user with that email/nickname already figures in the database") {
@@ -230,7 +230,7 @@ export const ModUserForm = (props) => {
         label="Ain't gonna read so I agree with whatever"
       /> */}
 
-      <Button type="submit" onClick={() => update()}>Update Profile</Button>
+      <Button type="submit" onClick={() => update(props.credentials.user.id)}>Update Profile</Button>
       <br></br>
       <span className='errorMsg'>{errorMsg}</span>
       <br></br>
