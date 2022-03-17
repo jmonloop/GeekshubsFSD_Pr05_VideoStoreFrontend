@@ -16,11 +16,11 @@ export const AdminForm = (props) => {
 
   //1-Hooks
   const [userData, setuserData] = useState({
-    name: props.credentials.user.name,
-    surname: props.credentials.user.surname,
-    age: props.credentials.user.age,
-    nickname: props.credentials.user.nickname,
-    email: props.credentials.user.email,
+    name: props.adminData.user.name,
+    surname: props.adminData.user.surname,
+    age: props.adminData.user.age,
+    nickname: props.adminData.user.nickname,
+    email: props.adminData.user.email,
     // password: "",
     // password2: ""
   });
@@ -118,7 +118,7 @@ export const AdminForm = (props) => {
     // }
 
     let body = {
-      // id: props.credentials.user.id,
+      // id: props.adminData.user.id,
       name: userData.name,
       surname: userData.surname,
       age: userData.age,
@@ -128,7 +128,7 @@ export const AdminForm = (props) => {
     }
     console.log("soy body",body)
     let config = {
-      headers: { Authorization: `Bearer ${props.credentials.token}` }
+      headers: { Authorization: `Bearer ${props.adminData.token}` }
   };
     let result;
     if (!regexError && !passMisError && !passLengthError) {
@@ -175,21 +175,21 @@ export const AdminForm = (props) => {
       <TextInput
         // required
         label="Name"
-        placeholder={props.credentials.user.name}
+        placeholder={props.adminData.user.name}
         onChange={(e) => { fillForm(e) }}
         name="name"
       />
       <TextInput
         // required
         label="Surname"
-        placeholder={props.credentials.user.surname}
+        placeholder={props.adminData.user.surname}
         onChange={(e) => { fillForm(e) }}
         name="surname"
       />
       <TextInput
         // required
         label="Age"
-        placeholder={props.credentials.user.age}
+        placeholder={props.adminData.user.age}
         onChange={(e) => { fillForm(e) }}
         name="age"
         type="number"
@@ -197,14 +197,14 @@ export const AdminForm = (props) => {
       <TextInput
         // required
         label="Nickname"
-        placeholder={props.credentials.user.nickname}
+        placeholder={props.adminData.user.nickname}
         onChange={(e) => { fillForm(e) }}
         name="nickname"
       />
       <TextInput
         // required
         label="Email"
-        placeholder={props.credentials.user.email}
+        placeholder={props.adminData.user.email}
         onChange={(e) => { fillForm(e) }}
         name="email"
       />
@@ -231,7 +231,7 @@ export const AdminForm = (props) => {
         label="Ain't gonna read so I agree with whatever"
       /> */}
 
-      <Button type="submit" onClick={() => update(props.credentials.user.id)}>Update Profile</Button>
+      <Button type="submit" onClick={() => update(props.adminData.user.id)}>Update Profile</Button>
       <br></br>
       <span className='errorMsg'>{errorMsg}</span>
       <br></br>
@@ -241,5 +241,5 @@ export const AdminForm = (props) => {
   )
 }
 export default connect((state) => ({
-  credentials: state.credentials
+    adminData: state.adminData
 }))(AdminForm);
