@@ -12,7 +12,7 @@ import PaginationComp from '../../Components/Pagination/Pagination';
 import { Table } from '@mantine/core';
 import './Admin.css'
 
-import ModUserForm from '../../Components/ModUserForm/ModUserForm'
+import AdminForm from '../../Components/AdminForm/AdminForm'
 
 
 //Importo todo lo que venga de ModUserModalSt. Lo llamaré S y lo que venga detrás del punto será el elemento creado en el styled
@@ -113,7 +113,8 @@ const Admin = (props) => {
                 onClose={() => setOpened(false)}
             // title="Sign Up"
             >
-                <ModUserForm></ModUserForm>
+                <AdminForm></AdminForm>
+                {/* <ModUserForm></ModUserForm> */}
             </SS.MyModal>
 
             <SS.MyGroup position="center">
