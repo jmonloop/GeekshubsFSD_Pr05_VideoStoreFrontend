@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import { ADMIN_MOD } from '../../redux/types';
 //Importo styled-components
 import styled from 'styled-components';
 //Importo componente prefabricado 'Burger' de mantine
 import { ScrollArea } from '@mantine/core';
-import { MOVIE_DETAIL } from '../../redux/types';
 import { root, API_KEY } from '../../utils';
 import PaginationComp from '../../Components/Pagination/Pagination';
 import { Table } from '@mantine/core';
@@ -94,7 +94,8 @@ const Admin = (props) => {
         } catch (error) {
             console.log("Edit user error", error)
         }
-        // props.dispatch({ type: LOGIN, payload: result.data });
+        console.log("soy result" ,result)
+        props.dispatch({type:ADMIN_MOD, payload: result.data});
 
     }
 
@@ -264,5 +265,6 @@ const Admin = (props) => {
 
 export default connect((state) => ({
     credentials: state.credentials,
-    ordersData: state.ordersData
+    ordersData: state.ordersData,
+
 }))(Admin);

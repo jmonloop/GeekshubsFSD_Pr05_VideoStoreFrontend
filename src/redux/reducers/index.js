@@ -4,6 +4,7 @@ import {combineReducers} from 'redux';
 
 //Importo el reducer loginData-reducer.js
 import credentials from './loginData-reducer';
+import adminData from './adminData-reducer';
 //Importo el reducer filmsSearch-reducer.js
 import search from './filmsSearch-reducer';
 import pageNum from './pagination-reducer';
@@ -12,7 +13,8 @@ import pageNum from './pagination-reducer';
 const rootReducer = combineReducers({
     credentials,
     search,
-    pageNum
+    pageNum,
+    adminData
 });
 
 
