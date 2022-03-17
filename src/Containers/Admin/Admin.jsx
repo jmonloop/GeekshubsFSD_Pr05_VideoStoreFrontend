@@ -28,6 +28,7 @@ const Admin = (props) => {
     const [usersArr, setusersArr] = useState([])
     const [filmsArr, setfilmsArr] = useState([])
     const [ordersArr, setordersArr] = useState([])
+    const [user, setuser]= useState({})
 
 
 
@@ -73,9 +74,26 @@ const Admin = (props) => {
 
     }
 
+
+
+    const editUser = async (id) => {
+        let result;
+        try{
+            result= await axios.get(`https://videostore-backend.herokuapp.com/users/getbyid/${id}`)
+
+        }catch(error){
+            console.log("Edit user error", error)
+        }
+        // props.dispatch({ type: LOGIN, payload: result.data });
+
+    }
+
+
+
     const usersRows = usersArr.map((elmnt) => {
         return (
-            <tr className='row' key={elmnt.id}>
+            // <tr data-mssg="Hello!" onClick={handleClick}>
+             <tr className='row' key={elmnt.id} onClick={() => { editUser(elmnt.id) }}> 
                 <td>{elmnt.id}</td>
                 <td>{elmnt.name}</td>
                 <td>{elmnt.age}</td>
