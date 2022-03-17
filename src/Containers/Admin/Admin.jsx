@@ -7,7 +7,6 @@ import styled from 'styled-components';
 //Importo componente prefabricado 'Burger' de mantine
 import { ScrollArea } from '@mantine/core';
 import { MOVIE_DETAIL } from '../../redux/types';
-import { USER_ORDERS } from '../../redux/types';
 import { root, API_KEY } from '../../utils';
 import PaginationComp from '../../Components/Pagination/Pagination';
 import { Table } from '@mantine/core';

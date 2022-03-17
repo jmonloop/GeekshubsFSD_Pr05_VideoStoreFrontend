@@ -3,4 +3,4 @@ export const LOGIN = 'login';
 export const LOGOUT = 'logout';
 export const MOVIE_DETAIL = 'movie_detail';
 export const PAGINATION = 'pagination';
-export const USER_ORDERS = 'user_orders';
+export const UPDATE_CREDENTIALS = 'update_credentials';

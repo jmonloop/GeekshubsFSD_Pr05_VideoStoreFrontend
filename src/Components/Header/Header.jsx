@@ -82,7 +82,7 @@ const Header = (props) => {
         navigate("/moviedetail");
 
         setsearchResults([])
-        input="";
+        input = "";
     }
 
     //Search by title in TMDB endpoint and save result in filmsArr
@@ -126,7 +126,7 @@ const Header = (props) => {
             ]
             return renderArr
 
-        } 
+        }
     }
 
 

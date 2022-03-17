@@ -1,7 +1,7 @@
 
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LOGOUT, USER_ORDERS } from '../../redux/types';
+import { LOGOUT } from '../../redux/types';
 import { connect } from 'react-redux';
 import axios from 'axios';
 

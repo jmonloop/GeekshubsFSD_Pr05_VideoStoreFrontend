@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { MOVIE_DETAIL, USER_ORDERS} from '../../redux/types';
+import { MOVIE_DETAIL } from '../../redux/types';
 import { root, API_KEY } from '../../utils';
 import PaginationComp from '../../Components/Pagination/Pagination';
 import { getOrders } from '../../Components/HambModal/HambModal'
