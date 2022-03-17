@@ -25,6 +25,30 @@ const GlobalStyle = createGlobalStyle`
     div .mantine-1khjw2v{
         margin-top: 5%;
     }
+
+    //Header z-index when sticky
+    div .sticky{
+        z-index: 100;
+    }    
+
+
+    //Admin scroll area
+    div .mantine-jghxib {
+        /* height: auto !important; */
+        @media (max-width: 768px) {
+            width: 300px !important;
+    }
+
+
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+
 `
 
 

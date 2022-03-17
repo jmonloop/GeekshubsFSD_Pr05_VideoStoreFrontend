@@ -9,10 +9,10 @@ export const adminContainer = styled.div`
 
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
 
-    height: 100vh;
+    /* height: 130vh; */
     height: 100%;
     width: 100%;
 `
@@ -28,7 +28,7 @@ export const adminBox = styled.div`
     border-style: solid;
 
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 
@@ -49,7 +49,7 @@ export const usersDiv = styled.div`
 
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
 `
 export const sectionTitle = styled.div`

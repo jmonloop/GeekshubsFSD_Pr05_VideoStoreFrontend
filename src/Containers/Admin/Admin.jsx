@@ -176,7 +176,7 @@ const Admin = (props) => {
                 <S.adminBox>
                     <S.usersDiv>
                         <S.sectionTitle>USERS</S.sectionTitle>
-                        <ScrollArea style={{ width: 300, height: 200 }}>
+                        <ScrollArea style={{ width: 600, height: 200 }}>
                             <S.tableDiv style={{ width: 600 }}>
                                 <Table striped highlightOnHover>
                                     <caption>Click in a row to edit</caption>
@@ -188,7 +188,7 @@ const Admin = (props) => {
                     </S.usersDiv>
                     <S.filmsDiv>
                         <S.sectionTitle>MOVIES</S.sectionTitle>
-                        <ScrollArea style={{ width: 300, height: 200 }}>
+                        <ScrollArea style={{ width: 600, height: 200 }}>
                             <S.tableDiv style={{ width: 600 }}>
                                 <Table striped highlightOnHover>
                                     <caption>Click in a row to edit</caption>
@@ -200,7 +200,7 @@ const Admin = (props) => {
                     </S.filmsDiv>
                     <S.ordersDiv>
                         <S.sectionTitle>ORDERS</S.sectionTitle>
-                        <ScrollArea style={{ width: 300, height: 200 }}>
+                        <ScrollArea style={{ width: 600, height: 200 }}>
                             <S.tableDiv style={{ width: 600 }}>
                                 <Table striped highlightOnHover>
                                     <caption>Click in a row to edit</caption>
