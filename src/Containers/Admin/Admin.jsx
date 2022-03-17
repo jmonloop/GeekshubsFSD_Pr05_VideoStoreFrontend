@@ -12,6 +12,12 @@ import PaginationComp from '../../Components/Pagination/Pagination';
 import { Table } from '@mantine/core';
 import './Admin.css'
 
+import ModUserForm from '../../Components/ModUserForm/ModUserForm'
+
+
+//Importo todo lo que venga de ModUserModalSt. Lo llamaré S y lo que venga detrás del punto será el elemento creado en el styled
+import * as SS from '../../Components/ModUserModal/StModUserModal';
+
 //Importo todo lo que venga de HambModalSt. Lo llamaré S y lo que venga detrás del punto será el elemento creado en el styled
 import * as S from './StAdmin.jsx';
 
@@ -28,8 +34,12 @@ const Admin = (props) => {
     const [usersArr, setusersArr] = useState([])
     const [filmsArr, setfilmsArr] = useState([])
     const [ordersArr, setordersArr] = useState([])
-    const [user, setuser]= useState({})
+    const [user, setuser] = useState({})
 
+
+    //Mantine hooks
+    const [opened, setOpened] = useState(false);
+    const title = opened ? 'Close navigation' : 'Open navigation';
 
 
     const getUsers = async () => {
@@ -78,10 +88,10 @@ const Admin = (props) => {
 
     const editUser = async (id) => {
         let result;
-        try{
-            result= await axios.get(`https://videostore-backend.herokuapp.com/users/getbyid/${id}`)
+        try {
+            result = await axios.get(`https://videostore-backend.herokuapp.com/users/getbyid/${id}`)
 
-        }catch(error){
+        } catch (error) {
             console.log("Edit user error", error)
         }
         // props.dispatch({ type: LOGIN, payload: result.data });
@@ -93,7 +103,25 @@ const Admin = (props) => {
     const usersRows = usersArr.map((elmnt) => {
         return (
             // <tr data-mssg="Hello!" onClick={handleClick}>
-             <tr className='row' key={elmnt.id} onClick={() => { editUser(elmnt.id) }}> 
+            <tr className='row'
+                key={elmnt.id}
+                onClick={() => { editUser(elmnt.id) }}
+            >
+                <>
+            <SS.MyModal
+                opened={opened}
+                onClose={() => setOpened(false)}
+            // title="Sign Up"
+            >
+                <ModUserForm></ModUserForm>
+            </SS.MyModal>
+
+            <SS.MyGroup position="center">
+                {/* Pinto el elemento MyBurger que viene de la hoja styled */}
+                <SS.Button color="white" onClick={() => setOpened(true)}><div>Edit Profile</div></SS.Button>
+            </SS.MyGroup>
+        </>
+
                 <td>{elmnt.id}</td>
                 <td>{elmnt.name}</td>
                 <td>{elmnt.age}</td>
@@ -101,7 +129,7 @@ const Admin = (props) => {
                 <td>{elmnt.nickname}</td>
                 <td>{elmnt.rol}</td>
                 <td>{elmnt.createdAt}</td>
-                
+
             </tr>
         )
     })
@@ -162,7 +190,7 @@ const Admin = (props) => {
     useEffect(() => {
 
         console.log("me monto")
-        
+
         if (props.credentials.user.rol !== "admin") {
             navigate("/");
         }
