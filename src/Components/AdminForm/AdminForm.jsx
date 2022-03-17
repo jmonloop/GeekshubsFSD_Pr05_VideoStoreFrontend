@@ -6,7 +6,7 @@ import { TextInput, Checkbox, Button } from '@mantine/core';
 import { useForm } from '@mantine/hooks';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { UPDATE_CREDENTIALS } from '../../redux/types'
+import { ADMIN_MOD } from '../../redux/types'
 
 export const AdminForm = (props) => {
   let navigate = useNavigate();
@@ -32,8 +32,9 @@ export const AdminForm = (props) => {
   //useEffect
   //userData useEffect
   useEffect(() => {
-
-  })
+    console.log("soy userData", userData)
+    console.log("soy redux", props.adminData)
+  },[])
 
 
   //Handler function
@@ -128,7 +129,7 @@ export const AdminForm = (props) => {
     }
     console.log("soy body",body)
     let config = {
-      headers: { Authorization: `Bearer ${props.adminData.token}` }
+      headers: { Authorization: `Bearer ${props.credentials.token}` }
   };
     let result;
     if (!regexError && !passMisError && !passLengthError) {
@@ -154,10 +155,10 @@ export const AdminForm = (props) => {
         console.log("Update error", error)
       }
 
-      props.dispatch({type: UPDATE_CREDENTIALS, payload:result.data});
       if(result.data) {
         setMsg("The user has been updated")
       }
+      // props.dispatch({type: ADMIN_MOD, payload: result.data});
     }
 
 
@@ -241,5 +242,6 @@ export const AdminForm = (props) => {
   )
 }
 export default connect((state) => ({
-    adminData: state.adminData
+    adminData: state.adminData,
+    credentials: state.credentials
 }))(AdminForm);

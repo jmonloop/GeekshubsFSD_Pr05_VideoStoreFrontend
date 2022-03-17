@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { ADMIN_MOD } from '../../redux/types';
+import { ADMIN_READ } from '../../redux/types';
 //Importo styled-components
 import styled from 'styled-components';
 //Importo componente prefabricado 'Burger' de mantine
@@ -53,7 +53,7 @@ const Admin = (props) => {
         }
 
         setusersArr(results.data)
-        console.log("ejecuto getUsers")
+
 
     }
     const getFilms = async () => {
@@ -67,7 +67,6 @@ const Admin = (props) => {
         }
 
         setfilmsArr(results.data)
-        console.log("ejecuto getFilms")
     }
     const getOrders = async () => {
         let results = [];
@@ -80,7 +79,6 @@ const Admin = (props) => {
         }
 
         setordersArr(results.data)
-        console.log("ejecuto getOrders")
 
     }
 
@@ -94,8 +92,13 @@ const Admin = (props) => {
         } catch (error) {
             console.log("Edit user error", error)
         }
-        console.log("soy result" ,result)
-        props.dispatch({type:ADMIN_MOD, payload: result.data});
+        console.log("soy result", result)
+        props.dispatch({ type: ADMIN_READ, payload: result.data });
+
+
+        setTimeout(() => {
+            setOpened(true)
+        }, 100)
 
     }
 
@@ -106,26 +109,27 @@ const Admin = (props) => {
 
             <tr className='row'
                 key={elmnt.id}
-                onClick={() => { editUser(elmnt.id); setOpened(true) }}
+
             >
                 <>
-            <SS.MyModal
-                opened={opened}
-                onClose={() => setOpened(false)}
-            // title="Sign Up"
-            >
-                <AdminForm></AdminForm>
-                {/* <ModUserForm></ModUserForm> */}
-            </SS.MyModal>
-        </>
+                    <SS.MyModal
+                        opened={opened}
+                        onClose={() => setOpened(false)}
 
-                <td>{elmnt.id}</td>
-                <td>{elmnt.name}</td>
-                <td>{elmnt.age}</td>
-                <td>{elmnt.email}</td>
-                <td>{elmnt.nickname}</td>
-                <td>{elmnt.rol}</td>
-                <td>{elmnt.createdAt}</td>
+                    // title="Sign Up"
+                    >
+                        <AdminForm></AdminForm>
+                        {/* <ModUserForm></ModUserForm> */}
+                    </SS.MyModal>
+                </>
+
+                <td onClick={() => { editUser(elmnt.id); }}>{elmnt.id}</td>
+                <td onClick={() => { editUser(elmnt.id); }}>{elmnt.name}</td>
+                <td onClick={() => { editUser(elmnt.id); }}>{elmnt.age}</td>
+                <td onClick={() => { editUser(elmnt.id); }}>{elmnt.email}</td>
+                <td onClick={() => { editUser(elmnt.id); }}>{elmnt.nickname}</td>
+                <td onClick={() => { editUser(elmnt.id); }}>{elmnt.rol}</td>
+                <td onClick={() => { editUser(elmnt.id); }}>{elmnt.createdAt}</td>
 
             </tr>
         )
@@ -186,7 +190,6 @@ const Admin = (props) => {
     //useEffects
     useEffect(() => {
 
-        console.log("me monto")
 
         if (props.credentials.user.rol !== "admin") {
             navigate("/");
@@ -201,14 +204,10 @@ const Admin = (props) => {
 
     useEffect(() => {
 
-
-        console.log("me actualizo")
-
     });
 
     useEffect(() => {
         return () => {
-            console.log("me desmonto")
         };
     });
 
