@@ -102,10 +102,10 @@ const Admin = (props) => {
 
     const usersRows = usersArr.map((elmnt) => {
         return (
-            // <tr data-mssg="Hello!" onClick={handleClick}>
+
             <tr className='row'
                 key={elmnt.id}
-                onClick={() => { editUser(elmnt.id) }}
+                onClick={() => { editUser(elmnt.id); setOpened(true) }}
             >
                 <>
             <SS.MyModal
@@ -116,11 +116,6 @@ const Admin = (props) => {
                 <AdminForm></AdminForm>
                 {/* <ModUserForm></ModUserForm> */}
             </SS.MyModal>
-
-            <SS.MyGroup position="center">
-                {/* Pinto el elemento MyBurger que viene de la hoja styled */}
-                <SS.Button color="white" onClick={() => setOpened(true)}><div>Edit Profile</div></SS.Button>
-            </SS.MyGroup>
         </>
 
                 <td>{elmnt.id}</td>
