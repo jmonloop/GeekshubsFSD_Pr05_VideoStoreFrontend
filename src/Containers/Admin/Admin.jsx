@@ -242,7 +242,7 @@ const Admin = (props) => {
                         <ScrollArea style={{ width: 600, height: 200 }}>
                             <S.tableDiv style={{ width: 600 }}>
                                 <Table striped highlightOnHover>
-                                    <caption>Click in a row to edit</caption>
+                                    <caption></caption>
                                     <thead>{filmsThs}</thead>
                                     <tbody>{filmsRows}</tbody>
                                 </Table>
@@ -250,7 +250,7 @@ const Admin = (props) => {
                         </ScrollArea>
                     </S.filmsDiv>
                     <S.ordersDiv>
-                        <S.sectionTitle>ORDERS</S.sectionTitle>
+                        <S.sectionTitle></S.sectionTitle>
                         <ScrollArea style={{ width: 600, height: 200 }}>
                             <S.tableDiv style={{ width: 600 }}>
                                 <Table striped highlightOnHover>
