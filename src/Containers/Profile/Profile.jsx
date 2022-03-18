@@ -10,6 +10,7 @@ import { Table } from '@mantine/core';
 //Importo todo lo que venga de HambModalSt. Lo llamaré S y lo que venga detrás del punto será el elemento creado en el styled
 import * as S from './StProfile.jsx';
 import ModUserModal from '../../Components/ModUserModal/ModUserModal';
+import ModPassModal from '../../Components/ModPassModal/ModPassModal';
 
 let res;
 
@@ -131,6 +132,7 @@ const Profile = (props) => {
                         </tbody>
                     </Table>
                     <ModUserModal />
+                    <ModPassModal />
                 </S.profileBox>
 
             </S.profileContainer >
@@ -205,6 +207,7 @@ const Profile = (props) => {
                         </tbody>
                     </Table>
                     <ModUserModal />
+                    <ModPassModal />
                 </S.profileBox>
             </S.profileContainer >
         )

@@ -22,6 +22,8 @@ export const ModPassForm = (props) => {
   });
   const [msg, setMsg] = useState("");
   const [errorMsg, seterrorMsg] = useState("");
+  const [msgLength, setMsgLength] = useState("");
+  const [msgMis, setMsgMis] = useState("");
 
 
 
@@ -131,8 +133,7 @@ export const ModPassForm = (props) => {
       } catch (error) {
         console.log("Update error", error)
       }
-
-      props.dispatch({type: UPDATE_CREDENTIALS, payload:result.data});
+      
       if(result.data) {
         setMsg("The password has been updated")
       }
@@ -188,4 +189,4 @@ export const ModPassForm = (props) => {
 }
 export default connect((state) => ({
   credentials: state.credentials
-}))(ModUserForm);
+}))(ModPassForm);
