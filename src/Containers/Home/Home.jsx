@@ -119,6 +119,7 @@ const Home = (props) => {
                                 //a cada elemento que voy a mapear
                                 //le brindo un KEY (obligatorio) que lo distinguirá de
                                 //el resto de elementos
+                                // if(film.posterpath )
                                 return (
                                     //Al mapear, cada elemento que se itera del array (en este caso pelicula es ese elemento),
                                     //si le hacemos propiedad onclick y pasamos el elemento como argumento,

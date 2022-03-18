@@ -187,7 +187,13 @@ const MovieDetail = (props) => {
                                     <td>Cast</td>
                                     <td>
                                         <S.detailValue>
-                                            {castResults[0].name}, {castResults[1].name}, {castResults[2].name}, {castResults[3].name}, {castResults[4].name}, {castResults[5].name}
+                                            {/* Mapeo castResults y el resultado lo reduzco concatenándolo en un string con todos los nombres separadas por coma */}
+                                            {castResults.map(elmnt =>{
+                                                return elmnt.name;
+                                            }).reduce((pre, cur) =>{
+                                                return pre.concat(', ',cur)
+                                            })
+                                            }
                                         </S.detailValue>
                                     </td>
                                 </tr>
