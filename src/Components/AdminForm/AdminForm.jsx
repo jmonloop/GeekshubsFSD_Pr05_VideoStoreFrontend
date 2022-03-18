@@ -13,6 +13,9 @@ export const AdminForm = (props) => {
   let regexError;
   let passLengthError;
   let passMisError;
+  let config = {
+    headers: { Authorization: `Bearer ${props.credentials.token}` }
+  }
 
   //1-Hooks
   const [userData, setuserData] = useState({
@@ -34,7 +37,7 @@ export const AdminForm = (props) => {
   useEffect(() => {
     console.log("soy userData", userData)
     console.log("soy redux", props.adminData)
-  },[])
+  }, [])
 
 
   //Handler function
@@ -42,127 +45,54 @@ export const AdminForm = (props) => {
   const fillForm = (e) => {
     //Set data
     setuserData({ ...userData, [e.target.name]: e.target.value })
-
-    // //Check password min length
-    // if (e.target.name == "password" && e.target.value.length < 6) {
-    //   return (setMsgLength("Password must be 6 characters min"))
-    // } else {
-    //   setMsgLength("");
-    // }
-
-    // //Check password max length
-    // if ((e.target.name == "password" && e.target.value.length > 10) || (e.target.name == "password2" && e.target.value.length > 10)) {
-    //   return (setMsgLength("Password must be 10 characters max"))
-    // } else {
-    //   setMsgLength("");
-    // }
-
-    //Check passwords mismatching
-
-    // if (e.target.name == "password" && e.target.value !== userData.password2) {
-    //   return (setMsgMis("Passwords must match"))
-    // } else if (e.target.name == "password2" && e.target.value !== userData.password) {
-    //   return (setMsgMis("Passwords must match"))
-    // } else {
-    //   return (setMsgMis(""))
-    // }
-
-
-
   }
-
-
 
   const update = async (id) => {
 
-    let fieldsArr = Object.entries(userData);
     let error = "";
     seterrorMsg("");
 
-    // //Inputs regex validation
-    // for (let element of fieldsArr) {
-    //   error = checkError(element[0], element[1]);
-    //   if (error !== "ok") {
-    //     seterrorMsg(error)
-    //     regexError = true;
-    //     return
-    //   }
-    // }
-    // if (error == "ok") {
-    //   seterrorMsg("")
-    //   regexError = false;
-    // }
-
-
-    // //Password mismatch validation
-    // if (userData.password !== userData.password2) {
-    //   seterrorMsg("Passwords must match")
-    //   passMisError = true;
-    // } else {
-    //   if (seterrorMsg == "") {
-    //     seterrorMsg("")
-    //     passMisError = false;
-    //   }
-
-    // }
-
-    // //Password length validation
-    // if ((userData.password.length < 6) || (userData.password.length > 10)) {
-    //   seterrorMsg("Password must be between 6 and 10 characters")
-    //   passLengthError = true;
-    // } else {
-    //   if (seterrorMsg == "") {
-    //     seterrorMsg("")
-    //     passLengthError = false;
-    //   }
-
-    // }
 
     let body = {
-      // id: props.adminData.user.id,
       name: userData.name,
       surname: userData.surname,
       age: userData.age,
       nickname: userData.nickname,
       email: userData.email,
-      // password: userData.password
+
     }
-    console.log("soy body",body)
-    let config = {
-      headers: { Authorization: `Bearer ${props.credentials.token}` }
-  };
+
     let result;
-    if (!regexError && !passMisError && !passLengthError) {
-      try {
 
-        result = await axios.put(`https://videostore-backend.herokuapp.com/users/profile/${id}`, body, config)
+    try {
 
+      result = await axios.put(`https://videostore-backend.herokuapp.com/users/profile/${id}`, body, config)
 
-        // if (result.data != "The user with that email/nickname already figures in the database") {
-        //   setTimeout(() => {
-        //     setMsgLength(result.data)
-
-        //     navigate("/")
-        //   }, 1500)
-        // } else {
-
-        //   seterrorMsg(result.data)
-        // }
-
-
-
-      } catch (error) {
-        console.log("Update error", error)
-      }
-
-      if(result.data) {
-        setMsg("The user has been updated")
-      }
-      // props.dispatch({type: ADMIN_MOD, payload: result.data});
+    } catch (error) {
+      console.log("Update error", error)
     }
 
+    if (result.data) {
+      setMsg("The user has been updated")
+    }
+    props.dispatch({ type: ADMIN_MOD, payload: result.data });
 
   }
+
+  const destroy = async (id) => {
+    let result;
+    try {
+      result = await axios.delete(`https://videostore-backend.herokuapp.com/users/${id}`, config);
+    } catch (error) {
+      console.log("Destroy error= ", error)
+    }
+    if (result.data) {
+      console.log("result delete", result.data)
+      setMsg("The user has been removed from the database")
+    }
+
+  }
+
 
   return (
     <>
@@ -209,30 +139,17 @@ export const AdminForm = (props) => {
         onChange={(e) => { fillForm(e) }}
         name="email"
       />
-      {/* <TextInput
-        required
-        label="Password"
-        type="password"
-        placeholder="6 characters min"
-        onChange={(e) => { fillForm(e) }}
-        name="password"
-      /> */}
 
-      {/* <TextInput
-        required
-        label="Repeat your password"
-        type="password"
-        placeholder="6 characters min"
-        onChange={(e) => { fillForm(e) }}
-        name="password2"
-      /> */}
 
-      {/* <Checkbox
-        mt="md"
-        label="Ain't gonna read so I agree with whatever"
-      /> */}
+      <Button type="submit"
+        onClick={() => update(props.adminData.user.id)}
+      >Update Profile</Button>
 
-      <Button type="submit" onClick={() => update(props.adminData.user.id)}>Update Profile</Button>
+
+      <Button className='deleteBttn'
+        onClick={() => destroy(props.adminData.user.id)}
+      >Delete Profile</Button>
+
       <br></br>
       <span className='errorMsg'>{errorMsg}</span>
       <br></br>
@@ -242,6 +159,6 @@ export const AdminForm = (props) => {
   )
 }
 export default connect((state) => ({
-    adminData: state.adminData,
-    credentials: state.credentials
+  adminData: state.adminData,
+  credentials: state.credentials
 }))(AdminForm);

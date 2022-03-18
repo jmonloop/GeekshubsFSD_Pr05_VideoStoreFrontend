@@ -201,6 +201,14 @@ const Admin = (props) => {
 
     }, []);
 
+    useEffect(() => {
+
+        getUsers();
+        getFilms();
+        getOrders();
+
+    }, [opened]);
+
 
     useEffect(() => {
 
