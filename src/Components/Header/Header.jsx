@@ -15,21 +15,33 @@ import MyTooltip from '../Tooltip/Tooltip';
 import axios from 'axios';
 
 const Header = (props) => {
-
     let navigate = useNavigate();
-
+    
     let input = "";
     let movieDetails = [];
-
+    
     //Hooks
     const [searchResults, setsearchResults] = useState([]);
+
+   
 
 
 
     useEffect(() => {
         // console.log("actualizo search results a", searchResults)
         // console.log("actualizo filmsArr a ", filmsArr)
-    }, [searchResults])
+    }, [searchResults])    
+    
+    useEffect(() => {
+        const clearResults = () =>{
+            setsearchResults([])
+        }
+    
+        window.addEventListener("mousedown", clearResults);
+        return () => {
+            window.addEventListener("mousedown", clearResults);
+        }
+    }, [])
 
     const goTo = (place) => {
 
@@ -126,6 +138,10 @@ const Header = (props) => {
             ]
             return renderArr
 
+        } else if(searchResults == []) {
+            return(
+                <span></span>
+            )
         }
     }
 
