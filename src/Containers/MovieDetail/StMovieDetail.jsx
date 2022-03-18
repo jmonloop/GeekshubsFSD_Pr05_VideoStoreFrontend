@@ -25,6 +25,8 @@ export const detailsBox = styled.div`
     align-items: center;
 
     background-color: gray;
+    -webkit-box-shadow: 5px 5px 15px 5px #000000; 
+box-shadow: 5px 5px 15px 5px #000000;
 `
 
 export const detailsPosterDiv = styled.div`
@@ -100,15 +102,15 @@ export const orderRow = styled.div`
     /* border-style: solid; */
 
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     text-align: justify;
 
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
 
 `
 
-export const orderButton = styled.div`
+export const addButton = styled.div`
     height: 5%;
     width: 15%;
 
@@ -119,12 +121,40 @@ export const orderButton = styled.div`
 
     padding: 2%;
 
+    font-size: 1rem;
+
     :hover{
         cursor: pointer;
         transition: 0.2s;
         transform:scale(1.05);
     }
+    -webkit-box-shadow: 5px 5px 15px 5px #000000; 
+box-shadow: 5px 5px 15px 5px #000000;
 `
+
+export const removeButton = styled.div`
+    height: 5%;
+    width: 15%;
+
+    background: rgb(158,127,14);
+background: linear-gradient(0deg, rgba(158,127,14,1) 8%, rgba(106,83,6,1) 30%, rgba(126,15,6,1) 62%);
+
+    text-align: center;
+
+    padding: 2%;
+
+    font-size: 1rem;
+
+    :hover{
+        cursor: pointer;
+        transition: 0.2s;
+        transform:scale(1.05);
+    }
+
+    -webkit-box-shadow: 5px 5px 15px 5px #000000; 
+box-shadow: 5px 5px 15px 5px #000000;
+`
+
 export const Link = styled.div`
     font-weight: bold;
     cursor:pointer;
@@ -151,4 +181,21 @@ export const posterImg = styled.img`
     max-width: 100%;
 
     border: solid 5px;
+`
+
+export const arrowChart = styled.div`
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+
+    justify-content: space-around;
+    align-items: center;
+    font-size: 1rem;
+    
+    
+    :hover{
+        cursor: pointer;
+        transition: 0.2s;
+        transform:scale(1.05);
+    }
 `

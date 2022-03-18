@@ -8,6 +8,7 @@ import PaginationComp from '../../Components/Pagination/Pagination';
 import { getOrders } from '../../Components/HambModal/HambModal'
 import { Table, Accordion } from '@mantine/core';
 import moment from 'moment'
+import { ArrowBarRight } from 'tabler-icons-react';
 
 //Importo todo lo que venga de HambModalSt. Lo llamaré S y lo que venga detrás del punto será el elemento creado en el styled
 import * as S from './StMovieDetail.jsx';
@@ -140,7 +141,7 @@ const MovieDetail = (props) => {
                 //Si no la tiene...
             } else {
                 //Muestra botón para pedirla
-                return (<><S.orderButton onClick={() => { addToChart(); }}>Add to Chart</S.orderButton><S.orderButton onClick={() => { removeFromChart(); }}>Remove</S.orderButton><div onClick={() => GoTo('/chart')}>Go To Chart</div></>)
+                return (<><S.addButton onClick={() => { addToChart(); }}>Add to Chart</S.addButton><S.removeButton onClick={() => { removeFromChart(); }}>Quit from Chart</S.removeButton><S.arrowChart><ArrowBarRight onClick={() => GoTo('/chart')}></ArrowBarRight>Go To Chart</S.arrowChart></>)
 
             }
 

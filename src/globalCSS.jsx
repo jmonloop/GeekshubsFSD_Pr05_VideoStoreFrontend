@@ -58,6 +58,12 @@ const GlobalStyle = createGlobalStyle`
         }
     }
 
+    * {
+
+            font-family: Arial, Helvetica, sans-serif;
+            /* font-size: 1.5vw; */
+            // CSS you want global. 
+        }
 
 
 `
