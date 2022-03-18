@@ -42,7 +42,7 @@ export const filmsRooster = styled.div`
 
     > * {
         flex-basis: 25%;
-        /* margin: 0.5%; */
+        margin-bottom: 5%;
     }
 
     margin-bottom: 2%;
@@ -58,4 +58,5 @@ export const filmImg = styled.img`
  :hover{
      cursor: pointer;
  }
+ border: solid 5px;
 `

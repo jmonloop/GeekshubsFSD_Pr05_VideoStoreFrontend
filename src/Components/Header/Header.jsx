@@ -34,7 +34,10 @@ const Header = (props) => {
     
     useEffect(() => {
         const clearResults = () =>{
-            setsearchResults([])
+            setTimeout(()=>{
+
+                setsearchResults([])
+            },1000)
         }
     
         window.addEventListener("mousedown", clearResults);
@@ -65,6 +68,7 @@ const Header = (props) => {
         let film = filmId;
         let movieData = []
         let movieCast = [];
+        console.log("he entrado y esta es film", film)
 
         try {
             movieData = await axios.get(`https://api.themoviedb.org/3/movie/${film}?api_key=${API_KEY}&language=en-US`)
