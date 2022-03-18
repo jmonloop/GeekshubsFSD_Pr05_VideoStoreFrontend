@@ -6,7 +6,7 @@ import { MOVIE_DETAIL, ADD_TO_CHART, REMOVE_FROM_CHART, CLEAR_CHART } from '../.
 import { root, API_KEY } from '../../utils';
 import PaginationComp from '../../Components/Pagination/Pagination';
 import { getOrders } from '../../Components/HambModal/HambModal'
-import { Table } from '@mantine/core';
+import { Table, Accordion } from '@mantine/core';
 import moment from 'moment'
 
 //Importo todo lo que venga de HambModalSt. Lo llamaré S y lo que venga detrás del punto será el elemento creado en el styled
@@ -27,7 +27,7 @@ const MovieDetail = (props) => {
 
     //useEffects
     useEffect(() => {
-        registerMovie(); 
+        registerMovie();
         userOwnsMovie(props.credentials.user.id, props.search[0].data.id)
         setordersChanged(false)
         // console.log("Monto Componente")
@@ -38,7 +38,7 @@ const MovieDetail = (props) => {
     }, []);
 
     useEffect(() => {
-        if(!ordersChanged) {
+        if (!ordersChanged) {
             userOwnsMovie(props.credentials.user.id, props.search[0].data.id)
             console.log("Actualizo componente")
         }
@@ -91,7 +91,7 @@ const MovieDetail = (props) => {
             outDate: currentDate,
             returnDate: returnDate
         }
-        
+
         try {
             results = await axios.post(`https://videostore-backend.herokuapp.com/orders`, body)
             setordersChanged(true)
@@ -121,7 +121,7 @@ const MovieDetail = (props) => {
         // console.log("2 RESULTADO BUSQUEDA: ", result)
 
 
-        if(result.data.length === 0) {
+        if (result.data.length === 0) {
             setuserHasMovie(false)
         } else {
             setuserHasMovie(true)
@@ -132,15 +132,15 @@ const MovieDetail = (props) => {
     const renderOrdersView = () => {
         // console.log("3 El user la tiene antes de renderizar? ", userHasMovie)
         //Si el user está logueado
-        if(props.credentials.token) {
+        if (props.credentials.token) {
             //Y tiene ya la película..
-            if(userHasMovie) {
+            if (userHasMovie) {
                 //Indica que ya la tiene
                 return (<span>Movie added to chart</span>)
                 //Si no la tiene...
             } else {
                 //Muestra botón para pedirla
-                return (<><S.orderButton onClick={() => {addToChart();}}>Add to Chart</S.orderButton><S.orderButton onClick={() => {removeFromChart();}}>Remove</S.orderButton><div onClick={()=>GoTo('/chart')}>Go To Chart</div></>)
+                return (<><S.orderButton onClick={() => { addToChart(); }}>Add to Chart</S.orderButton><S.orderButton onClick={() => { removeFromChart(); }}>Remove</S.orderButton><div onClick={() => GoTo('/chart')}>Go To Chart</div></>)
 
             }
 
@@ -188,12 +188,16 @@ const MovieDetail = (props) => {
                                     <td>
                                         <S.detailValue>
                                             {/* Mapeo castResults y el resultado lo reduzco concatenándolo en un string con todos los nombres separadas por coma */}
-                                            {castResults.map(elmnt =>{
-                                                return elmnt.name;
-                                            }).reduce((pre, cur) =>{
-                                                return pre.concat(', ',cur)
-                                            })
-                                            }
+                                            <Accordion iconPosition="right" iconSize={0} offsetIcon={false}>
+                                                <Accordion.Item label={`${castResults[0].name}, ${castResults[1].name} ... +`}>
+                                                    {castResults.map(elmnt => {
+                                                        return elmnt.name;
+                                                    }).reduce((pre, cur) => {
+                                                        return pre.concat(', ', cur)
+                                                    })}
+                                                </Accordion.Item>
+                                            </Accordion>
+
                                         </S.detailValue>
                                     </td>
                                 </tr>

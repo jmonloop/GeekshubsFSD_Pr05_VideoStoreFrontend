@@ -46,6 +46,17 @@ const GlobalStyle = createGlobalStyle`
         justify-content: center;
         align-items: center;
     }
+//Movie detail accordion button
+    div .mantine-v4lv9f {
+        border-bottom: 0;
+
+
+    }
+    div .mantine-bgzycs{
+        :hover{
+            /* background-color: gray; */
+        }
+    }
 
 
 

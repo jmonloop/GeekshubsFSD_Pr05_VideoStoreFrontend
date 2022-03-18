@@ -149,4 +149,6 @@ export const posterImg = styled.img`
     margin-top: 5%;
     max-height: 100%;
     max-width: 100%;
+
+    border: solid 5px;
 `
