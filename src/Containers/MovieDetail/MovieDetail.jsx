@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { MOVIE_DETAIL } from '../../redux/types';
+import { MOVIE_DETAIL, ADD_TO_CHART, REMOVE_FROM_CHART, CLEAR_CHART } from '../../redux/types';
 import { root, API_KEY } from '../../utils';
 import PaginationComp from '../../Components/Pagination/Pagination';
 import { getOrders } from '../../Components/HambModal/HambModal'
@@ -99,6 +99,16 @@ const MovieDetail = (props) => {
 
     }
 
+    const addToChart = () => {
+        props.dispatch({ type: ADD_TO_CHART, payload: props.search[0].data });
+    }
+    const removeFromChart = () => {
+        props.dispatch({ type: REMOVE_FROM_CHART, payload: props.search[0].data.id });
+    }
+    const clearChart = () => {
+        props.dispatch({ type: CLEAR_CHART });
+    }
+
     //Check if user already has the actual movie
     const userOwnsMovie = async (userId, movieId) => {
         let result = await axios.get(`https://videostore-backend.herokuapp.com/orders/user?user=${userId}&film=${movieId}`)
@@ -121,11 +131,12 @@ const MovieDetail = (props) => {
             //Y tiene ya la película..
             if(userHasMovie) {
                 //Indica que ya la tiene
-                return (<span>You already have this movie</span>)
+                return (<span>Movie added to chart</span>)
                 //Si no la tiene...
             } else {
                 //Muestra botón para pedirla
-                return (<S.orderButton onClick={() => {makeOrder();}}>Place order</S.orderButton>)
+                return (<><S.orderButton onClick={() => {addToChart();}}>Add to Chart</S.orderButton><S.orderButton onClick={() => {removeFromChart();}}>Remove</S.orderButton><S.orderButton onClick={() => {clearChart();}}>CLEAR</S.orderButton></>)
+
             }
 
         } else {
