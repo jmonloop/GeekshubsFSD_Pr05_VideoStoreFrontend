@@ -1,31 +1,27 @@
 //Importo los types para este reducer
 import { ADD_TO_CHART, REMOVE_FROM_CHART, CLEAR_CHART } from '../types';
 
-//Declaro las variables y su estado inicial antes de la acción. No tienen por qué llamarse igual que las que llegan desde el backend
+//Declaro el estado inicial antes de la acción.
 const initialState = {
     chart: []
 };
-let chartArr = [];
 
 //Función reducer: retorno una cosa u otra según el type que se esté ejecutando
 const reducerChart = (state = initialState, action) => {
 
     switch (action.type) {
         case ADD_TO_CHART:
-            chartArr.push(action.payload)
-            return chartArr
+            //Pusheo el elemento en chart
+            state.chart.push(action.payload)
+            //Devuelvo lo que había en el estado más chart modificado
+            return { ...state, chart: state.chart }
 
         case REMOVE_FROM_CHART:
-            for (let i = 0; i < chartArr.length; i++) {
-                if (chartArr[i].id === action.payload) {
-                    chartArr.splice(i, 1)
-                }
-            }
-            return chartArr
+            //Cojo el estado como está y a chart le aplico un filtro donde solo deja pasar lo que no sea igual que el id que le llega
+            return { ...state, chart: state.chart.filter((chart) => chart.id !== action.payload)}
 
         case CLEAR_CHART:
-            chartArr = [];
-            return chartArr;
+            return initialState;
         default:
             return state
     }

@@ -46,6 +46,11 @@ const MovieDetail = (props) => {
     });
 
     //FUNCS
+    //funcs
+    const GoTo = (place) => {
+        navigate(place)
+    }
+
     //Find director name for printing it
     const findDirector = () => {
         for (let i = 0; i < crewResults.length; i++) {
@@ -135,7 +140,7 @@ const MovieDetail = (props) => {
                 //Si no la tiene...
             } else {
                 //Muestra botón para pedirla
-                return (<><S.orderButton onClick={() => {addToChart();}}>Add to Chart</S.orderButton><S.orderButton onClick={() => {removeFromChart();}}>Remove</S.orderButton><S.orderButton onClick={() => {clearChart();}}>CLEAR</S.orderButton></>)
+                return (<><S.orderButton onClick={() => {addToChart();}}>Add to Chart</S.orderButton><S.orderButton onClick={() => {removeFromChart();}}>Remove</S.orderButton><S.orderButton onClick={() => {clearChart();}}>CLEAR</S.orderButton><div onClick={()=>GoTo('/chart')}>Go To Chart</div></>)
 
             }
 

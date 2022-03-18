@@ -11,6 +11,7 @@ import Home from './Containers/Home/Home';
 import Profile from './Containers/Profile/Profile';
 import MovieDetail from './Containers/MovieDetail/MovieDetail';
 import Admin from './Containers/Admin/Admin';
+import Chart from './Containers/Chart/Chart';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/moviedetail" element={<MovieDetail />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/chart" element={<Chart />} />
         </Routes>
 
       </BrowserRouter>
