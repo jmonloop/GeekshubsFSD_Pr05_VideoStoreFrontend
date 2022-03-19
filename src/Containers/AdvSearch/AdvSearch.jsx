@@ -55,7 +55,7 @@ const AdvSearch = (props) => {
                                 { value: 'vote_average', label: 'Vote Average' }
                             ]}
                             name="sort"
-                            onClick={() => { setsearchData.sort(data) }}
+                            // onClick={() => { setsearchData.sort(data) }}
                         />
                         <Checkbox
                             label="Include Adult Movies"
