@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { MOVIE_DETAIL, ADD_TO_CHART, REMOVE_FROM_CHART, CLEAR_CHART } from '../../redux/types';
+import { MOVIE_DETAIL, ADD_TO_CART, REMOVE_FROM_CART, CLEAR_CART } from '../../redux/types';
 import { root, API_KEY } from '../../utils';
 import PaginationComp from '../../Components/Pagination/Pagination';
 import { getOrders } from '../../Components/HambModal/HambModal'
@@ -83,10 +83,10 @@ const MovieDetail = (props) => {
 
 
     const isAdded = (id) => {
-        console.log("soy chart", props.chart.chart.length)
+        console.log("soy cart", props.cart.cart.length)
 
-        for (let i = 0; i < props.chart.chart.length; i++) {
-            if (props.chart.chart[i].id == id) {
+        for (let i = 0; i < props.cart.cart.length; i++) {
+            if (props.cart.cart[i].id == id) {
                 return true
             } else {
                 return false
@@ -94,43 +94,43 @@ const MovieDetail = (props) => {
         }
     }
 
-    const addToChart = () => {
+    const addToCart = () => {
         if (!isAdded(props.search[0].data.id)) {
-            props.dispatch({ type: ADD_TO_CHART, payload: props.search[0].data });
-            setMsg(`The movie ${props.search[0].data.title} has been added to your chart`)
+            props.dispatch({ type: ADD_TO_CART, payload: props.search[0].data });
+            setMsg(`The movie ${props.search[0].data.title} has been added to your cart`)
         } else {
-            setMsg(`The movie ${props.search[0].data.title} is already into your chart`)
+            setMsg(`The movie ${props.search[0].data.title} is already into your cart`)
         }
     }
 
-    const removeFromChart = () => {
+    const removeFromCart = () => {
         if (isAdded(props.search[0].data.id)) {
-            props.dispatch({ type: REMOVE_FROM_CHART, payload: props.search[0].data.id });
-            setMsg(`The movie ${props.search[0].data.title} has been removed from your chart`)
+            props.dispatch({ type: REMOVE_FROM_CART, payload: props.search[0].data.id });
+            setMsg(`The movie ${props.search[0].data.title} has been removed from your cart`)
 
         } else {
-            setMsg(`The movie ${props.search[0].data.title} is not into your chart`)
+            setMsg(`The movie ${props.search[0].data.title} is not into your cart`)
         }
     }
-    const clearChart = () => {
-        props.dispatch({ type: CLEAR_CHART });
+    const clearCart = () => {
+        props.dispatch({ type: CLEAR_CART });
     }
 
     //Check if user already has the actual movie
     const userOwnsMovie = async (userId, movieId) => {
-        if(props.credentials?.token){
+        if (props.credentials?.token) {
             let result = await axios.get(`https://videostore-backend.herokuapp.com/orders/user?user=${userId}&film=${movieId}`)
 
-        // console.log("2 RESULTADO BUSQUEDA: ", result)
+            // console.log("2 RESULTADO BUSQUEDA: ", result)
 
 
-        if (result.data.length === 0) {
-            setuserHasMovie(false)
-        } else {
-            setuserHasMovie(true)
+            if (result.data.length === 0) {
+                setuserHasMovie(false)
+            } else {
+                setuserHasMovie(true)
+            }
         }
-        }
-        
+
     }
 
     //Conditional render of the bottom order options
@@ -147,18 +147,18 @@ const MovieDetail = (props) => {
                 //Muestra botón para pedirla
                 return (
                     <>
-                        <S.chartDiv>
-                            <ShoppingCartPlus onClick={() => { addToChart(); }}>
+                        <S.cartDiv>
+                            <ShoppingCartPlus onClick={() => { addToCart(); }}>
                             </ShoppingCartPlus>Add
-                        </S.chartDiv>
-                        <S.chartDiv>
-                            <ShoppingCartX onClick={() => { removeFromChart(); }}>
+                        </S.cartDiv>
+                        <S.cartDiv>
+                            <ShoppingCartX onClick={() => { removeFromCart(); }}>
                             </ShoppingCartX>Quit
-                        </S.chartDiv>
-                        <S.chartDiv>
-                            <ShoppingCart onClick={() => GoTo('/chart')}>
-                            </ShoppingCart>Go To Chart
-                        </S.chartDiv>
+                        </S.cartDiv>
+                        <S.cartDiv>
+                            <ShoppingCart onClick={() => GoTo('/cart')}>
+                            </ShoppingCart>Go To Cart
+                        </S.cartDiv>
                     </>)
 
             }
@@ -266,5 +266,5 @@ const MovieDetail = (props) => {
 export default connect((state) => ({
     credentials: state.credentials,
     search: state.search,
-    chart: state.chart
+    cart: state.cart
 }))(MovieDetail);

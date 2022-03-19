@@ -16,20 +16,21 @@ export const profileContainer = styled.div`
 
 export const profileBox = styled.div`
     margin-top: 5%;
-    height:50em;
+    height:30em;
     width: 90%;
 
     border-style: solid;
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 
     background-color: gray;
 `
 
 export const profileRow = styled.div`
+margin-top: 2%;
     height: 20%;
     width: 100%;
 

@@ -11,7 +11,7 @@ import Home from './Containers/Home/Home';
 import Profile from './Containers/Profile/Profile';
 import MovieDetail from './Containers/MovieDetail/MovieDetail';
 import Admin from './Containers/Admin/Admin';
-import Chart from './Containers/Chart/Chart';
+import Cart from './Containers/Cart/Cart';
 import AdvSearch from './Containers/AdvSearch/AdvSearch';
 
 function App() {
@@ -28,7 +28,7 @@ function App() {
           <Route path="/moviedetail" element={<MovieDetail />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/admin" element={<Admin />} />
-          <Route path="/chart" element={<Chart />} />
+          <Route path="/cart" element={<Cart />} />
           <Route path="/search" element={<AdvSearch />} />
         </Routes>
 

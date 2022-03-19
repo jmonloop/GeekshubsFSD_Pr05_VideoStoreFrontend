@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 //Declaro un nuevo elemento DIV llamado headerContainter. Para "pintarlo" en el jsx lo haremos con <S.headerContainer><S.headerContainer/>
-export const chartContainer = styled.div`
+export const cartContainer = styled.div`
     background: rgb(6,126,68);
     background: linear-gradient(180deg, rgba(6,126,68,1) 2%, rgba(5,111,26,1) 28%, rgba(53,106,6,1) 92%);
 
@@ -14,7 +14,7 @@ export const chartContainer = styled.div`
     width: 100%;
 `
 
-export const chartBox = styled.div`
+export const cartBox = styled.div`
     margin-top: 5%;
     height: auto;
     overflow: auto;
@@ -54,7 +54,7 @@ export const contentDiv = styled.div`
     align-items: center;
 `
 
-export const tableDiv= styled.div`
+export const tableDiv = styled.div`
 
 border: 2px solid black;
 background-color: white;
