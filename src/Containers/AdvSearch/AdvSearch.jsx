@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { connect } from 'react-redux';
@@ -19,6 +19,11 @@ const AdvSearch = (props) => {
         adult: ""
     });
 
+    const selectorRef = useRef()
+
+    const pruebaRef = () =>{
+        console.log("soy ref",selectorRef.current)
+    }
 
     const fillForm = (e) => {
         //Set data
@@ -28,7 +33,7 @@ const AdvSearch = (props) => {
     return (
         <>
             <S.searchContainer>
-            <>{< pre > {JSON.stringify(searchData, null, 2)}</pre >}</>
+            {/* <>{< pre > {JSON.stringify(searchData, null, 2)}</pre >}</> */}
                 <S.searchBox>
                     <S.contentDiv>
                         <S.sectionTitle>ADVANCED SEARCH</S.sectionTitle>
@@ -55,7 +60,9 @@ const AdvSearch = (props) => {
                                 { value: 'vote_average', label: 'Vote Average' }
                             ]}
                             name="sort"
-                            // onClick={() => { setsearchData.sort(data) }}
+                            ref={selectorRef}
+                            onChange={() => { pruebaRef() }}
+                            // onClick={(e) => { fillForm(e) }}
                         />
                         <Checkbox
                             label="Include Adult Movies"

@@ -59,6 +59,9 @@ export const tableDiv= styled.div`
 border: 2px solid black;
 background-color: white;
 
+display: flex;
+flex-direction: column;
+
 
 
 `
