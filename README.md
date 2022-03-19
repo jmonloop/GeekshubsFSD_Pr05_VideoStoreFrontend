@@ -103,7 +103,7 @@ In this view a list of all cart items added is shown.
 
 User can remove items and by clicking Confirm Order, the orders are executed, saved in the database, and the cart is cleared.
 
-![ScreenShot](https://raw.githubusercontent.com/jmonloop/GeekshubsFSD_Pr05_VideoStoreFrontend/dev/src/assets/screenshots/cart.jpg)
+![ScreenShot](https://raw.githubusercontent.com/jmonloop/GeekshubsFSD_Pr05_VideoStoreFrontend/dev/src/assets/screenshots/cart2.jpg)
 
 
 Shopping cart data is managed by Redux so it remains in local storage even if the user closes the browser.
