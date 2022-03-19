@@ -49,6 +49,7 @@ export const filmsRooster = styled.div`
 `
 
 export const filmDiv = styled.div`
+
  /* :hover{
      cursor: pointer;
  } */

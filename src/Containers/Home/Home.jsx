@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { MOVIE_DETAIL } from '../../redux/types';
 import { root, API_KEY } from '../../utils';
 import PaginationComp from '../../Components/Pagination/Pagination';
+import '../Home/Home.css'
 
 
 //Importo todo lo que venga de HambModalSt. Lo llamaré S y lo que venga detrás del punto será el elemento creado en el styled
@@ -125,7 +126,7 @@ const Home = (props) => {
                                     //si le hacemos propiedad onclick y pasamos el elemento como argumento,
                                     //a esa funcion le va a llegar el objeto que hayamos clickado entero
                                     <S.filmDiv key={film.id} onClick={() => selectFilm(film.id)}>
-                                        <S.filmImg src={root + film.poster_path} alt={film.title} />
+                                        <S.filmImg className='swing' src={root + film.poster_path} alt={film.title} />
                                     </S.filmDiv>
                                 )
                             })
