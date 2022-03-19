@@ -8,6 +8,8 @@ Functionality has been sought over design, trying to simulate a real scenario wh
 
 The backend has been modified at several points to adapt to this real functionality.
 
+<a href='https://master.dkd1mdb9vgabn.amplifyapp.com/'>Here</a> you can go to the app.
+
 
 [Structure](#structure)
 
@@ -141,7 +143,7 @@ Admin can modify each user profile or delete it from DB
 * <a href='https://es.redux.js.org/'>Mantine</a> library has been used for several components like modals and forms. Although custom styles have been applied to them.
 * <a href='https://styled-components.com/'>Styled-components</a> have been used in most part of the styles. It has been a first approach for me but I will continue implementing them in future projects.
 * Different libraries for small details like <a href='https://geekflare.com/es/lodash-functions-for-javascript-developers/'>lodash</a> (for sticky header), <a href='https://momentjs.com/'>moment</a> (for orders date management) or <a href='https://tabler-icons-react.vercel.app/'>tabler-icons</a> (for cart icons)
-* The project is <a href='https://dev.dkd1mdb9vgabn.amplifyapp.com/'>deployed</a> with AWS Amplify.
+* The project is <a href='https://master.dkd1mdb9vgabn.amplifyapp.com/'>deployed</a> with AWS Amplify.
 
 
 ## New Features Coming Soon
