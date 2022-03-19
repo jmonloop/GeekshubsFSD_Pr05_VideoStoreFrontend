@@ -67,7 +67,7 @@ And up to here, the views limited to guest user. Now let's see the authenticatio
 
 
 ### User authentication
-At the right-top, in the header, there is a burger button which shows a modal with user data. Different links are shown depending if the usser is logged or not.
+At the right-top, in the header, there is a burger button which shows a modal with user data. Different links are shown depending if the user is logged or not.
 
 ![ScreenShot](https://raw.githubusercontent.com/jmonloop/GeekshubsFSD_Pr05_VideoStoreFrontend/dev/src/assets/screenshots/modal.jpg)
 
@@ -79,12 +79,12 @@ Both register and login form have all kinds of security, preventing the executio
     - Check if password is out of <6 >10
 - When submit:
     - Check fields with regular expressions
-    - Check if email or username already is registered
+    - Check if email or username is already registered
 
 ![ScreenShot](https://raw.githubusercontent.com/jmonloop/GeekshubsFSD_Pr05_VideoStoreFrontend/dev/src/assets/screenshots/security.jpg)
 
 
-When user signs in succesfully the application saves the credentials and now he can access to the client views.
+When user signs in succesfully, the application saves the credentials and now he can access to the client views.
 
 When user is logged, the movie-detail view shows at the bottom the cart options.
 
@@ -92,16 +92,16 @@ When user is logged, the movie-detail view shows at the bottom the cart options.
 
 By clicking Add button, adds actual movie in the shopping cart.
 By clicking Quit button, removes actual movie from the cart if it had been previously added.
-By clicking Go To Cart, it goes to Cart view.
+By clicking Go To Cart, it goes to the Cart view.
 A differente message is shown depending on the action.
 
 
 ### Shopping Cart
 Shopping cart was not strictly necessary for this project but I preferred to include it as practicing with this feature.
 
-In this view a list of all cart items added is shown.
+In this view, a list of all cart items added is shown.
 
-User can remove items and by clicking Confirm Order, the orders are executed, saved in the database, and the cart is cleared.
+User can remove items and, by clicking Confirm Order, the orders are executed, saved in the database and the cart is cleared.
 
 ![ScreenShot](https://raw.githubusercontent.com/jmonloop/GeekshubsFSD_Pr05_VideoStoreFrontend/dev/src/assets/screenshots/cart2.jpg)
 
@@ -110,14 +110,14 @@ Shopping cart data is managed by Redux so it remains in local storage even if th
 
 
 ### User Profile
-User can consult his profile data and the orders he actually owns at the profile view.
+User can consult his profile data and the orders he actually owns in the database.
 Profile view can be accessed by clicking on the username, at the user data burger button.
 
 ![ScreenShot](https://raw.githubusercontent.com/jmonloop/GeekshubsFSD_Pr05_VideoStoreFrontend/dev/src/assets/screenshots/profile.jpg)
 
 
 ### Update Profile and Password
-User can modify his credentials through his profile view. By submitting, the is updated in the database and in Redux.
+User can modify his data through his profile view. By submitting, the is updated in the database and in Redux.
 
 ![ScreenShot](https://raw.githubusercontent.com/jmonloop/GeekshubsFSD_Pr05_VideoStoreFrontend/dev/src/assets/screenshots/updateprofile.jpg)
 
@@ -125,7 +125,7 @@ User can modify his credentials through his profile view. By submitting, the is 
 
 ### Admin User
 If the user signs in with "admin" rol, instead of going to profile view, he will go to Admin View.
-In this view is shown all users, movies and orders data and the admin can manage it directly over database.
+In this view shown all users, movies and orders are shown with their respective fields. From here, admin can manage everything directly over database.
 
 ![ScreenShot](https://raw.githubusercontent.com/jmonloop/GeekshubsFSD_Pr05_VideoStoreFrontend/dev/src/assets/screenshots/admin.jpg)
 
