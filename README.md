@@ -55,13 +55,13 @@ This bar is accessible from the entire application.
 ### Movie Detail
 In this view the specific details of the movie are mapped into different tabs.
 
-![ScreenShot](https://raw.githubusercontent.com/jmonloop/GeekshubsFSD_Pr05_VideoStoreFrontend/dev/src/assets/screenshots/search.jpg)
+![ScreenShot](https://raw.githubusercontent.com/jmonloop/GeekshubsFSD_Pr05_VideoStoreFrontend/dev/src/assets/screenshots/detail.jpg)
 
 An expandable accordion allows additional cast information to be displayed.
 
 At the bottom, a message is shown that user must be logged in for ordering the movie.
 
-![ScreenShot](https://raw.githubusercontent.com/jmonloop/GeekshubsFSD_Pr05_VideoStoreFrontend/dev/src/assets/screenshots/search.jpg)
+![ScreenShot](https://raw.githubusercontent.com/jmonloop/GeekshubsFSD_Pr05_VideoStoreFrontend/dev/src/assets/screenshots/logintoplace.jpg)
 
 And up to here, the views limited to guest user. Now let's see the authentication system.
 
@@ -69,7 +69,7 @@ And up to here, the views limited to guest user. Now let's see the authenticatio
 ### User authentication
 At the right-top, in the header, there is a burger button which shows a modal with user data. Different links are shown depending if the usser is logged or not.
 
-![ScreenShot](https://raw.githubusercontent.com/jmonloop/GeekshubsFSD_Pr05_VideoStoreFrontend/dev/src/assets/screenshots/search.jpg)
+![ScreenShot](https://raw.githubusercontent.com/jmonloop/GeekshubsFSD_Pr05_VideoStoreFrontend/dev/src/assets/screenshots/modal.jpg)
 
 
 Both register and login form have all kinds of security, preventing the execution and warning the user in case of an error.
@@ -130,7 +130,7 @@ In this view is shown all users, movies and orders data and the admin can manage
 ![ScreenShot](https://raw.githubusercontent.com/jmonloop/GeekshubsFSD_Pr05_VideoStoreFrontend/dev/src/assets/screenshots/admin.jpg)
 
 Admin can modify each user profile or delete it from DB
-![ScreenShot](https://raw.githubusercontent.com/jmonloop/GeekshubsFSD_Pr05_VideoStoreFrontend/dev/src/assets/screenshots/adminform.jpg)
+![ScreenShot](https://raw.githubusercontent.com/jmonloop/GeekshubsFSD_Pr05_VideoStoreFrontend/dev/src/assets/screenshots/adminform.JPG)
 
 
 
@@ -140,7 +140,8 @@ Admin can modify each user profile or delete it from DB
 * <a href='https://es.redux.js.org/'>Redux</a> has been used for credentials management and binding sibling components data.
 * <a href='https://es.redux.js.org/'>Mantine</a> library has been used for several components like modals and forms. Although custom styles have been applied to them.
 * <a href='https://styled-components.com/'>Styled-components</a> have been used in most part of the styles. It has been a first approach for me but I will continue implementing them in future projects.
-* Different libraries for small details like <a href='https://geekflare.com/es/lodash-functions-for-javascript-developers/'>lodash</a> (for sticky header), <a href='https://momentjs.com/'>moment</a> (for orders date management) or <a href='https://tabler-icons-react.vercel.app/'>tabler-icons</a> (for chart icons)
+* Different libraries for small details like <a href='https://geekflare.com/es/lodash-functions-for-javascript-developers/'>lodash</a> (for sticky header), <a href='https://momentjs.com/'>moment</a> (for orders date management) or <a href='https://tabler-icons-react.vercel.app/'>tabler-icons</a> (for cart icons)
+* The project is <a href='https://dev.dkd1mdb9vgabn.amplifyapp.com/'>deployed</a> deployed with AWS Amplify.
 
 
 ## New Features Coming Soon
