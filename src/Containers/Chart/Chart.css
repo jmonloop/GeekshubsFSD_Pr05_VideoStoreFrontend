@@ -1,0 +1,19 @@
+.confirmBttn{
+    background-color: green;
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    align-items: center;
+
+
+}
+
+.confirmBttn:hover{
+    cursor: pointer;
+    background: rgb(6,126,68);
+    background: linear-gradient(180deg, rgba(6,126,68,1) 2%, rgba(5,111,26,1) 28%, rgba(53,106,6,1) 92%);
+}
+
+.table {
+    width: 50%;
+}

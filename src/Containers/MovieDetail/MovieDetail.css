@@ -1,0 +1,13 @@
+.table {
+    display: flex;
+    width: 100%;
+    /* background-color: blue; */
+}
+
+tr, tbody, td{
+    width: 100%;
+}
+
+.msg {
+    margin-bottom: 3%;
+}
