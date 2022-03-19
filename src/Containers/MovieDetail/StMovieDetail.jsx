@@ -221,7 +221,7 @@ export const posterImg = styled.img`
     border: solid 5px;
 `
 
-export const chartDiv = styled.div`
+export const cartDiv = styled.div`
     display: flex;
     flex-direction: column;
     text-align: justify;

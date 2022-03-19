@@ -145,9 +145,9 @@ export const ModPassForm = (props) => {
   return (
     <>
       <>
-        {<pre>{JSON.stringify(userData, null, 2)}</pre>}
+        {/* {<pre>{JSON.stringify(userData, null, 2)}</pre>}
         {<pre>{JSON.stringify(msg, null, 2)}</pre>}
-        {<pre>{JSON.stringify(errorMsg, null, 2)}</pre>}
+        {<pre>{JSON.stringify(errorMsg, null, 2)}</pre>} */}
       </>
 
       <TextInput

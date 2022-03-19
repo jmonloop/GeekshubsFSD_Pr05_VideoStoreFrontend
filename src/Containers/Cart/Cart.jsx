@@ -7,13 +7,13 @@ import PaginationComp from '../../Components/Pagination/Pagination';
 import { Table } from '@mantine/core';
 import { SquareX, ArrowBigRightLine } from 'tabler-icons-react';
 import { ScrollArea } from '@mantine/core';
-import { MOVIE_DETAIL, ADD_TO_CHART, REMOVE_FROM_CHART, CLEAR_CHART } from '../../redux/types'
+import { MOVIE_DETAIL, ADD_TO_cart, REMOVE_FROM_CART, CLEAR_CART } from '../../redux/types'
 import moment from 'moment'
-import '../Chart/Chart.css'
+import '../Cart/Cart.css'
 
 
 //Importo todo lo que venga de HambModalSt. Lo llamaré S y lo que venga detrás del punto será el elemento creado en el styled
-import * as S from './StChart.jsx';
+import * as S from './StCart.jsx';
 import * as SS from '../../Components/ModUserModal/StModUserModal';
 import ModUserModal from '../../Components/ModUserModal/ModUserModal';
 import ModPassModal from '../../Components/ModPassModal/ModPassModal';
@@ -21,12 +21,12 @@ import AdminForm from '../../Components/AdminForm/AdminForm'
 
 let res;
 
-const Chart = (props) => {
+const Cart = (props) => {
     //vars
     let navigate = useNavigate();
 
     //hooks
-    const [chartArr, setchartArr] = useState([])
+    const [cartArr, setcartArr] = useState([])
     const [ordersArr, setordersArr] = useState([])
     const [ordersChanged, setordersChanged] = useState(false)
     const [msg, setMsg] = useState("");
@@ -76,12 +76,12 @@ const Chart = (props) => {
     }
 
     const makeOrders = () => {
-        for (let i = 0; i < props.chart.chart.length; i++) {
-            orderToBack(props.chart.chart[i].id)
+        for (let i = 0; i < props.cart.cart.length; i++) {
+            orderToBack(props.cart.cart[i].id)
         }
-        setMsg(`${props.chart.chart.length} orders have been confirmed succesfully!`)
+        setMsg(`${props.cart.cart.length} orders have been confirmed succesfully!`)
 
-        props.dispatch({ type: CLEAR_CHART });
+        props.dispatch({ type: CLEAR_CART });
     }
 
     const usersThs = (
@@ -90,19 +90,19 @@ const Chart = (props) => {
         </tr>
     )
 
-    const removeFromChart = (id) => {
+    const removeFromCart = (id) => {
         console.log("id que entra", id)
-        props.dispatch({ type: REMOVE_FROM_CHART, payload: id });
+        props.dispatch({ type: REMOVE_FROM_CART, payload: id });
     }
 
 
-    const usersRows = props.chart.chart.map((elmnt) => {
+    const usersRows = props.cart.cart.map((elmnt) => {
 
         return (
 
             <tr className='row' key={elmnt.id}>
                 <td>{elmnt.title}</td>
-                <td onClick={() => { removeFromChart(elmnt.id); }}>
+                <td onClick={() => { removeFromCart(elmnt.id); }}>
                     <SquareX></SquareX>
                 </td>
             </tr>
@@ -112,12 +112,12 @@ const Chart = (props) => {
 
 
 
-    if (props.chart.chart.length !== 0) {
+    if (props.cart.cart.length !== 0) {
         return (
-            <S.chartContainer>
-                <S.chartBox>
+            <S.cartContainer>
+                <S.cartBox>
                     <S.contentDiv>
-                        <S.sectionTitle>SHOPPING CHART</S.sectionTitle>
+                        <S.sectionTitle>SHOPPING CART</S.sectionTitle>
                         <S.tableDiv style={{ width: 600 }}>
                             <Table striped highlightOnHover>
                                 <caption></caption>
@@ -129,28 +129,28 @@ const Chart = (props) => {
                         </S.tableDiv>
                     </S.contentDiv>
 
-                </S.chartBox>
+                </S.cartBox>
 
-            </S.chartContainer >
+            </S.cartContainer >
         )
     } else {
         return (
-            <S.chartContainer>
-                <S.chartBox>
+            <S.cartContainer>
+                <S.cartBox>
                     <S.contentDiv>
-                        <S.sectionTitle>SHOPPING CHART</S.sectionTitle>
+                        <S.sectionTitle>SHOPPING CART</S.sectionTitle>
                         <S.tableDiv className='table'>
                             {/* <S.tableDiv style={{ width: 600 }}> */}
                             <Table striped highlightOnHover>
-                                <caption>There are no items in your chart yet</caption>
+                                <caption>There are no items in your cart yet</caption>
                             </Table>
                             <span>{msg}</span>
                         </S.tableDiv>
                     </S.contentDiv>
 
-                </S.chartBox>
+                </S.cartBox>
 
-            </S.chartContainer >
+            </S.cartContainer >
         )
     }
 
@@ -160,5 +160,5 @@ const Chart = (props) => {
 export default connect((state) => ({
     credentials: state.credentials,
     ordersData: state.ordersData,
-    chart: state.chart
-}))(Chart);
+    cart: state.cart
+}))(Cart);

@@ -177,6 +177,7 @@ export const RegisterForm = (props) => {
       <TextInput
         required
         label="Age"
+        type="number"
         placeholder=""
         onChange={(e) => { fillForm(e) }}
         name="age"
