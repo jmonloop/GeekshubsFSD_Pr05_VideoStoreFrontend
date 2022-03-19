@@ -31,6 +31,7 @@ export const RegisterForm = (props) => {
 
   //Auth hooks
   const { register } = useAuth()
+  const { currentUser } = useAuth()
 
 
 
@@ -160,7 +161,7 @@ export const RegisterForm = (props) => {
 
 
 
-  const { currentUser } = useAuth()
+ 
   return (
     <>
       <>

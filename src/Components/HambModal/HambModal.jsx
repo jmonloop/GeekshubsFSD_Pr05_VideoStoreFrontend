@@ -16,6 +16,7 @@ import LoginForm from '../LoginForm/LoginForm';
 
 //Importo todo lo que venga de HambModalSt. Lo llamaré S y lo que venga detrás del punto será el elemento creado en el styled
 import * as S from './StHambModal.jsx';
+import { useAuth } from '../../contexts/AuthContext';
 
 
 const HambModal = (props) => {
@@ -30,6 +31,9 @@ const HambModal = (props) => {
     const [opened, setOpened] = useState(false);
     const title = opened ? 'Close navigation' : 'Open navigation';
 
+    //Firestone auth hooks
+   const {logout} = useAuth();
+
     //useEffects
     useEffect(() => {
 
@@ -41,7 +45,7 @@ const HambModal = (props) => {
     }
 
 
-    const Logout = () => {
+    const LogoutDB = () => {
         setRenderLoginForm(false)
 
         //Borrar de RDX las credenciales
@@ -155,7 +159,8 @@ const HambModal = (props) => {
                 >
                     {renderProfileLinks()}
                     <S.Link onClick={() => {
-                        Logout();
+                        LogoutDB();
+                        logout();
                         GoTo('/');
                         setOpened(false)
                     }}>Logout

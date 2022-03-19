@@ -8,6 +8,8 @@ import axios from 'axios';
 
 import { TextInput, Checkbox, Button } from '@mantine/core';
 
+import { useAuth } from '../../contexts/AuthContext';
+
 //REDUX...
 import { connect } from 'react-redux';
 import { LOGIN } from '../../redux/types';
@@ -21,6 +23,10 @@ export const LoginForm = (props) => {
   const [msg, setMsg] = useState("");
   const [errorMsg, seterrorMsg] = useState("");
 
+    //Auth hooks
+    const { login } = useAuth()
+    const { currentUser } = useAuth()
+
 
   //Handler funcs
   const fillForm = (e) => {
@@ -31,7 +37,7 @@ export const LoginForm = (props) => {
   };
 
   //Local funcs
-  const login = async () => {
+  const loginDB = async () => {
 
     let fieldsArr = Object.entries(userData);
     let error = "";
@@ -88,6 +94,7 @@ export const LoginForm = (props) => {
   return (
 
     <>
+    {`The current user is : ${currentUser}`}
       <TextInput
         required
         label="Email"
@@ -111,7 +118,13 @@ export const LoginForm = (props) => {
       // {...form.getInputProps('termsOfService', { type: 'checkbox' })}
       />
 
-      <Button type="submit" onClick={() => login()}>Submit</Button>
+      <Button type="submit" onClick={() => {
+        loginDB();
+        login(userData.email, userData.password)
+          .then((res) => console.log("auth register response =", res))
+          .catch((error) => console.log("auth register error= ", error))
+          .finally((res) => console.log("register auth finally response", res))
+      }}>Submit</Button>
       <br></br>
       <span className='errorMsg'>{errorMsg}</span>
       <span className='okMsg'>{msg}</span>
