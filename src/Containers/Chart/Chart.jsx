@@ -109,12 +109,12 @@ const Chart = (props) => {
 
 
 
-
+if(props.chart.chart.length !== 0){
     return (
         <S.chartContainer>
             <S.chartBox>
                 <S.contentDiv>
-                    <S.sectionTitle>CHART</S.sectionTitle>
+                    <S.sectionTitle>SHOPPING CHART</S.sectionTitle>
                     <S.tableDiv style={{ width: 600 }}>
                         <Table striped highlightOnHover>
                             <caption></caption>
@@ -130,6 +130,27 @@ const Chart = (props) => {
 
         </S.chartContainer >
     )
+}else{
+    return (
+        <S.chartContainer>
+            <S.chartBox>
+                <S.contentDiv>
+                    <S.sectionTitle>SHOPPING CHART</S.sectionTitle>
+                    <S.tableDiv className='table'>
+                    {/* <S.tableDiv style={{ width: 600 }}> */}
+                        <Table striped highlightOnHover>
+                            <caption>There are no items in your chart yet</caption>
+                        </Table>
+                        <span>{msg}</span>
+                    </S.tableDiv>
+                </S.contentDiv>
+                
+            </S.chartBox>
+
+        </S.chartContainer >
+    )
+}
+    
 }
 
 

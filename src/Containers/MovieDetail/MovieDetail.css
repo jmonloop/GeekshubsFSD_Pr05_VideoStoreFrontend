@@ -1,6 +1,11 @@
 .table {
     display: flex;
-    /* flex-direction: column; */
+    width: 100%;
+    /* background-color: blue; */
+}
+
+tr, tbody, td{
+    width: 100%;
 }
 
 .msg {

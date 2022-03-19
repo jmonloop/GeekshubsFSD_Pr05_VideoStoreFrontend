@@ -146,11 +146,11 @@ const MovieDetail = (props) => {
                     <>
                         <S.chartDiv>
                             <ShoppingCartPlus onClick={() => { addToChart(); }}>
-                            </ShoppingCartPlus>Add to Chart
+                            </ShoppingCartPlus>Add
                         </S.chartDiv>
                         <S.chartDiv>
-                        <ShoppingCartX onClick={() => { removeFromChart(); }}>
-                        </ShoppingCartX>Quit from Chart
+                            <ShoppingCartX onClick={() => { removeFromChart(); }}>
+                            </ShoppingCartX>Quit
                         </S.chartDiv>
                         <S.chartDiv>
                             <ShoppingCart onClick={() => GoTo('/chart')}>

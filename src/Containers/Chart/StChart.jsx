@@ -9,17 +9,16 @@ export const chartContainer = styled.div`
     justify-content: flex-start;
     align-items: center;
 
-    height: 100vh;
-    height: 100%;
+    height: 120vh;
+    /* height: 100%; */
     width: 100%;
 `
 
 export const chartBox = styled.div`
     margin-top: 5%;
-    height:50em;
+    height: auto;
+    overflow: auto;
     width: 90%;
-
-    border-style: solid;
 
     display: flex;
     flex-direction: column;
@@ -27,8 +26,18 @@ export const chartBox = styled.div`
     align-items: center;
 
     background-color: gray;
+    -webkit-box-shadow: 5px 5px 15px 5px #000000; 
+box-shadow: 5px 5px 15px 5px #000000;
 `
 export const sectionTitle = styled.div`
+margin-top: 3%;
+font-size: 3vw;
+
+color: black;
+border-bottom: 3px dotted #000000;
+
+margin-bottom: 5%;
+
 `
 
 export const contentDiv = styled.div`
@@ -41,7 +50,7 @@ export const contentDiv = styled.div`
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 `
 

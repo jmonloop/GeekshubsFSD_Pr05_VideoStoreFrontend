@@ -51,6 +51,7 @@ margin-top: 3%;
 font-size: 3vw;
 
 color: black;
+border-bottom: 3px dotted #000000;
 
 `
 
@@ -189,6 +190,9 @@ export const detailValue = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    width: 10%;
+    margin-left: 5%;
 
 `
 
