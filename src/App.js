@@ -3,6 +3,7 @@ import './App.css';
 //Importo clases de react-router-dom para funciones de navegación entre vistas
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
+
 import Sticky from 'react-sticky-el';
 
 //Importo componentes
@@ -13,6 +14,8 @@ import MovieDetail from './Containers/MovieDetail/MovieDetail';
 import Admin from './Containers/Admin/Admin';
 import Chart from './Containers/Chart/Chart';
 import AdvSearch from './Containers/AdvSearch/AdvSearch';
+
+
 
 function App() {
   return (
