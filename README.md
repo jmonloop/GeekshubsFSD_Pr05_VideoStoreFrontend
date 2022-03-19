@@ -141,7 +141,7 @@ Admin can modify each user profile or delete it from DB
 * <a href='https://es.redux.js.org/'>Mantine</a> library has been used for several components like modals and forms. Although custom styles have been applied to them.
 * <a href='https://styled-components.com/'>Styled-components</a> have been used in most part of the styles. It has been a first approach for me but I will continue implementing them in future projects.
 * Different libraries for small details like <a href='https://geekflare.com/es/lodash-functions-for-javascript-developers/'>lodash</a> (for sticky header), <a href='https://momentjs.com/'>moment</a> (for orders date management) or <a href='https://tabler-icons-react.vercel.app/'>tabler-icons</a> (for cart icons)
-* The project is <a href='https://dev.dkd1mdb9vgabn.amplifyapp.com/'>deployed</a> deployed with AWS Amplify.
+* The project is <a href='https://dev.dkd1mdb9vgabn.amplifyapp.com/'>deployed</a> with AWS Amplify.
 
 
 ## New Features Coming Soon
@@ -160,4 +160,4 @@ The advanced search view is actually in process but it will let user to do compl
 
 * Created by Javier Monleón López (https://github.com/jmonloop)
 
-
+[Go to Top](#structure)
