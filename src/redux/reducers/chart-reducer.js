@@ -18,7 +18,7 @@ const reducerChart = (state = initialState, action) => {
 
         case REMOVE_FROM_CHART:
             //Cojo el estado como está y a chart le aplico un filtro donde solo deja pasar lo que no sea igual que el id que le llega
-            return { ...state, chart: state.chart.filter((chart) => chart.id !== action.payload)}
+            return { ...state, chart: state.chart.filter((elmnt) => elmnt.id !== action.payload)}
 
         case CLEAR_CHART:
             return initialState;

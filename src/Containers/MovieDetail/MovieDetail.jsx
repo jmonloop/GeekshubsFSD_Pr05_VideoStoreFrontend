@@ -26,6 +26,7 @@ const MovieDetail = (props) => {
     const [genres, setGenres] = useState([props.search[0].data.genres]);
     const [userHasMovie, setuserHasMovie] = useState(false)
     const [ordersChanged, setordersChanged] = useState(false)
+    const [msg, setMsg] = useState("");
 
     //useEffects
     useEffect(() => {
@@ -106,11 +107,35 @@ const MovieDetail = (props) => {
 
     }
 
-    const addToChart = () => {
-        props.dispatch({ type: ADD_TO_CHART, payload: props.search[0].data });
+    const isAdded = (id) => {
+        console.log("soy chart", props.chart.chart.length)
+        
+        for(let i=0 ; i<props.chart.chart.length ; i++) {
+            if(props.chart.chart[i].id == id) {
+                return true
+            } else{
+                return false
+            }
+        }
     }
+
+    const addToChart = () => {
+        if(!isAdded(props.search[0].data.id)){
+            props.dispatch({ type: ADD_TO_CHART, payload: props.search[0].data });
+            setMsg(`The movie ${props.search[0].data.title} has been added to your chart`)
+        } else {
+            setMsg(`The movie ${props.search[0].data.title} is already into your chart`)
+        }
+    }
+
     const removeFromChart = () => {
-        props.dispatch({ type: REMOVE_FROM_CHART, payload: props.search[0].data.id });
+        if(isAdded(props.search[0].data.id)){
+            props.dispatch({ type: REMOVE_FROM_CHART, payload: props.search[0].data.id });
+            setMsg(`The movie ${props.search[0].data.title} has been removed from your chart`)
+
+        } else {
+            setMsg(`The movie ${props.search[0].data.title} is not into your chart`)
+        }
     }
     const clearChart = () => {
         props.dispatch({ type: CLEAR_CHART });
@@ -237,7 +262,9 @@ const MovieDetail = (props) => {
                     </S.posterCol>
                 </S.detailsPosterDiv>
                 <S.synopsisRow>{props.search[0].data.overview}</S.synopsisRow>
+                <span className='msg'>{msg}</span>
                 <S.orderRow>{renderOrdersView()}</S.orderRow>
+                
             </S.detailsBox>
         </S.movieDetailContainer >
     )
@@ -246,5 +273,6 @@ const MovieDetail = (props) => {
 
 export default connect((state) => ({
     credentials: state.credentials,
-    search: state.search
+    search: state.search,
+    chart: state.chart
 }))(MovieDetail);
