@@ -17,6 +17,12 @@ export const adminContainer = styled.div`
     width: 100%;
 `
 export const adminTitle = styled.div`
+margin-top: 3%;
+font-size: 3vw;
+
+color: black;
+border-bottom: 3px dotted #000000;
+
 
 `
 
@@ -53,6 +59,7 @@ export const usersDiv = styled.div`
     align-items: center;
 `
 export const sectionTitle = styled.div`
+
 `
 
 export const filmsDiv = styled.div`

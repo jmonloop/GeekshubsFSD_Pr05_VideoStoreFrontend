@@ -118,7 +118,8 @@ const MovieDetail = (props) => {
 
     //Check if user already has the actual movie
     const userOwnsMovie = async (userId, movieId) => {
-        let result = await axios.get(`https://videostore-backend.herokuapp.com/orders/user?user=${userId}&film=${movieId}`)
+        if(props.credentials?.token){
+            let result = await axios.get(`https://videostore-backend.herokuapp.com/orders/user?user=${userId}&film=${movieId}`)
 
         // console.log("2 RESULTADO BUSQUEDA: ", result)
 
@@ -128,11 +129,13 @@ const MovieDetail = (props) => {
         } else {
             setuserHasMovie(true)
         }
+        }
+        
     }
 
     //Conditional render of the bottom order options
     const renderOrdersView = () => {
-        // console.log("3 El user la tiene antes de renderizar? ", userHasMovie)
+
         //Si el user está logueado
         if (props.credentials.token) {
             //Y tiene ya la película..

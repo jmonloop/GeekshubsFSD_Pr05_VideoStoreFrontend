@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { root, API_KEY } from '../../utils';
 import PaginationComp from '../../Components/Pagination/Pagination';
 import { Table } from '@mantine/core';
+import { SquareX, ArrowBigRightLine } from 'tabler-icons-react';
 import { ScrollArea } from '@mantine/core';
 import { MOVIE_DETAIL, ADD_TO_CHART, REMOVE_FROM_CHART, CLEAR_CHART } from '../../redux/types'
 import moment from 'moment'
@@ -74,8 +75,8 @@ const Chart = (props) => {
 
     }
 
-    const makeOrders = () =>{
-        for(let i=0 ; i<props.chart.chart.length ; i++){
+    const makeOrders = () => {
+        for (let i = 0; i < props.chart.chart.length; i++) {
             orderToBack(props.chart.chart[i].id)
         }
         setMsg(`${props.chart.chart.length} orders have been confirmed succesfully!`)
@@ -101,7 +102,9 @@ const Chart = (props) => {
 
             <tr className='row' key={elmnt.id}>
                 <td>{elmnt.title}</td>
-                <td onClick={() => { removeFromChart(elmnt.id); }}>Remove from chart</td>
+                <td onClick={() => { removeFromChart(elmnt.id); }}>
+                    <SquareX></SquareX>
+                </td>
             </tr>
         )
     })
@@ -109,48 +112,48 @@ const Chart = (props) => {
 
 
 
-if(props.chart.chart.length !== 0){
-    return (
-        <S.chartContainer>
-            <S.chartBox>
-                <S.contentDiv>
-                    <S.sectionTitle>SHOPPING CHART</S.sectionTitle>
-                    <S.tableDiv style={{ width: 600 }}>
-                        <Table striped highlightOnHover>
-                            <caption></caption>
-                            <thead>{usersThs}</thead>
-                            <tbody>{usersRows}</tbody>
-                        </Table>
-                        <div className='confirmBttn' onClick={()=>makeOrders()}>CONFIRM ORDER</div>
-                        <span>{msg}</span>
-                    </S.tableDiv>
-                </S.contentDiv>
-                
-            </S.chartBox>
+    if (props.chart.chart.length !== 0) {
+        return (
+            <S.chartContainer>
+                <S.chartBox>
+                    <S.contentDiv>
+                        <S.sectionTitle>SHOPPING CHART</S.sectionTitle>
+                        <S.tableDiv style={{ width: 600 }}>
+                            <Table striped highlightOnHover>
+                                <caption></caption>
+                                <thead>{usersThs}</thead>
+                                <tbody>{usersRows}</tbody>
+                            </Table>
+                            <div className='confirmBttn' onClick={() => makeOrders()}>CONFIRM ORDER<ArrowBigRightLine></ArrowBigRightLine></div>
+                            <span>{msg}</span>
+                        </S.tableDiv>
+                    </S.contentDiv>
 
-        </S.chartContainer >
-    )
-}else{
-    return (
-        <S.chartContainer>
-            <S.chartBox>
-                <S.contentDiv>
-                    <S.sectionTitle>SHOPPING CHART</S.sectionTitle>
-                    <S.tableDiv className='table'>
-                    {/* <S.tableDiv style={{ width: 600 }}> */}
-                        <Table striped highlightOnHover>
-                            <caption>There are no items in your chart yet</caption>
-                        </Table>
-                        <span>{msg}</span>
-                    </S.tableDiv>
-                </S.contentDiv>
-                
-            </S.chartBox>
+                </S.chartBox>
 
-        </S.chartContainer >
-    )
-}
-    
+            </S.chartContainer >
+        )
+    } else {
+        return (
+            <S.chartContainer>
+                <S.chartBox>
+                    <S.contentDiv>
+                        <S.sectionTitle>SHOPPING CHART</S.sectionTitle>
+                        <S.tableDiv className='table'>
+                            {/* <S.tableDiv style={{ width: 600 }}> */}
+                            <Table striped highlightOnHover>
+                                <caption>There are no items in your chart yet</caption>
+                            </Table>
+                            <span>{msg}</span>
+                        </S.tableDiv>
+                    </S.contentDiv>
+
+                </S.chartBox>
+
+            </S.chartContainer >
+        )
+    }
+
 }
 
 

@@ -223,7 +223,7 @@ const Admin = (props) => {
     return (
         <>
             <S.adminContainer>
-                <S.adminTitle>ADMIN</S.adminTitle>
+                <S.adminTitle>iStreaming ADMIN VIEW</S.adminTitle>
                 <S.adminBox>
                     <S.usersDiv>
                         <S.sectionTitle>USERS</S.sectionTitle>

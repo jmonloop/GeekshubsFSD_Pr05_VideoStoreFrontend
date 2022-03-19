@@ -43,6 +43,12 @@ export const detailsPosterDiv = styled.div`
     justify-content: center;
     align-items: center;
 
+    @media (max-width: 768px) {
+        flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    }
+
 `
 
 export const title = styled.div`
@@ -58,11 +64,14 @@ border-bottom: 3px dotted #000000;
 export const detailsCol = styled.div`
     height: 100%;
     width: 50%;
+    @media (max-width: 768px) {
+        width: 15em;
+    }
 
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: flex-end;
+    align-items: flex-start;
     border: 2px dotted #000000;
 border-radius: 0px 37px 0px 40px;
 
@@ -78,6 +87,10 @@ export const posterCol = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: flex-end;
+
+    @media (max-width: 768px) {
+        align-items: center;
+    }
 
     /* background-color: pink; */
 `
@@ -191,7 +204,10 @@ export const detailValue = styled.div`
     justify-content: center;
     align-items: center;
 
-    width: 10%;
+    @media (max-width: 768px) {
+        width: 10em;
+    }
+    width: 25em;
     margin-left: 5%;
 
 `
