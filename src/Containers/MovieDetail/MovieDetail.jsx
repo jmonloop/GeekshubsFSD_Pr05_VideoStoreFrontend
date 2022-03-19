@@ -9,6 +9,7 @@ import { getOrders } from '../../Components/HambModal/HambModal'
 import { Table, Accordion } from '@mantine/core';
 import moment from 'moment'
 import { ArrowBarRight } from 'tabler-icons-react';
+import '../MovieDetail/MovieDetail.css'
 
 //Importo todo lo que venga de HambModalSt. Lo llamaré S y lo que venga detrás del punto será el elemento creado en el styled
 import * as S from './StMovieDetail.jsx';
@@ -154,15 +155,17 @@ const MovieDetail = (props) => {
     return (
         <S.movieDetailContainer>
             <S.detailsBox>
+            <S.title>{props.search[0].data.title}</S.title>
                 <S.detailsPosterDiv>
+
                     <S.detailsCol>
-                        <Table>
+                        <Table className='table'>
                             <tbody>
                                 <tr>
                                     <td></td>
                                     <td>
                                         <S.detailValue>
-                                            {props.search[0].data.title}
+                                            
                                         </S.detailValue>
                                     </td>
                                 </tr>

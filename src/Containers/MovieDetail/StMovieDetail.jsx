@@ -45,6 +45,15 @@ export const detailsPosterDiv = styled.div`
 
 `
 
+export const title = styled.div`
+
+margin-top: 3%;
+font-size: 3vw;
+
+color: black;
+
+`
+
 export const detailsCol = styled.div`
     height: 100%;
     width: 50%;
@@ -53,8 +62,11 @@ export const detailsCol = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-end;
+    border: 2px dotted #000000;
+border-radius: 0px 37px 0px 40px;
 
-    /* background-color: blue; */
+padding: 3%;
+   
 `
 export const posterCol = styled.div`
     height: 100%;
@@ -64,7 +76,7 @@ export const posterCol = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
 
     /* background-color: pink; */
 `
@@ -86,6 +98,11 @@ export const synopsisRow = styled.div`
 
     justify-content: flex-start;
     align-items: flex-start;
+
+    border: 2px dotted #000000;
+border-radius: 0px 37px 0px 40px;
+
+padding: 3%;
 
 `
 
@@ -172,14 +189,15 @@ export const detailValue = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
 `
 
 
 export const posterImg = styled.img`
     margin-top: 5%;
-    max-height: 100%;
-    max-width: 100%;
-
+    /* max-height: 100%; */
+    /* max-width: 100%; */
+    width:25vw;
     border: solid 5px;
 `
 
