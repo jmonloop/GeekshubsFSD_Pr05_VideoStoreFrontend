@@ -201,7 +201,7 @@ export const posterImg = styled.img`
     border: solid 5px;
 `
 
-export const arrowChart = styled.div`
+export const chartDiv = styled.div`
     display: flex;
     flex-direction: column;
     text-align: justify;

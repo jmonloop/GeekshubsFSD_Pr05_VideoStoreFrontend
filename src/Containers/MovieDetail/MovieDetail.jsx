@@ -8,7 +8,7 @@ import PaginationComp from '../../Components/Pagination/Pagination';
 import { getOrders } from '../../Components/HambModal/HambModal'
 import { Table, Accordion } from '@mantine/core';
 import moment from 'moment'
-import { ArrowBarRight } from 'tabler-icons-react';
+import { ShoppingCart, ShoppingCartPlus, ShoppingCartX } from 'tabler-icons-react';
 import '../MovieDetail/MovieDetail.css'
 
 //Importo todo lo que venga de HambModalSt. Lo llamaré S y lo que venga detrás del punto será el elemento creado en el styled
@@ -82,45 +82,20 @@ const MovieDetail = (props) => {
     }
 
 
-    const makeOrder = async () => {
-        let results;
-        let currentDate = moment().format('YYYY/MM/DD');
-        let returnDate = moment().add(15, 'days').format('YYYY/MM/DD')
-
-        let body = {
-            filmId: props.search[0].data.id,
-            userId: props.credentials.user.id,
-            price: 3,
-            outDate: currentDate,
-            returnDate: returnDate
-        }
-
-        try {
-            results = await axios.post(`https://videostore-backend.herokuapp.com/orders`, body)
-            setordersChanged(true)
-            // console.log("1 ORDER HECHA CON: ", body)
-        } catch (error) {
-            console.log('Create order error = ', error)
-        }
-
-        setordersChanged(false);
-
-    }
-
     const isAdded = (id) => {
         console.log("soy chart", props.chart.chart.length)
-        
-        for(let i=0 ; i<props.chart.chart.length ; i++) {
-            if(props.chart.chart[i].id == id) {
+
+        for (let i = 0; i < props.chart.chart.length; i++) {
+            if (props.chart.chart[i].id == id) {
                 return true
-            } else{
+            } else {
                 return false
             }
         }
     }
 
     const addToChart = () => {
-        if(!isAdded(props.search[0].data.id)){
+        if (!isAdded(props.search[0].data.id)) {
             props.dispatch({ type: ADD_TO_CHART, payload: props.search[0].data });
             setMsg(`The movie ${props.search[0].data.title} has been added to your chart`)
         } else {
@@ -129,7 +104,7 @@ const MovieDetail = (props) => {
     }
 
     const removeFromChart = () => {
-        if(isAdded(props.search[0].data.id)){
+        if (isAdded(props.search[0].data.id)) {
             props.dispatch({ type: REMOVE_FROM_CHART, payload: props.search[0].data.id });
             setMsg(`The movie ${props.search[0].data.title} has been removed from your chart`)
 
@@ -163,11 +138,25 @@ const MovieDetail = (props) => {
             //Y tiene ya la película..
             if (userHasMovie) {
                 //Indica que ya la tiene
-                return (<span>Movie added to chart</span>)
+                return (<span>You already have this movie</span>)
                 //Si no la tiene...
             } else {
                 //Muestra botón para pedirla
-                return (<><S.addButton onClick={() => { addToChart(); }}>Add to Chart</S.addButton><S.removeButton onClick={() => { removeFromChart(); }}>Quit from Chart</S.removeButton><S.arrowChart><ArrowBarRight onClick={() => GoTo('/chart')}></ArrowBarRight>Go To Chart</S.arrowChart></>)
+                return (
+                    <>
+                        <S.chartDiv>
+                            <ShoppingCartPlus onClick={() => { addToChart(); }}>
+                            </ShoppingCartPlus>Add to Chart
+                        </S.chartDiv>
+                        <S.chartDiv>
+                        <ShoppingCartX onClick={() => { removeFromChart(); }}>
+                        </ShoppingCartX>Quit from Chart
+                        </S.chartDiv>
+                        <S.chartDiv>
+                            <ShoppingCart onClick={() => GoTo('/chart')}>
+                            </ShoppingCart>Go To Chart
+                        </S.chartDiv>
+                    </>)
 
             }
 
@@ -180,7 +169,7 @@ const MovieDetail = (props) => {
     return (
         <S.movieDetailContainer>
             <S.detailsBox>
-            <S.title>{props.search[0].data.title}</S.title>
+                <S.title>{props.search[0].data.title}</S.title>
                 <S.detailsPosterDiv>
 
                     <S.detailsCol>
@@ -190,7 +179,7 @@ const MovieDetail = (props) => {
                                     <td></td>
                                     <td>
                                         <S.detailValue>
-                                            
+
                                         </S.detailValue>
                                     </td>
                                 </tr>
@@ -264,7 +253,7 @@ const MovieDetail = (props) => {
                 <S.synopsisRow>{props.search[0].data.overview}</S.synopsisRow>
                 <span className='msg'>{msg}</span>
                 <S.orderRow>{renderOrdersView()}</S.orderRow>
-                
+
             </S.detailsBox>
         </S.movieDetailContainer >
     )
