@@ -122,20 +122,26 @@ export const LoginForm = (props) => {
       <Button type="submit" onClick={() => {
         loginDB();
         login(userData.email, userData.password)
-          .then((res) => console.log("auth register response =", res))
+          .then((user) => {
+            // props.dispatch({ type: LOGIN, payload: user });
+            console.log("Firestone email auth res: ", user)
+          })
           .catch((error) => console.log("auth register error= ", error))
           .finally((res) => console.log("register auth finally response", res))
       }}>Submit
       </Button>
       <br></br>
-      <div
+      {/* <div
         className='iconDiv'
         onClick={() => signInWithGoogle()
-          .then(user => console.log("Google auth user: ", user))
+          .then(user => {
+            props.dispatch({ type: LOGIN, payload: user });
+            console.log("Google auth res: ", user)
+          })
           .catch(error => console.log("Google auth error", error))
         }
       >Sign-in with Google
-      </div>
+      </div> */}
       <span className='errorMsg'>{errorMsg}</span>
       <span className='okMsg'>{msg}</span>
     </>

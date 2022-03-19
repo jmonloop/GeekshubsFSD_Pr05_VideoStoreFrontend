@@ -32,7 +32,7 @@ const HambModal = (props) => {
     const title = opened ? 'Close navigation' : 'Open navigation';
 
     //Firestone auth hooks
-   const {logout} = useAuth();
+    const { logout } = useAuth();
 
     //useEffects
     useEffect(() => {
@@ -56,10 +56,10 @@ const HambModal = (props) => {
 
     //If logged user is admin, his link navigates to admin view
     const renderProfileLinks = () => {
-        if(props.credentials?.user.rol == "admin"){
-            return(<S.Link onClick={() => {GoTo('/admin');setOpened(false);}}>{props.credentials?.user.nickname}</S.Link>)
+        if (props.credentials?.user.rol == "admin") {
+            return (<S.Link onClick={() => { GoTo('/admin'); setOpened(false); }}>{props.credentials?.user.nickname}</S.Link>)
         } else {
-            return(<S.Link onClick={() => {GoTo('/profile');setOpened(false);}}>{props.credentials?.user.nickname}</S.Link>)
+            return (<S.Link onClick={() => { GoTo('/profile'); setOpened(false); }}>{props.credentials?.user.nickname}</S.Link>)
         }
     }
 
@@ -160,7 +160,11 @@ const HambModal = (props) => {
                     {renderProfileLinks()}
                     <S.Link onClick={() => {
                         LogoutDB();
-                        logout();
+                        logout()
+                        .then((user) => {
+                            // props.dispatch({ type: LOGOUT });
+                            console.log("Firestone email logout res: ", user)
+                          })
                         GoTo('/');
                         setOpened(false)
                     }}>Logout
