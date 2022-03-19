@@ -5,3 +5,21 @@
 .okMsg{
     color: green;
 }
+
+.iconDiv {
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+
+    justify-content: flex-start;
+    align-items: flex-start;
+    font-size: 0.8rem;
+    margin-top: 5%;
+    
+    
+}
+.iconDiv:hover{
+    cursor: pointer;
+    transition: 0.2s;
+    transform:scale(1.05);
+}

@@ -9,6 +9,7 @@ import axios from 'axios';
 import { TextInput, Checkbox, Button } from '@mantine/core';
 
 import { useAuth } from '../../contexts/AuthContext';
+import { BrandGoogle } from 'tabler-icons-react';
 
 //REDUX...
 import { connect } from 'react-redux';
@@ -23,9 +24,9 @@ export const LoginForm = (props) => {
   const [msg, setMsg] = useState("");
   const [errorMsg, seterrorMsg] = useState("");
 
-    //Auth hooks
-    const { login } = useAuth()
-    const { currentUser } = useAuth()
+  //Auth hooks
+  const { login, signInWithGoogle } = useAuth()
+  const { currentUser } = useAuth()
 
 
   //Handler funcs
@@ -94,7 +95,7 @@ export const LoginForm = (props) => {
   return (
 
     <>
-    {`The current user is : ${currentUser}`}
+      {`The current user is : ${currentUser}`}
       <TextInput
         required
         label="Email"
@@ -124,8 +125,17 @@ export const LoginForm = (props) => {
           .then((res) => console.log("auth register response =", res))
           .catch((error) => console.log("auth register error= ", error))
           .finally((res) => console.log("register auth finally response", res))
-      }}>Submit</Button>
+      }}>Submit
+      </Button>
       <br></br>
+      <div
+        className='iconDiv'
+        onClick={() => signInWithGoogle()
+          .then(user => console.log("Google auth user: ", user))
+          .catch(error => console.log("Google auth error", error))
+        }
+      >Sign-in with Google
+      </div>
       <span className='errorMsg'>{errorMsg}</span>
       <span className='okMsg'>{msg}</span>
     </>

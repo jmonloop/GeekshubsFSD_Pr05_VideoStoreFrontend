@@ -9,8 +9,13 @@ import {
     //Detectar cambios entre login/logout
     onAuthStateChanged,
     //Desloguearse
-    signOut
+    signOut,
+    //Loguearse con Google
+    GoogleAuthProvider,
+    //Mostrar pop-up para loguearse con Google
+    signInWithPopup
 } from 'firebase/auth'
+import { Provider } from "react-redux";
 
 
 const AuthContext = createContext({
@@ -19,6 +24,7 @@ const AuthContext = createContext({
     register: () => Promise,
     login: () => Promise,
     logout: () => Promise,
+    signInWithGoogle: () => Promise,
 })
 
 
@@ -50,6 +56,11 @@ export default function AuthContextProvider({ children }) {
         return signInWithEmailAndPassword(auth, email, password)
     }
 
+    const signInWithGoogle = () => {
+        const provider = new GoogleAuthProvider()
+        return signInWithPopup(auth, provider)
+    }
+
     const logout = () => {
         return signOut(auth)
     }
@@ -60,6 +71,7 @@ export default function AuthContextProvider({ children }) {
         register,
         login,
         logout,
+        signInWithGoogle
     }
 
     //Le digo que el context cuando haga de proveedor (está englobando todo mi App.js), suministre lo que hay en value a todo lo que tenga dentro
