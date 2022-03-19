@@ -14,11 +14,13 @@ import MovieDetail from './Containers/MovieDetail/MovieDetail';
 import Admin from './Containers/Admin/Admin';
 import Chart from './Containers/Chart/Chart';
 import AdvSearch from './Containers/AdvSearch/AdvSearch';
+import AuthContextProvider from './contexts/AuthContext';
 
 
 
 function App() {
   return (
+    <AuthContextProvider>
     <div className="App">
       <BrowserRouter>
         <Sticky>
@@ -37,6 +39,7 @@ function App() {
 
       </BrowserRouter>
     </div>
+    </AuthContextProvider>
   );
 }
 

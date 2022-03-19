@@ -5,8 +5,8 @@ import { checkError } from '../../utils';
 import { TextInput, Checkbox, Button } from '@mantine/core';
 import { useForm } from '@mantine/hooks';
 import axios from 'axios';
-import { initializeApp } from 'firebase/app';
-import { getAuth, sendSignInLinkToEmail } from "firebase/auth";
+import { useAuth } from '../../contexts/AuthContext';
+
 
 
 export const RegisterForm = (props) => {
@@ -28,6 +28,9 @@ export const RegisterForm = (props) => {
   const [msgLength, setMsgLength] = useState("");
   const [msgMis, setMsgMis] = useState("");
   const [errorMsg, seterrorMsg] = useState("");
+
+  //Auth hooks
+  const { register } = useAuth()
 
 
 
@@ -74,7 +77,7 @@ export const RegisterForm = (props) => {
 
 
 
-  const register = async () => {
+  const registerDB = async () => {
 
     let fieldsArr = Object.entries(userData);
     let error = "";
@@ -140,7 +143,7 @@ export const RegisterForm = (props) => {
             navigate("/")
           }, 1500)
         } else {
-          
+
           seterrorMsg(result.data)
         }
 
@@ -157,66 +160,7 @@ export const RegisterForm = (props) => {
 
 
 
-  //Firebase email verification
-
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyCDhpxLDipC2XhQMxE2J46nQdU_hQvFXQk",
-    authDomain: "istream-da9d6.firebaseapp.com",
-    projectId: "istream-da9d6",
-    storageBucket: "istream-da9d6.appspot.com",
-    messagingSenderId: "847681320765",
-    appId: "1:847681320765:web:14d8b976b4351590eeb754",
-    measurementId: "G-JX6EBM2YZF"
-  };
-  const app = initializeApp(firebaseConfig);
-
-
-
-
-
-  const actionCodeSettings = {
-    // URL you want to redirect back to. The domain (www.example.com) for this
-    // URL must be in the authorized domains list in the Firebase Console.
-    url: 'dev.dkd1mdb9vgabn.amplifyapp.com',
-    // This must be true.
-    handleCodeInApp: true,
-    iOS: {
-      bundleId: 'com.example.ios'
-    },
-    android: {
-      packageName: 'com.example.android',
-      installApp: true,
-      minimumVersion: '12'
-    },
-    dynamicLinkDomain: 'example.page.link'
-  };
-
-  const auth = getAuth();
-
-  const sendLink = () =>{
-    sendSignInLinkToEmail(auth, userData.email, actionCodeSettings)
-    .then(() => {
-      console.log("entro")
-      // The link was successfully sent. Inform the user.
-      setMsgMis(`A confirmation link has been sent to ${userData.email}` )
-      // Save the email locally so you don't need to ask the user for it again
-      // if they open the link on the same device.
-      // window.localStorage.setItem('emailForSignIn', email);
-      // ...
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // ...
-    });
-  }
-
-
-
-  
- 
-
+  const { currentUser } = useAuth()
   return (
     <>
       <>
@@ -225,6 +169,7 @@ export const RegisterForm = (props) => {
         {<pre>{JSON.stringify(msgMis, null, 2)}</pre>}
         {<pre>{JSON.stringify(errorMsg, null, 2)}</pre>} */}
       </>
+      {`The current user is : ${currentUser}`}
 
       <TextInput
         required
@@ -284,7 +229,15 @@ export const RegisterForm = (props) => {
         label="Ain't gonna read so I agree with whatever"
       />
 
-      <Button type="submit" onClick={() => {register(); sendLink()}}>Submit</Button>
+      <Button type="submit" onClick={() => {
+        registerDB();
+        register(userData.email, userData.password)
+          .then((res) => console.log("auth register response =", res))
+          .catch((error)=> console.log("auth register error= ", error))
+          .finally((res)=>console.log("register auth finally response", res))
+      
+      }}>Submit
+      </Button>
       <br></br>
       <span className='errorMsg'>{errorMsg}</span>
       <br></br>
