@@ -12,6 +12,7 @@ import Profile from './Containers/Profile/Profile';
 import MovieDetail from './Containers/MovieDetail/MovieDetail';
 import Admin from './Containers/Admin/Admin';
 import Chart from './Containers/Chart/Chart';
+import AdvSearch from './Containers/AdvSearch/AdvSearch';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/chart" element={<Chart />} />
+          <Route path="/search" element={<AdvSearch />} />
         </Routes>
 
       </BrowserRouter>
