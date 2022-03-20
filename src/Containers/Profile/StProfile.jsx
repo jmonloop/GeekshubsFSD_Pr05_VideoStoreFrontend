@@ -10,13 +10,13 @@ export const profileContainer = styled.div`
     align-items: center;
 
     height: 100vh;
-    height: 100%;
+    /* height: 100%; */
     width: 100%;
 `
 
 export const profileBox = styled.div`
     margin-top: 5%;
-    height:30em;
+    height: 100%;
     width: 90%;
 
     border-style: solid;
