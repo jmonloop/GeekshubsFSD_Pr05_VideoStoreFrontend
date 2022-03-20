@@ -25,6 +25,8 @@ The backend has been modified at several points to adapt to this real functional
 
 * [Admin User](#admin-user)
 
+* [Mobile First Design](#mobile-first-design)
+
 [Technical Specs](#technical-specs)
 
 [New Features Coming Soon](#new-features-coming-soon)
@@ -132,6 +134,11 @@ In this view is shown all users, movies and orders data and the admin can manage
 Admin can modify each user profile or delete it from DB
 ![ScreenShot](https://raw.githubusercontent.com/jmonloop/GeekshubsFSD_Pr05_VideoStoreFrontend/dev/src/assets/screenshots/adminform.JPG)
 
+
+### Mobile First Design
+Minimalist and practical design has been used due to mobile necessities. As it can works both in laptops and mobile, breakpoints have been used to addapt to different screens.
+
+![ScreenShot](https://raw.githubusercontent.com/jmonloop/GeekshubsFSD_Pr05_VideoStoreFrontend/dev/src/assets/screenshots/responsive.jpg)
 
 
 
