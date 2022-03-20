@@ -8,7 +8,7 @@ Functionality has been sought over design, trying to simulate a real scenario wh
 
 The backend has been modified at several points to adapt to this real functionality.
 
-<a href='https://master.dkd1mdb9vgabn.amplifyapp.com/'>Here</a> you can go to the app.
+<a href='https://dev.dkd1mdb9vgabn.amplifyapp.com/'>Here</a> you can go to the app.
 
 
 [Structure](#structure)
