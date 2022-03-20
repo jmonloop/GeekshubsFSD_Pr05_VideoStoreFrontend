@@ -46,6 +46,14 @@ export const filmsRooster = styled.div`
     }
 
     margin-bottom: 2%;
+
+
+    @media (max-width: 768px) {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 `
 
 export const filmDiv = styled.div`

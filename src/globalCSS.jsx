@@ -1,4 +1,4 @@
-import {createGlobalStyle} from 'styled-components'
+import { createGlobalStyle } from 'styled-components'
 import RenderRegisterForm from './Components/HambModal/HambModal'
 
 const GlobalStyle = createGlobalStyle`
@@ -57,6 +57,23 @@ const GlobalStyle = createGlobalStyle`
             /* background-color: gray; */
         }
     }
+    
+    
+    
+    //Cart orders table
+    div .sc-jUosCB itRCPA{
+        width: 600px;
+        @media (max-width: 768px) {
+        width:600px;
+    }
+    }
+
+    div .mantine-3bq3b3 {
+        width: 600px;
+        @media (max-width: 768px) {
+        width:300px;
+    }
+}
 
     * {
 

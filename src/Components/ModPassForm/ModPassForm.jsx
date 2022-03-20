@@ -178,7 +178,7 @@ export const ModPassForm = (props) => {
       />
 
 
-      <Button type="submit" onClick={() => update()}>Update Profile</Button>
+      <Button type="submit" onClick={() => update()}>Update Password</Button>
       <br></br>
       <span className='errorMsg'>{errorMsg}</span>
       <br></br>

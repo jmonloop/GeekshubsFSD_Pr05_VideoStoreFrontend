@@ -118,7 +118,7 @@ const Cart = (props) => {
                 <S.cartBox>
                     <S.contentDiv>
                         <S.sectionTitle>SHOPPING CART</S.sectionTitle>
-                        <S.tableDiv style={{ width: 600 }}>
+                        <S.tableDiv >
                             <Table striped highlightOnHover>
                                 <caption></caption>
                                 <thead>{usersThs}</thead>

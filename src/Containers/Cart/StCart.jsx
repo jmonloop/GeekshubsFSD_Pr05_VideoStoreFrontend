@@ -41,7 +41,7 @@ margin-bottom: 5%;
 `
 
 export const contentDiv = styled.div`
-    height: 80%;
+    height: 100vh;
     width: 33%;
     /* background-color: blue; */
     @media (max-width: 768px) {
