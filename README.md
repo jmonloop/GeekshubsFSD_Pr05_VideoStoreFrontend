@@ -44,12 +44,12 @@ Main view is home, where the app shows a rooster with top rated movies from The 
 ![ScreenShot](https://raw.githubusercontent.com/jmonloop/GeekshubsFSD_Pr05_VideoStoreFrontend/dev/src/assets/screenshots/main.jpg)
 
 
-The total amount of results is divided by pages. There is a pagination component at the bottom. All data is retrieved dinamically from TMDB when the user changes page.
+The total amount of results is divided by pages. There is a **pagination component** at the bottom. All data is retrieved dinamically from TMDB when the user changes page.
 
 ![ScreenShot](https://raw.githubusercontent.com/jmonloop/GeekshubsFSD_Pr05_VideoStoreFrontend/dev/src/assets/screenshots/pagination.jpg)
 
 
-User can go to watch movie details by clicking it or either searching it in the top search input bar. The searching bar automatically triggers a TMDB endpoint that searchs by title, so results are shown as the user types. Debounce functionality has been added for better performance.
+User can go to watch movie details by clicking it or either searching it in the top search input bar. The searching bar automatically triggers a TMDB endpoint that searchs by title, so results are shown as the user types. **Debounce functionality** has been added for better performance.
 
 ![ScreenShot](https://raw.githubusercontent.com/jmonloop/GeekshubsFSD_Pr05_VideoStoreFrontend/dev/src/assets/screenshots/search.jpg)
 
@@ -57,11 +57,11 @@ User can go to watch movie details by clicking it or either searching it in the 
 This bar is accessible from the entire application.
 
 ### Movie Detail
-In this view the specific details of the movie are mapped into different tabs.
+In this view the **specific details of the movie are mapped** into different tabs.
 
 ![ScreenShot](https://raw.githubusercontent.com/jmonloop/GeekshubsFSD_Pr05_VideoStoreFrontend/dev/src/assets/screenshots/detail.jpg)
 
-An expandable accordion allows additional cast information to be displayed.
+An expandable accordion allows **additional cast information** to be displayed.
 
 At the bottom, a message is shown that user must be logged in for ordering the movie.
 
@@ -121,7 +121,7 @@ Profile view can be accessed by clicking on the username, at the user data burge
 
 
 ### Update Profile and Password
-User can modify his data through his profile view. By submitting, the is updated in the database and in Redux.
+User can modify his data through his profile view. By submitting, the info is updated in the database and in Redux.
 
 ![ScreenShot](https://raw.githubusercontent.com/jmonloop/GeekshubsFSD_Pr05_VideoStoreFrontend/dev/src/assets/screenshots/updateprofile.jpg)
 
@@ -129,7 +129,7 @@ User can modify his data through his profile view. By submitting, the is updated
 
 ### Admin User
 If the user signs in with "admin" rol, instead of going to profile view, he will go to Admin View.
-In this view shown all users, movies and orders are shown with their respective fields. From here, admin can manage everything directly over database.
+In this view shown all users, movies and orders are shown with their respective fields. From here, **admin can manage everything directly over database**.
 
 ![ScreenShot](https://raw.githubusercontent.com/jmonloop/GeekshubsFSD_Pr05_VideoStoreFrontend/dev/src/assets/screenshots/admin.jpg)
 
@@ -138,7 +138,7 @@ Admin can modify each user profile or delete it from DB
 
 
 ### Mobile First Design
-Minimalist and practical design has been used due to mobile necessities. As it can works both in laptops and mobile, breakpoints have been used to addapt to different screens.
+Minimalist and practical design has been used due to mobile necessities. As it can works both in laptops and mobile, **breakpoints have been used** to addapt to different screens.
 
 ![ScreenShot](https://raw.githubusercontent.com/jmonloop/GeekshubsFSD_Pr05_VideoStoreFrontend/dev/src/assets/screenshots/responsive.jpg)
 
@@ -155,10 +155,10 @@ Minimalist and practical design has been used due to mobile necessities. As it c
 
 ## New Features Coming Soon
 * Sign-in with Google accont. 
-Feature was <a href='https://github.com/jmonloop/GeekshubsFSD_Pr05_VideoStoreFrontend/tree/googleAuthFeature'>implemented</a> but removed from production as now the application maps so many data from database credentials, and using Google Auth would mean having to redo a lot of code. So due of timing it not be able for this installment but it will be ready for the next.
+Feature was <a href='https://github.com/jmonloop/GeekshubsFSD_Pr05_VideoStoreFrontend/tree/googleAuthFeature'>implemented</a> but removed from production as now the application maps so many data from database credentials, and using **Google Auth** would mean having to redo a lot of code. So due of timing it not be able for this installment but it will be ready for the next.
 
 * Advanced Search.
-The advanced search view is actually in process but it will let user to do complex searchs through TMDB "discover" endpoint using many fields and selectors.
+The advanced search view is actually in process but it will let user to do **complex searchs through TMDB "discover" endpoint** using many fields and selectors.
 
 
 ## Thanks
