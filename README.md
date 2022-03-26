@@ -42,7 +42,7 @@ Main view is home, where the app shows a rooster with top rated movies from The 
 ![ScreenShot](https://raw.githubusercontent.com/jmonloop/GeekshubsFSD_Pr05_VideoStoreFrontend/dev/src/assets/screenshots/main.jpg)
 
 
-The total amount of results is divided by pages. There is a pagination component at the bottom. All data is retrieved dinamically from TMDB when the user changes page.
+The total amount of results is divided by pages. There is a **pagination component** at the bottom. All data is retrieved dinamically from TMDB when the user changes page.
 
 ![ScreenShot](https://raw.githubusercontent.com/jmonloop/GeekshubsFSD_Pr05_VideoStoreFrontend/dev/src/assets/screenshots/pagination.jpg)
 
